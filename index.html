@@ -70,13 +70,11 @@
        GLOBAL SWIPER STYLES
     ========================= */
     .gallery-top,
-    .fun-top,
-    .reviews-top {
+    .fun-top {
       height: 80vh;
     }
     .gallery-top .swiper-slide img,
-    .fun-top .swiper-slide img,
-    .reviews-top .swiper-slide img {
+    .fun-top .swiper-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -92,19 +90,12 @@
       opacity: 0.4;
       transform: scale(1.0);
     }
-    /* Override for Reviews Section Images */
-    #Reviews .reviews-top .swiper-slide img {
-      width: auto;
-      height: auto;
-      max-height: 80vh;
-      object-fit: contain;
-    }
+
     /* =========================
        THUMBNAILS STYLES
     ========================= */
     .gallery-thumbs .swiper-slide,
-    .fun-thumbs .swiper-slide,
-    .reviews-thumbs .swiper-slide {
+    .fun-thumbs .swiper-slide {
       width: 80px;
       height: 80px;
       opacity: 0.6;
@@ -113,22 +104,20 @@
       align-items: center;
     }
     .gallery-thumbs .swiper-slide img,
-    .fun-thumbs .swiper-slide img,
-    .reviews-thumbs .swiper-slide img {
+    .fun-thumbs .swiper-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
     .gallery-thumbs .swiper-slide-thumb-active,
-    .fun-thumbs .swiper-slide-thumb-active,
-    .reviews-thumbs .swiper-slide-thumb-active {
+    .fun-thumbs .swiper-slide-thumb-active {
       opacity: 1;
     }
     .gallery-thumbs,
-    .fun-thumbs,
-    .reviews-thumbs {
+    .fun-thumbs {
       margin: 5px auto 0 !important;
     }
+
     /* =========================
        HERO & FEATURES SECTIONS
     ========================= */
@@ -163,6 +152,7 @@
       position: relative;
       z-index: 1;
     }
+
     /* =========================
        NAVIGATION & TOGGLES
     ========================= */
@@ -176,8 +166,7 @@
     #toggleIconLocation,
     #toggleIconOwners,
     #toggleIconCal,
-    #toggleIconRate,
-    #toggleIconReviews {
+    #toggleIconRate {
       font-weight: bold;
       font-size: 24px;
       margin-right: 8px;
@@ -229,6 +218,7 @@
       visibility: visible;
       transform: scaleX(1);
     }
+
     /* =========================
        Custom Flatpickr Styles
        Disable day clicks and style occupied days
@@ -249,15 +239,14 @@
     .flatpickr-day:not(.occupied) {
       font-weight: bold;
     }
+
     /* =========================
        Custom Navigation Arrow Colors
     ========================= */
     .swiper-button-prev, 
     .swiper-button-next,
     .swiper-button-prevFun, 
-    .swiper-button-nextFun,
-    .swiper-button-prevReviews,
-    .swiper-button-nextReviews {
+    .swiper-button-nextFun {
       color: grey !important;
     }
   </style>
@@ -266,16 +255,13 @@
   <style>
     @media (max-width: 768px) {
       .gallery-top,
-      .fun-top,
-      .reviews-top {
+      .fun-top {
         height: 60vh;
       }
       .swiper-button-prev,
       .swiper-button-next,
       .swiper-button-prevFun,
-      .swiper-button-nextFun,
-      .swiper-button-prevReviews,
-      .swiper-button-nextReviews {
+      .swiper-button-nextFun {
         display: none;
       }
       .flatpickr-calendar {
@@ -322,7 +308,6 @@
           <a href="#Calendar" id="menuCalendar" class="nav-link lg:text-sm">Calendar</a>
           <a href="#location" id="menuLocation" class="nav-link lg:text-sm">Location</a>
           <a href="#Rates" id="menuRates" class="nav-link lg:text-sm">Rates</a>
-          <a href="#Reviews" id="menuReviews" class="nav-link lg:text-sm">Reviews</a>
           <a href="#roatan-fun" id="menuRoatanFun" class="nav-link lg:text-sm">Roatan Fun</a>
           <a href="#Owners" id="menuOwners" class="nav-link lg:text-sm">Owners</a>
           <a href="#contact" class="nav-link lg:text-sm">Book/Contact Us</a>
@@ -484,6 +469,7 @@
     </div>
   </section>
 
+  <!-- LOCATION SECTION -->
 <section id="location" class="py-8">
   <div class="container mx-auto px-4">
     <div class="toggle-container" onclick="toggleLocationDetails()">
@@ -554,38 +540,6 @@
     </div>
   </div>
 </section>
-
-  <!-- REVIEWS SECTION -->
-  <section id="Reviews" class="py-8">
-    <div class="container mx-auto px-4">
-      <div class="toggle-container" onclick="toggleReviewsDetails()">
-        <div id="toggleIconReviews">+</div>
-        <h2 class="text-2xl font-bold">Reviews</h2>
-      </div>
-      <div id="ReviewsDetails" class="hidden text-center">
-        <div class="swiper reviews-top">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/Review1.jpg" alt="Review"></div>
-            <div class="swiper-slide"><img src="images/Review2.jpg" alt="Review"></div>
-            <div class="swiper-slide"><img src="images/Review3.png" alt="Review"></div>
-            <div class="swiper-slide"><img src="images/Review4.png" alt="Review"></div>
-            <div class="swiper-slide"><img src="images/Review5.PNG" alt="Review"></div>
-          </div>
-          <div class="swiper-button-prev swiper-button-prevReviews"></div>
-          <div class="swiper-button-next swiper-button-nextReviews"></div>
-        </div>
-        <div class="swiper reviews-thumbs mt-4">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/Review1.jpg" alt="Review"></div>
-            <div class="swiper-slide"><img src="images/Review2.jpg" alt="Review"></div>
-            <div class="swiper-slide"><img src="images/Review3.png" alt="Review"></div>
-            <div class="swiper-slide"><img src="images/Review4.png" alt="Review"></div>
-            <div class="swiper-slide"><img src="images/Review5.PNG" alt="Review"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ROATAN FUN SECTION -->
   <section id="roatan-fun" class="container mx-auto px-4 lg:px-60 py-4">
@@ -765,17 +719,6 @@
         toggleIconRate.textContent = "+";
       }
     }
-    function toggleReviewsDetails() {
-      var ReviewsDetails = document.getElementById("ReviewsDetails");
-      var toggleIconReviews = document.getElementById("toggleIconReviews");
-      if (ReviewsDetails.classList.contains("hidden")) {
-        ReviewsDetails.classList.remove("hidden");
-        toggleIconReviews.textContent = "-";
-      } else {
-        ReviewsDetails.classList.add("hidden");
-        toggleIconReviews.textContent = "+";
-      }
-    }
     function animateNavLinks() {
       const navLinks = document.querySelectorAll('.nav-link');
       navLinks.forEach((link, index) => {
@@ -845,33 +788,6 @@
           disableOnInteraction: true
         }
       });
-      // ----- REVIEWS THUMBS -----
-      var reviewsThumbs = new Swiper('.reviews-thumbs', {
-        slidesPerView: 'auto',
-        freeMode: true,
-        spaceBetween: 2,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true
-      });
-      // ----- MAIN REVIEWS SLIDER -----
-      var reviewsTop = new Swiper('.reviews-top', {
-        spaceBetween: 1,
-        loop: true,
-        centeredSlides: true,
-        slidesPerView: 1.4,
-        slideToClickedSlide: true,
-        navigation: {
-          nextEl: '.swiper-button-nextReviews',
-          prevEl: '.swiper-button-prevReviews'
-        },
-        thumbs: {
-          swiper: reviewsThumbs
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: true
-        }
-      });
 
       // NAV MENU TOGGLE EVENTS
       document.getElementById('menuLocation').addEventListener('click', function(e) {
@@ -914,16 +830,6 @@
           document.location.href = '#Rates';
         }
       });
-      document.getElementById('menuReviews').addEventListener('click', function(e) {
-        e.preventDefault();
-        const ReviewsDetails = document.getElementById('ReviewsDetails');
-        if (ReviewsDetails.classList.contains('hidden')) {
-          toggleReviewsDetails();
-          document.location.href = '#Reviews';
-        } else {
-          document.location.href = '#Reviews';
-        }
-      });
       document.getElementById('menuRoatanFun').addEventListener('click', function(e) {
         e.preventDefault();
         document.location.href = '#roatan-fun';
@@ -962,5 +868,3 @@
   </script>
 </body>
 </html>
-
-
