@@ -614,7 +614,7 @@
         <a href="mailto:InfinityBay1003@gmail.com" class="text-blue-600 underline hover:text-blue-800">
           InfinityBay1003@gmail.com
         </a>
-        for booking inquiries<br>
+        for booking inquiries.<br>
          <br>
       </p>
 
@@ -843,10 +843,12 @@
         onDayCreate: function(dObj, dStr, fp, dayElem) {
           const date = dayElem.dateObj;
           if (
-            (date >= new Date("2024-03-01") && date <= new Date("2025-12-12")) ||
-            (date >= new Date("2026-03-10") && date <= new Date("2026-03-28")) ||
-            (date >= new Date("2026-04-18") && date <= new Date("2026-04-24")) ||
-            (date >= new Date("2026-06-08") && date <= new Date("2026-06-12"))
+            (date >= new Date("2024-03-01") && date <= new Date("2026-01-08")) ||
+            (date >= new Date("2026-01-14") && date <= new Date("2026-01-20")) ||
+            (date >= new Date("2026-03-10") && date <= new Date("2026-03-18")) ||
+            (date >= new Date("2026-03-22") && date <= new Date("2026-03-27")) ||
+            (date >= new Date("2026-04-04") && date <= new Date("2026-04-10")) ||
+            (date >= new Date("2026-04-26") && date <= new Date("2026-05-02"))
           ) {
             dayElem.classList.add("occupied");
           }
@@ -866,6 +868,7 @@
   </script>
 </body>
 </html>
+
 
 
 
