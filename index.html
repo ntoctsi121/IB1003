@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Oceanfront Condo in Roatan at Infinity Bay</title>
-   <!-- Favicon -->
-<link rel="icon" href="images/icon.JPG?v=2" type="image/jpeg">
-<link rel="icon" href="images/favicon-32.png?v=2" type="image/png" sizes="32x32">
-<link rel="icon" href="images/favicon-16.png?v=2" type="image/png" sizes="16x16">
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2" sizes="180x180">
-<link rel="shortcut icon" href="images/favicon.ico?v=2">
+  <!-- Favicon -->
+  <link rel="icon" href="images/icon.JPG?v=2" type="image/jpeg">
+  <link rel="icon" href="images/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="icon" href="images/favicon-16.png?v=2" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2" sizes="180x180">
+  <link rel="shortcut icon" href="images/favicon.ico?v=2">
+
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-  <!-- Swiper CSS loaded normally -->
+  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <!-- Flatpickr CSS for the interactive calendar -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-   <!-- Preload Gallery Images -->
+
+  <!-- Preload Gallery Images -->
   <link rel="preload" as="image" href="images/Top01.jpg">
   <link rel="preload" as="image" href="images/Top02.jpg">
   <link rel="preload" as="image" href="images/Top03.JPG">
@@ -36,6 +36,7 @@
   <link rel="preload" as="image" href="images/Top20.jpg">
   <link rel="preload" as="image" href="images/Top21.jpg">
   <link rel="preload" as="image" href="images/Top22.png">
+
   <!-- Preload Fun Thumbnails -->
   <link rel="preload" as="image" href="images/Bot01.jpg">
   <link rel="preload" as="image" href="images/Bot02.jpg">
@@ -59,6 +60,7 @@
   <link rel="preload" as="image" href="images/Bot20.jpg">
   <link rel="preload" as="image" href="images/Bot21.jpg">
   <link rel="preload" as="image" href="images/Bot22.jpg">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N0CJ658K4X"></script>
   <script>
@@ -67,6 +69,7 @@
     gtag('js', new Date());
     gtag('config', 'G-N0CJ658K4X');
   </script>
+
   <style>
     /* =========================
        GLOBAL SWIPER STYLES
@@ -156,44 +159,8 @@
     }
 
     /* =========================
-       NAVIGATION & TOGGLES
+       NAV LINKS
     ========================= */
-    .toggle-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      width: 100%;
-    }
-    #toggleIconLocation,
-    #toggleIconOwners,
-    #toggleIconCal,
-    #toggleIconRate {
-      font-weight: bold;
-      font-size: 24px;
-      margin-right: 8px;
-    }
-    .hidden {
-      display: none;
-    }
-    .accommodations-list,
-    .amenities-list {
-      list-style-type: none;
-      padding: 0;
-    }
-    .icon {
-      width: 1em;
-      height: 1em;
-      vertical-align: middle;
-    }
-    .toggle-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-    }
-    .toggle-content.is-visible {
-      max-height: 1000px;
-    }
     .nav-link {
       position: relative;
       color: #333;
@@ -222,27 +189,6 @@
     }
 
     /* =========================
-       Custom Flatpickr Styles
-       Disable day clicks and style occupied days
-    ========================= */
-    .flatpickr-day {
-      pointer-events: none;
-    }
-    .flatpickr-day.occupied {
-      color: grey;
-      text-decoration: line-through;
-      text-decoration-color: red;
-    }
-    .flatpickr-calendar {
-      margin: 0 auto;
-      background-color: lightblue;
-      border: 3px solid black;
-    }
-    .flatpickr-day:not(.occupied) {
-      font-weight: bold;
-    }
-
-    /* =========================
        Custom Navigation Arrow Colors
     ========================= */
     .swiper-button-prev, 
@@ -252,7 +198,7 @@
       color: grey !important;
     }
   </style>
-  
+
   <!-- Mobile-specific adjustments -->
   <style>
     @media (max-width: 768px) {
@@ -266,26 +212,16 @@
       .swiper-button-nextFun {
         display: none;
       }
-      .flatpickr-calendar {
-        transform: scale(1);
+    }
+  </style>
+
+  <!-- Tweak Fun slider images on narrow landscape -->
+  <style>
+    @media screen and (orientation: landscape) and (max-width: 900px) {
+      #roatan-fun .fun-top .swiper-slide img {
+        object-fit: contain;
       }
     }
-  </style>
-  <style>
-  /* PC-specific adjustments */
-  @media (min-width: 769px) {
-    .flatpickr-calendar {
-      transform: scale(1.5);
-      transform-origin: top center;
-    }
-  }
-  </style>
-  <style>
-  @media screen and (orientation: landscape) and (max-width: 900px) {
-    #roatan-fun .fun-top .swiper-slide img {
-      object-fit: contain;
-    }
-  }
   </style>
 </head>
 <body class="font-serif">
@@ -298,7 +234,7 @@
     </div>
   </section>
 
-  <!-- FULL NAVIGATION MENU (Desktop and Mobile at top) -->
+  <!-- MAIN NAVIGATION -->
   <nav class="bg-white shadow-lg lg:sticky lg:top-0 lg:z-50">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-center">
@@ -307,9 +243,7 @@
           <a href="#accommodations" class="nav-link lg:text-sm">Accommodations</a>
           <a href="#amenities" class="nav-link lg:text-sm">Amenities</a>
           <a href="#features" class="nav-link lg:text-sm">Features</a>
-          <a href="#Calendar" id="menuCalendar" class="nav-link lg:text-sm">Calendar</a>
           <a href="#location" id="menuLocation" class="nav-link lg:text-sm">Location</a>
-          <a href="#Rates" id="menuRates" class="nav-link lg:text-sm">Rates</a>
           <a href="#roatan-fun" id="menuRoatanFun" class="nav-link lg:text-sm">Roatan Fun</a>
           <a href="#Owners" id="menuOwners" class="nav-link lg:text-sm">Owners</a>
           <a href="#contact" class="nav-link lg:text-sm">Book/Contact Us</a>
@@ -318,7 +252,7 @@
     </div>
   </nav>
 
-  <!-- MOBILE STICKY NAV (Appears on small screens when scrolling) -->
+  <!-- MOBILE STICKY NAV (small screens) -->
   <nav id="mobileStickyNav" class="fixed top-0 left-0 z-50 w-full bg-white shadow-lg lg:hidden hidden">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-center">
@@ -327,10 +261,9 @@
     </div>
   </nav>
 
-  <!-- GALLERY SECTION -->
+  <!-- GALLERY -->
   <section id="gallery" class="container mx-auto p-4">
     <h2 class="text-2xl font-bold text-center mb-8">Unit #1003 at Infinity Bay Spa and Resort</h2>
-    <!-- Main Gallery Slider -->
     <div class="swiper gallery-top">
       <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="images/Top01.jpg" alt="Infinity Bay #1003"></div>
@@ -357,7 +290,6 @@
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
-    <!-- Thumbnails Slider -->
     <div class="swiper gallery-thumbs mt-4">
       <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="images/Top01.jpg" alt="Infinity Bay #1003"></div>
@@ -384,7 +316,7 @@
     </div>
   </section>
 
- <div class="container mx-auto p-4 bg-white text-black my-8">
+  <div class="container mx-auto p-4 bg-white text-black my-8">
     <p class="text-center text-lg">
       This unit is currently closed for <strong>BIG renovations</strong>, but is available for rentals beginning <strong>January 2026</strong>.<br>
       Current photos reflect condo interior prior to renovations.<br>
@@ -392,7 +324,7 @@
     </p>
   </div>
 
-  <!-- ACCOMMODATIONS SECTION -->
+  <!-- ACCOMMODATIONS -->
   <section id="accommodations" class="container mx-auto p-4">
     <h2 class="text-2xl font-bold text-center mb-8">Accommodations</h2>
     <div class="grid grid-cols-1 md:grid-cols-1 gap-6 text-center">
@@ -407,7 +339,7 @@
     </div>
   </section>
 
-  <!-- AMENITIES SECTION -->
+  <!-- AMENITIES -->
   <section id="amenities" class="container mx-auto p-4">
     <h2 class="text-2xl font-bold text-center mb-8">Amenities</h2>
     <div class="grid grid-cols-1 md:grid-cols-1 gap-6 text-center">
@@ -428,14 +360,12 @@
           <li><img src="images/icon.JPG" alt="" class="icon inline-block"> Free Resort Parking</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block"> Beach towels included</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block"> 2 Large pools</li>
-
-
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES SECTION -->
+  <!-- FEATURES -->
   <section id="features" class="container mx-auto p-4 features-background mt-8">
     <h2 class="text-2xl font-bold text-center mb-8">Features</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 features-content">
@@ -462,70 +392,29 @@
     </div>
   </section>
 
-  <!-- CALENDAR SECTION -->
-  <section id="Calendar" class="py-8">
+  <!-- LOCATION -->
+  <section id="location" class="py-8">
     <div class="container mx-auto px-4">
-      <div class="toggle-container" onclick="toggleCalDetails()">
-        <div id="toggleIconCal">+</div>
-        <h2 class="text-2xl font-bold">Booking Calendar</h2>
+      <div class="toggle-container flex justify-center items-center cursor-pointer w-full" onclick="toggleLocationDetails()">
+        <div id="toggleIconLocation" class="font-bold text-2xl mr-2">+</div>
+        <h2 class="text-2xl font-bold">Location</h2>
       </div>
-      <div id="CalDetails" class="hidden text-center">
-        <p class="text-lg mb-3">(*Open dates subject to change)</p>
-        <input id="calendar" type="text" class="mx-auto" placeholder="">
+      <div id="locationDetails" class="hidden text-center">
+        <p class="text-lg mb-4">
+          Discover the stunning location of our beachfront condo at Infinity Bay Spa & Beach Resort, in the heart of West Bay Beach in Roatan, Honduras.
+        </p>
+        <div class="flex justify-center">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d605.7830505543136!2d-86.60001303422062!3d16.27313402168344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sus!4v1758683881904!5m2!1sen!2sus"
+            width="600" height="450" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- LOCATION SECTION -->
-<section id="location" class="py-8">
-  <div class="container mx-auto px-4">
-    <div class="toggle-container" onclick="toggleLocationDetails()">
-      <div id="toggleIconLocation">+</div>
-      <h2 class="text-2xl font-bold">Location</h2>
-    </div>
-    <div id="locationDetails" class="hidden text-center">
-      <p class="text-lg mb-4">
-        Discover the stunning location of our beachfront condo at Infinity Bay Spa & Beach Resort, in the heart of West Bay Beach in Roatan, Honduras.
-      </p>
-      <!-- Centered Google map -->
-      <div class="flex justify-center">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d605.7830505543136!2d-86.60001303422062!3d16.27313402168344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sus!4v1758683881904!5m2!1sen!2sus"
-          width="600"
-          height="450"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- RATES SECTION -->
-  <section id="Rates" class="py-8">
-  <div class="container mx-auto px-4">
-    <!-- toggle header -->
-    <div class="toggle-container" onclick="toggleRateDetails()">
-      <div id="toggleIconRate">+</div>
-      <h2 class="text-2xl font-bold">Rates</h2>
-    </div>
-
-    <!-- collapsible details -->
-    <div id="RateDetails" class="hidden text-center">
-      <p class="text-lg mb-4">
-        <strong>SPECIAL OFFER:</strong> Promotional Offer for 2026 to Introduce our NEW Updated Unit!  Rate of $490 per Night Plus Taxes. <br> 
-        Add Daily Breakfast Buffet for $15 per person per daily.  <br>
-        Add Gym Access for $8 per Day per Room.  <br>
-        Add Roundtrip transportation for $12 per person.<br>
-        <em>Book with us</em> and also Receive our FREE Roatan Travel Guide, made Exclusively for our Guests! 
-      </p>
-    </div>
-  </div>
-</section>
-
-  <!-- ROATAN FUN SECTION -->
+  <!-- ROATAN FUN -->
   <section id="roatan-fun" class="container mx-auto px-4 lg:px-60 py-4">
     <h2 class="text-2xl font-bold text-center mb-8">Roatan Fun</h2>
     <div class="swiper fun-top mt-8">
@@ -584,11 +473,11 @@
     </div>
   </section>
 
-  <!-- OWNERS SECTION -->
+  <!-- OWNERS -->
   <section id="Owners" class="py-8">
     <div class="container mx-auto px-4">
-      <div class="toggle-container" onclick="toggleOwnerDetails()">
-        <div id="toggleIconOwners">+</div>
+      <div class="toggle-container flex justify-center items-center cursor-pointer w-full" onclick="toggleOwnerDetails()">
+        <div id="toggleIconOwners" class="font-bold text-2xl mr-2">+</div>
         <h2 class="text-2xl font-bold">About the Owners</h2>
       </div>
       <div id="OwnerDetails" class="hidden text-center">
@@ -604,83 +493,83 @@
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
-<section id="contact" class="bg-gray-100 py-8">
-  <div class="container mx-auto px-4">
-    <h2 class="text-2xl font-bold text-center mb-6">How to Book</h2>
-    <div class="text-center mb-6">
-      <p class="text-lg">
-        Email 
-        <a href="mailto:InfinityBay1003@gmail.com" class="text-blue-600 underline hover:text-blue-800">
-          InfinityBay1003@gmail.com</a> for booking inquiries.<br>
-         <br>
-      </p>
-
-      <p class="text-2xl font-bold text-center mb-6">Contact Us</p>
-      <p class="text-lg text-center mb-6">Please contact us with any questions you may have!</p>
-
-      <div class="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
-        <a href="mailto:InfinityBay1003@gmail.com" class="flex items-center text-blue-500 hover:text-blue-700">
-          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-               xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a7.5 7.5 0 01-15 0V12m15-4v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2z"/>
-          </svg>
-          InfinityBay1003@gmail.com
-        </a>
-
-        <a href="https://www.facebook.com/profile.php?id=61580364005347" target="_blank" class="flex items-center text-blue-500 hover:text-blue-700">
-          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
-               xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 5.936 4.325 10.861 10 11.85V15.386h-3v-3.313h3V9.5c0-3 1.792-4.668 4.533-4.668 1.312 0 2.686.237 2.686.237v2.961h-1.513c-1.494 0-1.954.93-1.954 1.886v2.28h3.286l-.525 3.313h-2.761v8.537c5.675-.989 10-5.914 10-11.85z"/>
-          </svg>
-          Message us on Facebook
-        </a>
-
-        <a href="https://www.instagram.com/InfinityBay1003/" target="_blank" class="flex items-center text-blue-500 hover:text-blue-700">
-          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 448 512"
-               xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-10-67.7-24.1-94.6-16.5-31.8-40.9-56.2-72.7-72.7-27-14.1-58.7-22.4-94.6-24.1C273.5 0 271 0 268.4 0h-88.8c-2.6 0-5.1.1-7.6.2-35.9 1.7-67.7 10-94.6 24.1-31.8 16.5-56.2 40.9-72.7 72.7-14.1 27-22.4 58.7-24.1 94.6-.1 2.5-.2 5-.2 7.6v88.8c0 2.6.1 5.1.2 7.6 1.7 35.9 10 67.7 24.1 94.6 16.5 31.8 40.9 56.2 72.7 72.7 27 14.1 58.7 22.4 94.6 24.1 2.5.1 5 .2 7.6.2h88.8c2.6 0 5.1-.1 7.6-.2 35.9-1.7 67.7-10 94.6-24.1 31.8-16.5 56.2-40.9 72.7-72.7 14.1-27 22.4-58.7 24.1-94.6.1-2.5.2-5 .2-7.6v-88.8c0-2.6-.1-5.1-.2-7.6zM224.1 338c-45.4 0-82.1-36.7-82.1-82.1s36.7-82.1 82.1-82.1 82.1 36.7 82.1 82.1-36.7 82.1-82.1 82.1zm124.6-82.1c0-16.6 13.5-30.1 30.1-30.1s30.1 13.5 30.1 30.1-13.5 30.1-30.1 30.1-30.1-13.5-30.1-30.1zm47.6 124.6c0 25.9-21 46.9-46.9 46.9H99.6c-25.9 0-46.9-21-46.9-46.9V192.3c0-25.9 21-46.9 46.9-46.9h249.2c25.9 0 46.9 21 46.9 46.9v187.2z"/>
-          </svg>
-          Follow us on Instagram
-        </a>
-      </div>
-
-      <!-- NEW VILLA PROMO SECTION -->
-      <div class="mt-6">
+  <!-- CONTACT -->
+  <section id="contact" class="bg-gray-100 py-8">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold text-center mb-6">How to Book</h2>
+      <div class="text-center mb-6">
         <p class="text-lg">
-          <strong>Need more space? Want a private rooftop jacuzzi?  
-          Check out our other West Bay Beach property,</strong>
-              <a href="https://DolphinVillaRoatan.com"
-       class="text-blue-600 underline hover:text-blue-800 font-bold"
-       target="_blank" rel="noopener">
-      Dolphin Villa Roatan</a><strong>, a luxury 3-bedroom villa at Ocean One Roatan, just 5 minutes away!</strong>
+          Email 
+          <a href="mailto:InfinityBay1003@gmail.com" class="text-blue-600 underline hover:text-blue-800">
+            InfinityBay1003@gmail.com</a> for booking inquiries.<br><br>
         </p>
+
+        <p class="text-2xl font-bold text-center mb-6">Contact Us</p>
+        <p class="text-lg text-center mb-6">Please contact us with any questions you may have!</p>
+
+        <div class="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
+          <a href="mailto:InfinityBay1003@gmail.com" class="flex items-center text-blue-500 hover:text-blue-700">
+            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a7.5 7.5 0 01-15 0V12m15-4v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+            InfinityBay1003@gmail.com
+          </a>
+
+          <a href="https://www.facebook.com/profile.php?id=61580364005347" target="_blank" rel="noopener" class="flex items-center text-blue-500 hover:text-blue-700">
+            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 5.936 4.325 10.861 10 11.85V15.386h-3v-3.313h3V9.5c0-3 1.792-4.668 4.533-4.668 1.312 0 2.686.237 2.686.237v2.961h-1.513c-1.494 0-1.954.93-1.954 1.886v2.28h3.286l-.525 3.313h-2.761v8.537c5.675-.989 10-5.914 10-11.85z"/>
+            </svg>
+            Message us on Facebook
+          </a>
+
+          <a href="https://www.instagram.com/InfinityBay1003/" target="_blank" rel="noopener" class="flex items-center text-blue-500 hover:text-blue-700">
+            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-10-67.7-24.1-94.6-16.5-31.8-40.9-56.2-72.7-72.7-27-14.1-58.7-22.4-94.6-24.1C273.5 0 271 0 268.4 0h-88.8c-2.6 0-5.1.1-7.6.2-35.9 1.7-67.7 10-94.6 24.1-31.8 16.5-56.2 40.9-72.7 72.7-14.1 27-22.4 58.7-24.1 94.6-.1 2.5-.2 5-.2 7.6v88.8c0 2.6.1 5.1.2 7.6 1.7 35.9 10 67.7 24.1 94.6 16.5 31.8 40.9 56.2 72.7 72.7 27 14.1 58.7 22.4 94.6 24.1 2.5.1 5 .2 7.6.2h88.8c2.6 0 5.1-.1 7.6-.2 35.9-1.7 67.7-10 94.6-24.1 31.8-16.5 56.2-40.9 72.7-72.7 14.1-27 22.4-58.7 24.1-94.6.1-2.5.2-5 .2-7.6v-88.8c0-2.6-.1-5.1-.2-7.6zM224.1 338c-45.4 0-82.1-36.7-82.1-82.1s36.7-82.1 82.1-82.1 82.1 36.7 82.1 82.1-36.7 82.1-82.1 82.1zm124.6-82.1c0-16.6 13.5-30.1 30.1-30.1s30.1 13.5 30.1 30.1-13.5 30.1-30.1 30.1-30.1-13.5-30.1-30.1zm47.6 124.6c0 25.9-21 46.9-46.9 46.9H99.6c-25.9 0-46.9-21-46.9-46.9V192.3c0-25.9 21-46.9 46.9-46.9h249.2c25.9 0 46.9 21 46.9 46.9v187.2z"/>
+            </svg>
+            Follow us on Instagram
+          </a>
+        </div>
+
+        <!-- NEW VILLA PROMO -->
+        <div class="mt-6">
+          <p class="text-lg">
+            <strong>Need more space? Want a private rooftop jacuzzi?  
+            Check out our other West Bay Beach property,</strong>
+            <a href="https://DolphinVillaRoatan.com"
+               class="text-blue-600 underline hover:text-blue-800 font-bold"
+               target="_blank" rel="noopener">
+              Dolphin Villa Roatan</a><strong>, a luxury 3-bedroom villa at Ocean One Roatan, just 5 minutes away!</strong>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
   
-<footer class="footer bg-gray-100 py-4">
-  <div class="container mx-auto text-center">
-    <p class="text-gray-600 text-sm">
-      &copy; 2025 
-      <a href="https://IslandInTheSunRentals.com" class="text-blue-600 hover:text-blue-800 underline">
-        J&amp;J's Island in the Sun, S.A.</a> All Rights Reserved.<br>
-       <br>
-    </p>
-  </div>
-</footer>
-  
-  <!-- SWIPER & CUSTOM SCRIPTS -->
-  <!-- Swiper JS loaded normally -->
+  <footer class="footer bg-gray-100 py-4">
+    <div class="container mx-auto text-center">
+      <p class="text-gray-600 text-sm">
+        &copy; 2025 
+        <a href="https://IslandInTheSunRentals.com" class="text-blue-600 hover:text-blue-800 underline">
+          J&amp;J's Island in the Sun, S.A.</a> All Rights Reserved.<br><br>
+      </p>
+    </div>
+  </footer>
+
+  <!-- STICKY "BOOK NOW" BUTTON (simple link, rounded) -->
+  <a
+    href="https://bnbforms.com/103241/accommodation/infinitybay1003beachfront/"
+    target="_blank" rel="noopener"
+    class="fixed right-4 bottom-4 z-50 bg-blue-600 text-white px-5 py-3 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+    aria-label="Book Now"
+  >
+    Book Now
+  </a>
+
+  <!-- Swiper JS -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <!-- Flatpickr JS for the interactive calendar -->
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
   <script>
-    /* Toggle functions for various sections */
     function toggleLocationDetails() {
       var locationDetails = document.getElementById("locationDetails");
       var toggleIconLocation = document.getElementById("toggleIconLocation");
@@ -703,28 +592,6 @@
         toggleIconOwners.textContent = "+";
       }
     }
-    function toggleCalDetails() {
-      var CalDetails = document.getElementById("CalDetails");
-      var toggleIconCal = document.getElementById("toggleIconCal");
-      if (CalDetails.classList.contains("hidden")) {
-        CalDetails.classList.remove("hidden");
-        toggleIconCal.textContent = "-";
-      } else {
-        CalDetails.classList.add("hidden");
-        toggleIconCal.textContent = "+";
-      }
-    }
-    function toggleRateDetails() {
-      var RateDetails = document.getElementById("RateDetails");
-      var toggleIconRate = document.getElementById("toggleIconRate");
-      if (RateDetails.classList.contains("hidden")) {
-        RateDetails.classList.remove("hidden");
-        toggleIconRate.textContent = "-";
-      } else {
-        RateDetails.classList.add("hidden");
-        toggleIconRate.textContent = "+";
-      }
-    }
     function animateNavLinks() {
       const navLinks = document.querySelectorAll('.nav-link');
       navLinks.forEach((link, index) => {
@@ -738,9 +605,8 @@
       });
     }
 
-    /* Initialize all Swiper instances and other scripts after all resources are loaded */
     window.onload = function() {
-      // ----- GALLERY THUMBS -----
+      // Gallery thumbs
       var galleryThumbs = new Swiper('.gallery-thumbs', {
         slidesPerView: 'auto',
         freeMode: true,
@@ -748,26 +614,18 @@
         watchSlidesVisibility: true,
         watchSlidesProgress: true
       });
-      // ----- MAIN GALLERY SLIDER -----
+      // Main gallery
       var galleryTop = new Swiper('.gallery-top', {
         spaceBetween: 1,
         loop: true,
         centeredSlides: true,
         slidesPerView: 1.4,
         slideToClickedSlide: true,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
-        thumbs: {
-          swiper: galleryThumbs
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: true
-        }
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        thumbs: { swiper: galleryThumbs },
+        autoplay: { delay: 5000, disableOnInteraction: true }
       });
-      // ----- FUN THUMBS -----
+      // Fun thumbs
       var funThumbs = new Swiper('.fun-thumbs', {
         slidesPerView: 'auto',
         freeMode: true,
@@ -775,95 +633,44 @@
         watchSlidesVisibility: true,
         watchSlidesProgress: true
       });
-      // ----- MAIN FUN SLIDER -----
+      // Main fun slider
       var funTop = new Swiper('.fun-top', {
         spaceBetween: 2,
         loop: true,
         centeredSlides: true,
         slidesPerView: 1.6,
         slideToClickedSlide: true,
-        navigation: {
-          nextEl: '.swiper-button-nextFun',
-          prevEl: '.swiper-button-prevFun'
-        },
-        thumbs: {
-          swiper: funThumbs
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: true
-        }
+        navigation: { nextEl: '.swiper-button-nextFun', prevEl: '.swiper-button-prevFun' },
+        thumbs: { swiper: funThumbs },
+        autoplay: { delay: 5000, disableOnInteraction: true }
       });
 
-      // NAV MENU TOGGLE EVENTS
+      // Nav link behaviors
       document.getElementById('menuLocation').addEventListener('click', function(e) {
         e.preventDefault();
         const locationDetails = document.getElementById('locationDetails');
         if (locationDetails.classList.contains('hidden')) {
           toggleLocationDetails();
-          document.location.href = '#location';
-        } else {
-          document.location.href = '#location';
         }
+        document.location.href = '#location';
       });
       document.getElementById('menuOwners').addEventListener('click', function(e) {
         e.preventDefault();
         const ownerDetails = document.getElementById('OwnerDetails');
         if (ownerDetails.classList.contains('hidden')) {
           toggleOwnerDetails();
-          document.location.href = '#Owners';
-        } else {
-          document.location.href = '#Owners';
         }
-      });
-      document.getElementById('menuCalendar').addEventListener('click', function(e) {
-        e.preventDefault();
-        const calendarDetails = document.getElementById('CalDetails');
-        if (calendarDetails.classList.contains('hidden')) {
-          toggleCalDetails();
-          document.location.href = '#Calendar';
-        } else {
-          document.location.href = '#Calendar';
-        }
-      });
-      document.getElementById('menuRates').addEventListener('click', function(e) {
-        e.preventDefault();
-        const rateDetails = document.getElementById('RateDetails');
-        if (rateDetails.classList.contains('hidden')) {
-          toggleRateDetails();
-          document.location.href = '#Rates';
-        } else {
-          document.location.href = '#Rates';
-        }
+        document.location.href = '#Owners';
       });
       document.getElementById('menuRoatanFun').addEventListener('click', function(e) {
         e.preventDefault();
         document.location.href = '#roatan-fun';
       });
 
-      // Animate navigation links
+      // Animate main nav links
       animateNavLinks();
 
-      // Initialize Flatpickr for the interactive calendar
-      flatpickr("#calendar", {
-        inline: true,
-        dateFormat: "Y-m-d",
-        onDayCreate: function(dObj, dStr, fp, dayElem) {
-          const date = dayElem.dateObj;
-          if (
-            (date >= new Date("2024-03-01") && date <= new Date("2026-01-08")) ||
-            (date >= new Date("2026-01-14") && date <= new Date("2026-01-20")) ||
-            (date >= new Date("2026-03-10") && date <= new Date("2026-03-18")) ||
-            (date >= new Date("2026-03-22") && date <= new Date("2026-03-27")) ||
-            (date >= new Date("2026-04-04") && date <= new Date("2026-04-10")) ||
-            (date >= new Date("2026-04-26") && date <= new Date("2026-05-02"))
-          ) {
-            dayElem.classList.add("occupied");
-          }
-        }
-      });
-
-      // Toggle mobile sticky nav based on scroll position
+      // Mobile sticky nav show/hide on scroll
       const mobileStickyNav = document.getElementById('mobileStickyNav');
       window.addEventListener('scroll', function() {
         if (window.scrollY > 150) {
@@ -876,27 +683,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
