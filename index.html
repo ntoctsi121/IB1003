@@ -21,7 +21,7 @@
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-  <!-- Keep ONLY a few high-value preloads (do NOT preload everything) -->
+  <!-- Keep ONLY a few high-value preloads -->
   <link rel="preload" as="image" href="images/pano.jpg">
   <link rel="preload" as="image" href="images/Resort01.jpg">
   <link rel="preload" as="image" href="images/Bot01.jpg">
@@ -37,226 +37,87 @@
   </script>
 
   <style>
-    /* =========================
-       PRELOADER
-    ========================= */
-    .preloader{
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(2px);
-      transition: opacity 0.35s ease, visibility 0.35s ease;
-    }
-    .preloader-inner{
-      text-align: center;
-      padding: 16px 20px;
-    }
-    .spinner{
-      width: 44px;
-      height: 44px;
-      border-radius: 9999px;
-      border: 4px solid rgba(0,0,0,0.12);
-      border-top-color: rgba(0,0,0,0.55);
-      animation: spin 0.9s linear infinite;
-      margin: 0 auto;
-    }
-    .preloader-text{
-      margin-top: 12px;
-      font-weight: 600;
-      color: rgba(0,0,0,0.65);
-    }
-    .preloader--hide{
-      opacity: 0;
-      visibility: hidden;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    /* PRELOADER */
+    .preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:rgba(255,255,255,0.96);backdrop-filter:blur(2px);transition:opacity 0.35s ease,visibility 0.35s ease}
+    .preloader-inner{text-align:center;padding:16px 20px}
+    .spinner{width:44px;height:44px;border-radius:9999px;border:4px solid rgba(0,0,0,0.12);border-top-color:rgba(0,0,0,0.55);animation:spin 0.9s linear infinite;margin:0 auto}
+    .preloader-text{margin-top:12px;font-weight:600;color:rgba(0,0,0,0.65)}
+    .preloader--hide{opacity:0;visibility:hidden}
+    @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* =========================
-       GLOBAL SWIPER STYLES
-    ========================= */
-    .gallery-top,
-    .fun-top {
-      height: 80vh;
-    }
-    .gallery-top .swiper-slide img,
-    .fun-top .swiper-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #fff;
-    }
-    .swiper-slide-prev,
-    .swiper-slide-next {
-      opacity: 0.4;
-      transform: scale(1.0);
-    }
+    /* SWIPER */
+    .gallery-top,.fun-top{height:80vh}
+    .gallery-top .swiper-slide img,.fun-top .swiper-slide img{width:100%;height:100%;object-fit:cover}
+    .swiper-slide{display:flex;justify-content:center;align-items:center;background:#fff}
+    .swiper-slide-prev,.swiper-slide-next{opacity:0.4;transform:scale(1.0)}
 
-    /* =========================
-       THUMBNAILS STYLES
-    ========================= */
-    .gallery-thumbs .swiper-slide,
-    .fun-thumbs .swiper-slide {
-      width: 80px;
-      height: 80px;
-      opacity: 0.6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .gallery-thumbs .swiper-slide img,
-    .fun-thumbs .swiper-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .gallery-thumbs .swiper-slide-thumb-active,
-    .fun-thumbs .swiper-slide-thumb-active {
-      opacity: 1;
-    }
-    .gallery-thumbs,
-    .fun-thumbs {
-      margin: 5px auto 0 !important;
-    }
+    /* THUMBNAILS */
+    .gallery-thumbs .swiper-slide,.fun-thumbs .swiper-slide{width:80px;height:80px;opacity:0.6;display:flex;justify-content:center;align-items:center}
+    .gallery-thumbs .swiper-slide img,.fun-thumbs .swiper-slide img{width:100%;height:100%;object-fit:cover}
+    .gallery-thumbs .swiper-slide-thumb-active,.fun-thumbs .swiper-slide-thumb-active{opacity:1}
+    .gallery-thumbs,.fun-thumbs{margin:5px auto 0!important}
 
-    /* =========================
-       HERO & FEATURES SECTIONS
-    ========================= */
-    .hero-background::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: url('images/pano.jpg') center center / cover no-repeat;
-      opacity: 0.5;
-      z-index: -1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-    .features-background {
-      position: relative;
-      z-index: 0;
-    }
-    .features-background::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('images/Dolphin.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.2;
-      z-index: -1;
-    }
-    .features-content {
-      position: relative;
-      z-index: 1;
-    }
+    /* HERO & FEATURES */
+    .hero-background::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url('images/pano.jpg') center center/cover no-repeat;opacity:0.5;z-index:-1}
+    .hero-content{position:relative;z-index:1}
+    .features-background{position:relative;z-index:0}
+    .features-background::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:url('images/Dolphin.png');background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.2;z-index:-1}
+    .features-content{position:relative;z-index:1}
+    .icon{width:1em;height:1em;vertical-align:middle}
 
-    .icon { width: 1em; height: 1em; vertical-align: middle; }
+    /* NAV */
+    .nav-link{position:relative;color:#333;text-decoration:none;padding:0.5rem 1rem;transition:color 0.3s ease}
+    .nav-link::before{content:'';position:absolute;width:100%;height:2px;bottom:0;left:0;background-color:#3B82F6;visibility:hidden;transform:scaleX(0);transition:all 0.3s ease-in-out}
+    .nav-link:hover{color:#3B82F6}
+    .nav-link:hover::before{visibility:visible;transform:scaleX(1)}
 
-    /* =========================
-       NAV LINKS
-    ========================= */
-    .nav-link {
-      position: relative;
-      color: #333;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      transition: color 0.3s ease;
-    }
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: #3B82F6;
-      visibility: hidden;
-      transform: scaleX(0);
-      transition: all 0.3s ease-in-out;
-    }
-    .nav-link:hover {
-      color: #3B82F6;
-    }
-    .nav-link:hover::before {
-      visibility: visible;
-      transform: scaleX(1);
-    }
+    /* ARROWS */
+    .swiper-button-prev,.swiper-button-next,.swiper-button-prevFun,.swiper-button-nextFun{color:grey!important}
 
-    /* =========================
-       Custom Navigation Arrow Colors
-    ========================= */
-    .swiper-button-prev,
-    .swiper-button-next,
-    .swiper-button-prevFun,
-    .swiper-button-nextFun {
-      color: grey !important;
-    }
+    /* FLOATING BOOK NOW */
+    .floating-book-now{position:fixed;right:20px;top:100px;z-index:1000;background:#1F4ACE;color:#fff;font-weight:600;padding:12px 16px;border-radius:9999px;box-shadow:0 10px 20px rgba(0,0,0,0.15);text-decoration:none;transition:transform 0.15s ease,box-shadow 0.15s ease,opacity 0.2s ease}
+    .floating-book-now:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(0,0,0,0.2)}
+    .floating-book-now:active{transform:translateY(0)}
+    @media(max-width:768px){.floating-book-now{top:auto;bottom:20px}}
 
-    /* =========================
-       Floating Book Now button
-    ========================= */
-    .floating-book-now {
-      position: fixed;
-      right: 20px;
-      top: 100px;
-      z-index: 1000;
-      background: #1F4ACE;
-      color: #fff;
-      font-weight: 600;
-      padding: 12px 16px;
-      border-radius: 9999px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      text-decoration: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
-    }
-    .floating-book-now:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-    }
-    .floating-book-now:active { transform: translateY(0); }
-    @media (max-width: 768px) {
-      .floating-book-now { top: auto; bottom: 20px; }
-    }
+    /* GUEST REVIEWS */
+    .review-stars{display:inline-flex;gap:4px;cursor:pointer}
+    .review-stars .star{width:28px;height:28px;fill:#d1d5db;transition:fill 0.15s ease,transform 0.15s ease}
+    .review-stars .star.active,.review-stars .star.hover{fill:#f59e0b}
+    .review-stars .star:hover{transform:scale(1.15)}
+    .review-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:box-shadow 0.2s ease}
+    .review-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+    .review-card .stars-display{display:inline-flex;gap:2px}
+    .review-card .stars-display .star-sm{width:18px;height:18px;fill:#f59e0b}
+    .review-card .stars-display .star-sm.empty{fill:#d1d5db}
+    .avg-stars .star-lg{width:24px;height:24px;fill:#f59e0b}
+    .avg-stars .star-lg.empty{fill:#d1d5db}
+    .avg-stars .star-lg.half{fill:url(#halfGrad)}
+    #reviewForm textarea,#reviewForm input[type="text"]{font-family:inherit;border:1px solid #d1d5db;border-radius:8px;padding:10px 14px;width:100%;transition:border-color 0.2s ease,box-shadow 0.2s ease}
+    #reviewForm textarea:focus,#reviewForm input[type="text"]:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.15)}
+    #reviewForm button[type="submit"]{background:#1F4ACE;color:#fff;font-weight:600;padding:12px 32px;border:none;border-radius:9999px;cursor:pointer;transition:background 0.2s ease,transform 0.1s ease}
+    #reviewForm button[type="submit"]:hover{background:#1a3fb3;transform:translateY(-1px)}
+    #reviewForm button[type="submit"]:active{transform:translateY(0)}
+    #reviewForm button[type="submit"]:disabled{background:#93a3c0;cursor:not-allowed;transform:none}
+    .review-success{background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;border-radius:8px;padding:14px 20px;text-align:center;font-weight:600;animation:fadeInUp 0.3s ease}
+    .review-error-banner{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;border-radius:8px;padding:14px 20px;text-align:center;font-weight:500}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .reviews-loading{text-align:center;color:#6b7280;padding:24px}
   </style>
 
-  <!-- Mobile-specific adjustments -->
+  <!-- Mobile adjustments -->
   <style>
-    @media (max-width: 768px) {
-      .gallery-top,
-      .fun-top {
-        height: 60vh;
-      }
-      .swiper-button-prev,
-      .swiper-button-next,
-      .swiper-button-prevFun,
-      .swiper-button-nextFun {
-        display: none;
-      }
-    }
+    @media(max-width:768px){.gallery-top,.fun-top{height:60vh}.swiper-button-prev,.swiper-button-next,.swiper-button-prevFun,.swiper-button-nextFun{display:none}}
   </style>
-
-  <!-- Tweak Fun slider images on narrow landscape -->
   <style>
-    @media screen and (orientation: landscape) and (max-width: 900px) {
-      #roatan-fun .fun-top .swiper-slide img {
-        object-fit: contain;
-      }
-    }
+    @media screen and (orientation:landscape) and (max-width:900px){#roatan-fun .fun-top .swiper-slide img{object-fit:contain}}
   </style>
 </head>
 
 <body class="font-serif">
+
+  <!-- SVG defs for half-star gradient -->
+  <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="halfGrad"><stop offset="50%" stop-color="#f59e0b"/><stop offset="50%" stop-color="#d1d5db"/></linearGradient></defs></svg>
 
   <!-- PRELOADER -->
   <div id="pagePreloader" class="preloader" role="status" aria-live="polite" aria-label="Loading photos">
@@ -285,6 +146,7 @@
           <a href="#features" class="nav-link lg:text-sm">Features</a>
           <a href="#location" id="menuLocation" class="nav-link lg:text-sm">Location</a>
           <a href="#roatan-fun" id="menuRoatanFun" class="nav-link lg:text-sm">Roatan Fun</a>
+          <a href="#reviews" class="nav-link lg:text-sm">Reviews</a>
           <a href="#Owners" id="menuOwners" class="nav-link lg:text-sm">Owners</a>
           <a href="#contact" class="nav-link lg:text-sm">Book/Contact Us</a>
         </div>
@@ -292,7 +154,7 @@
     </div>
   </nav>
 
-  <!-- MOBILE STICKY NAV (small screens) -->
+  <!-- MOBILE STICKY NAV -->
   <nav id="mobileStickyNav" class="fixed top-0 left-0 z-50 w-full bg-white shadow-lg lg:hidden hidden">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-center">
@@ -307,16 +169,13 @@
 
     <div class="swiper gallery-top">
       <div class="swiper-wrapper">
-        <!-- First visible image: no lazy, high priority -->
         <div class="swiper-slide"><img src="images/Resort01.jpg" alt="Infinity Bay #1003" fetchpriority="high" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Resort02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Resort03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Resort04.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Resort05.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Resort06.JPG" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Resort07.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Main01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Main02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Main03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
@@ -332,7 +191,6 @@
         <div class="swiper-slide"><img src="images/Main14.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Main15.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Main16.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Balcony01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Balcony02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Balcony03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
@@ -340,19 +198,16 @@
         <div class="swiper-slide"><img src="images/Balcony05.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Balcony06.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Balcony07.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Bedroom01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bedroom02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bedroom03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bedroom04.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bedroom05.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Bathroom01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bathroom02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bathroom03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bathroom04.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bathroom05.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Grounds01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Grounds02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Grounds03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
@@ -368,13 +223,11 @@
         <div class="swiper-slide"><img src="images/Grounds14.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Grounds15.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Grounds16.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Lobby01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Lobby02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Lobby03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Lobby04.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
       </div>
-
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
@@ -388,7 +241,6 @@
         <div class="swiper-slide"><img src="images/Resort05.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Resort06.JPG" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Resort07.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Main01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Main02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Main03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
@@ -404,7 +256,6 @@
         <div class="swiper-slide"><img src="images/Main14.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Main15.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Main16.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Balcony01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Balcony02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Balcony03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
@@ -412,19 +263,16 @@
         <div class="swiper-slide"><img src="images/Balcony05.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Balcony06.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Balcony07.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Bedroom01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bedroom02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bedroom03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bedroom04.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bedroom05.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Bathroom01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bathroom02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bathroom03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bathroom04.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bathroom05.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Grounds01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Grounds02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Grounds03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
@@ -440,7 +288,6 @@
         <div class="swiper-slide"><img src="images/Grounds14.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Grounds15.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Grounds16.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Lobby01.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Lobby02.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Lobby03.jpg" alt="Infinity Bay #1003" loading="lazy" decoding="async"></div>
@@ -476,6 +323,7 @@
     <div class="grid grid-cols-1 md:grid-cols-1 gap-6 text-center">
       <div class="Amenities">
         <ul class="Amenties-list">
+
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Fully Equipped Kitchen with Dishwasher</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Coffee Maker, Blender, Microwave, Pots and Pans, Cooking Utensils, and More</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Filtered Water within Condo and throughout Resort which is Safe for Drinking</li>
@@ -487,7 +335,7 @@
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Backup generator</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Free Wifi</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> 24 hour security</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Bars, Restaurants, & Spas on-site</li>
+          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Bars, Restaurants, &amp; Spas on-site</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Free Resort Parking</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Beach towels included</li>
           <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> 2 Large Resort Pools</li>
@@ -506,7 +354,7 @@
       </div>
       <div class="feature-item">
         <h3 class="text-xl font-semibold mb-2">Infinity Bay</h3>
-        <p>Daily Breakfast Buffet & All-inclusive Packages Available at Extra Cost</p>
+        <p>Daily Breakfast Buffet &amp; All-inclusive Packages Available at Extra Cost</p>
       </div>
       <div class="feature-item">
         <h3 class="text-xl font-semibold mb-2">Modern Unit</h3>
@@ -536,7 +384,7 @@
       </div>
       <div id="locationDetails" class="hidden text-center">
         <p class="text-lg mb-4">
-          Discover the stunning location of our beachfront condo at Infinity Bay Spa & Beach Resort, in the heart of West Bay Beach in Roatan, Honduras.
+          Discover the stunning location of our beachfront condo at Infinity Bay Spa &amp; Beach Resort, in the heart of West Bay Beach in Roatan, Honduras.
         </p>
         <div class="flex justify-center">
           <iframe
@@ -555,9 +403,7 @@
 
     <div class="swiper fun-top mt-8">
       <div class="swiper-wrapper">
-        <!-- First fun image: no lazy -->
         <div class="swiper-slide"><img src="images/Bot01.jpg" alt="Fun" fetchpriority="high" decoding="async"></div>
-
         <div class="swiper-slide"><img src="images/Bot02.jpg" alt="Fun" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bot03.jpg" alt="Fun" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bot04.jpg" alt="Fun" loading="lazy" decoding="async"></div>
@@ -580,7 +426,6 @@
         <div class="swiper-slide"><img src="images/Bot21.jpg" alt="Fun" loading="lazy" decoding="async"></div>
         <div class="swiper-slide"><img src="images/Bot22.jpg" alt="Fun" loading="lazy" decoding="async"></div>
       </div>
-
       <div class="swiper-button-prev swiper-button-prevFun"></div>
       <div class="swiper-button-next swiper-button-nextFun"></div>
     </div>
@@ -613,6 +458,72 @@
     </div>
   </section>
 
+  <!-- GUEST REVIEWS -->
+  <section id="reviews" class="bg-gray-50 py-12">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-2xl font-bold text-center mb-2">Guest Reviews</h2>
+
+      <div id="reviewsSummary" class="text-center mb-8" style="display:none;">
+        <div class="flex items-center justify-center gap-2 mb-1">
+          <span id="avgRatingNum" class="text-3xl font-bold"></span>
+          <span id="avgStarsContainer" class="avg-stars flex items-center"></span>
+        </div>
+        <p id="reviewCount" class="text-gray-500 text-sm"></p>
+      </div>
+
+      <div id="reviewsLoading" class="reviews-loading">Loading reviews&hellip;</div>
+      <div id="reviewsError" class="review-error-banner" style="display:none;"></div>
+      <div id="reviewsList" class="space-y-4 mb-10"></div>
+
+      <div id="showMoreContainer" class="text-center mb-10" style="display:none;">
+        <button id="showMoreBtn" onclick="showMoreReviews()" class="text-blue-600 hover:text-blue-800 font-semibold underline">Show more reviews</button>
+      </div>
+
+      <div class="review-card max-w-xl mx-auto">
+        <h3 class="text-xl font-bold text-center mb-6">Share Your Experience</h3>
+        <div id="reviewFormContainer">
+          <div id="reviewForm">
+            <div class="mb-4">
+              <label class="block text-sm font-semibold mb-1">Your Name</label>
+              <input type="text" id="reviewName" placeholder="First name or initials" maxlength="50">
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-semibold mb-1">Home State / Province</label>
+              <input type="text" id="reviewHomeLocation" placeholder="e.g. North Carolina, USA" maxlength="60">
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-semibold mb-1">When did you stay?</label>
+              <input type="text" id="reviewStayDate" placeholder="e.g. January 2026" maxlength="40">
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-semibold mb-2">Rating</label>
+              <div class="review-stars" id="starPicker" role="radiogroup" aria-label="Star rating">
+                <svg class="star" data-value="1" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                <svg class="star" data-value="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                <svg class="star" data-value="3" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                <svg class="star" data-value="4" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                <svg class="star" data-value="5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+              </div>
+              <input type="hidden" id="reviewRating" value="0">
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-semibold mb-1">Your Review</label>
+              <textarea id="reviewText" rows="4" placeholder="Tell future guests about your stay&hellip;" maxlength="1000"></textarea>
+              <p class="text-xs text-gray-400 mt-1"><span id="charCount">0</span>/1000</p>
+            </div>
+            <div class="text-center">
+              <button type="submit" id="submitReviewBtn" onclick="submitReview()">Submit Review</button>
+            </div>
+            <p id="formError" class="text-red-500 text-sm text-center mt-3" style="display:none;"></p>
+          </div>
+        </div>
+        <div id="reviewSuccess" class="review-success" style="display:none;">
+          Thank you for your review! It's now visible to future guests.
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- OWNERS -->
   <section id="Owners" class="py-8">
     <div class="container mx-auto px-4">
@@ -625,9 +536,9 @@
         <p class="text-lg mb-4">
           Hi! We are Nick and Becky. We live in Charlotte, NC with our 2 kids, Jayden (7) and Juliette (4), and our 2 rescue dogs.
           Becky first discovered Roatan in 2007, when she spent a year there before starting medical school, volunteering in a clinic during the week and working as a dive master on weekends. She continued to visit the island frequently, returning for multiple rotations during medical school and residency. When she met Nick, he began to travel with her, volunteering his finance services wherever they could be used.
-          Years later, in 2015, we got married on Roatan, and brought 80 of our closest friends and family to the island to celebrate. It’s one of our favorite memories of all time.
-          Then life happened, and kids happened, and Covid happened, and we didn’t make it back to the island until 2023, when we brought our (then) 1 year old and 4 year old. We were so thrilled to see that Roatan was just as beautiful and charming as we had remembered it, and we absolutely loved getting to share our special island with our kids. The rest is history.
-          We love Roatan and think that it is such a special place, and we can’t wait to share it with you.
+          Years later, in 2015, we got married on Roatan, and brought 80 of our closest friends and family to the island to celebrate. It's one of our favorite memories of all time.
+          Then life happened, and kids happened, and Covid happened, and we didn't make it back to the island until 2023, when we brought our (then) 1 year old and 4 year old. We were so thrilled to see that Roatan was just as beautiful and charming as we had remembered it, and we absolutely loved getting to share our special island with our kids. The rest is history.
+          We love Roatan and think that it is such a special place, and we can't wait to share it with you.
         </p>
       </div>
     </div>
@@ -760,15 +671,13 @@
       });
     }
 
-    // Preloader: show at least ~900ms, hide after key images load (or after 2.5s max)
+    // Preloader
     (function () {
       const preloader = document.getElementById('pagePreloader');
       if (!preloader) return;
-
       const minMs = 900;
       const maxMs = 2500;
       const start = performance.now();
-
       function waitForImage(src) {
         return new Promise((resolve) => {
           const img = new Image();
@@ -777,7 +686,6 @@
           img.src = src;
         });
       }
-
       Promise.race([
         Promise.all([
           waitForImage('images/Resort01.jpg'),
@@ -794,7 +702,175 @@
       });
     })();
 
-    // IMPORTANT: DOMContentLoaded (does NOT wait for every image)
+    /* =========================================
+       REVIEWS SYSTEM — Google Sheets Backend
+    ========================================= */
+    var REVIEWS_API_URL = 'https://script.google.com/macros/s/AKfycbwwOIn0uwVpg0EcUmF47CRcNBQvrWe0AxNsM1MoYdxYzqzishF22CGJcvJ9Frm12w9x-Q/exec';
+
+    var allReviews = [];
+    var visibleCount = 5;
+
+    async function loadReviews() {
+      var loadingEl = document.getElementById('reviewsLoading');
+      var errorEl = document.getElementById('reviewsError');
+      try {
+        var response = await fetch(REVIEWS_API_URL);
+        var data = await response.json();
+        if (data.success) {
+          allReviews = data.reviews || [];
+        } else {
+          throw new Error(data.error || 'Failed to load reviews');
+        }
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'none';
+        renderReviews();
+      } catch (err) {
+        console.error('Error loading reviews:', err);
+        loadingEl.style.display = 'none';
+        errorEl.textContent = 'Reviews are temporarily unavailable. Please check back later.';
+        errorEl.style.display = '';
+      }
+    }
+
+    function starSVG(filled, cls) {
+      var fillClass = filled ? '' : ' empty';
+      return '<svg class="' + cls + fillClass + '" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>';
+    }
+    function halfStarSVG(cls) {
+      return '<svg class="' + cls + ' half" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>';
+    }
+
+    function renderReviews() {
+      var list = document.getElementById('reviewsList');
+      var summary = document.getElementById('reviewsSummary');
+      var showMoreContainer = document.getElementById('showMoreContainer');
+
+      if (allReviews.length === 0) {
+        list.innerHTML = '<p class="text-center text-gray-500">No reviews yet. Be the first to share your experience!</p>';
+        summary.style.display = 'none';
+        showMoreContainer.style.display = 'none';
+        return;
+      }
+
+      var sorted = allReviews.slice().sort(function(a, b) { return b.timestamp - a.timestamp; });
+      var avg = sorted.reduce(function(s, r) { return s + r.rating; }, 0) / sorted.length;
+
+      document.getElementById('avgRatingNum').textContent = avg.toFixed(1);
+      document.getElementById('reviewCount').textContent = sorted.length + ' review' + (sorted.length !== 1 ? 's' : '');
+
+      var avgStarsHTML = '';
+      for (var i = 1; i <= 5; i++) {
+        if (avg >= i) avgStarsHTML += starSVG(true, 'star-lg');
+        else if (avg >= i - 0.5) avgStarsHTML += halfStarSVG('star-lg');
+        else avgStarsHTML += starSVG(false, 'star-lg');
+      }
+      document.getElementById('avgStarsContainer').innerHTML = avgStarsHTML;
+      summary.style.display = '';
+
+      var visible = sorted.slice(0, visibleCount);
+      list.innerHTML = visible.map(function(r) {
+        var starsHTML = '';
+        for (var j = 1; j <= 5; j++) starsHTML += starSVG(j <= r.rating, 'star-sm');
+        var safeText = String(r.text).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        var safeName = String(r.name).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        var safeHome = String(r.homeLocation || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        var safeStay = String(r.stayDate || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        var posted = new Date(r.timestamp).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+        return '<div class="review-card" style="animation:fadeInUp 0.3s ease">' +
+          '<div class="flex items-center justify-between mb-2 flex-wrap gap-2"><div>' +
+          '<span class="font-bold text-lg">' + safeName + '</span>' +
+          (safeHome ? '<span class="text-gray-400 text-sm ml-2">&middot; ' + safeHome + '</span>' : '') +
+          (safeStay ? '<span class="text-gray-400 text-sm ml-2">&middot; Stayed ' + safeStay + '</span>' : '') +
+          '</div><div class="stars-display">' + starsHTML + '</div></div>' +
+          '<p class="text-gray-700 leading-relaxed">' + safeText + '</p>' +
+          '<p class="text-xs text-gray-400 mt-3">Posted ' + posted + '</p></div>';
+      }).join('');
+
+      showMoreContainer.style.display = sorted.length > visibleCount ? '' : 'none';
+    }
+
+    function showMoreReviews() {
+      visibleCount += 5;
+      renderReviews();
+    }
+
+    // Star picker
+    (function() {
+      var picker = document.getElementById('starPicker');
+      var stars = picker.querySelectorAll('.star');
+      stars.forEach(function(star) {
+        star.addEventListener('mouseenter', function() {
+          var val = parseInt(this.dataset.value);
+          stars.forEach(function(s) { s.classList.toggle('hover', parseInt(s.dataset.value) <= val); });
+        });
+        star.addEventListener('click', function() {
+          var sel = parseInt(this.dataset.value);
+          document.getElementById('reviewRating').value = sel;
+          stars.forEach(function(s) { s.classList.toggle('active', parseInt(s.dataset.value) <= sel); });
+        });
+      });
+      picker.addEventListener('mouseleave', function() {
+        stars.forEach(function(s) { s.classList.remove('hover'); });
+      });
+    })();
+
+    document.getElementById('reviewText').addEventListener('input', function() {
+      document.getElementById('charCount').textContent = this.value.length;
+    });
+
+    async function submitReview() {
+      var name = document.getElementById('reviewName').value.trim();
+      var homeLocation = document.getElementById('reviewHomeLocation').value.trim();
+      var stayDate = document.getElementById('reviewStayDate').value.trim();
+      var rating = parseInt(document.getElementById('reviewRating').value);
+      var text = document.getElementById('reviewText').value.trim();
+      var errorEl = document.getElementById('formError');
+
+      if (!name) { errorEl.textContent = 'Please enter your name.'; errorEl.style.display = ''; return; }
+      if (rating < 1) { errorEl.textContent = 'Please select a star rating.'; errorEl.style.display = ''; return; }
+      if (!text || text.length < 10) { errorEl.textContent = 'Please write at least 10 characters.'; errorEl.style.display = ''; return; }
+      errorEl.style.display = 'none';
+
+      var btn = document.getElementById('submitReviewBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting\u2026';
+
+      try {
+        var resp = await fetch(REVIEWS_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ name: name, homeLocation: homeLocation, stayDate: stayDate, rating: rating, text: text })
+        });
+        var data = await resp.json();
+        if (!data.success) throw new Error(data.error || 'Failed');
+
+        allReviews.push(data.review);
+        document.getElementById('reviewFormContainer').style.display = 'none';
+        document.getElementById('reviewSuccess').style.display = '';
+        renderReviews();
+
+        setTimeout(function() {
+          document.getElementById('reviewFormContainer').style.display = '';
+          document.getElementById('reviewSuccess').style.display = 'none';
+          document.getElementById('reviewName').value = '';
+          document.getElementById('reviewHomeLocation').value = '';
+          document.getElementById('reviewStayDate').value = '';
+          document.getElementById('reviewText').value = '';
+          document.getElementById('reviewRating').value = '0';
+          document.getElementById('charCount').textContent = '0';
+          document.querySelectorAll('#starPicker .star').forEach(function(s) { s.classList.remove('active'); });
+          btn.disabled = false;
+          btn.textContent = 'Submit Review';
+        }, 5000);
+      } catch (err) {
+        errorEl.textContent = 'Something went wrong. Please try again.';
+        errorEl.style.display = '';
+        btn.disabled = false;
+        btn.textContent = 'Submit Review';
+      }
+    }
+
+    // DOMContentLoaded
     document.addEventListener('DOMContentLoaded', function() {
       // Gallery thumbs
       var galleryThumbs = new Swiper('.gallery-thumbs', {
@@ -873,11 +949,10 @@
           mobileStickyNav.classList.add('hidden');
         }
       });
+
+      // Load reviews from Google Sheets
+      loadReviews();
     });
   </script>
 </body>
 </html>
-
-
-
-
