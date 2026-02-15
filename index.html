@@ -103,6 +103,18 @@
     .review-error-banner{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;border-radius:8px;padding:14px 20px;text-align:center;font-weight:500}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
     .reviews-loading{text-align:center;color:#6b7280;padding:24px}
+
+    /* REVIEWS SWIPER */
+    .reviews-swiper{overflow:hidden;padding-bottom:40px;position:relative}
+    .reviews-swiper .swiper-slide{height:auto}
+    .reviews-swiper .review-card{height:100%;display:flex;flex-direction:column}
+    .reviews-swiper .review-card p.text-gray-700{flex:1}
+    .reviews-swiper .swiper-pagination{bottom:0!important}
+    .reviews-swiper .swiper-pagination-bullet{background:#94a3b8;opacity:0.5;width:10px;height:10px}
+    .reviews-swiper .swiper-pagination-bullet-active{background:#1F4ACE;opacity:1}
+    .reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{color:#94a3b8!important;top:45%}
+    .reviews-swiper .swiper-button-prev:hover,.reviews-swiper .swiper-button-next:hover{color:#1F4ACE!important}
+    @media(max-width:768px){.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{display:none}}
   </style>
 
   <!-- Mobile adjustments -->
@@ -473,10 +485,11 @@
 
       <div id="reviewsLoading" class="reviews-loading">Loading reviews&hellip;</div>
       <div id="reviewsError" class="review-error-banner" style="display:none;"></div>
-      <div id="reviewsList" class="space-y-4 mb-10"></div>
-
-      <div id="showMoreContainer" class="text-center mb-10" style="display:none;">
-        <button id="showMoreBtn" onclick="showMoreReviews()" class="text-blue-600 hover:text-blue-800 font-semibold underline">Show more reviews</button>
+      <div class="reviews-swiper swiper mb-10" id="reviewsSwiperContainer" style="display:none;">
+        <div class="swiper-wrapper" id="reviewsList"></div>
+        <div class="swiper-pagination reviews-pagination"></div>
+        <div class="swiper-button-prev reviews-prev"></div>
+        <div class="swiper-button-next reviews-next"></div>
       </div>
 
       <div class="review-card max-w-xl mx-auto">
@@ -566,13 +579,13 @@
         <p class="text-lg text-center mb-6">Please contact us with any questions you may have!</p>
 
         <div class="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
-          <a href="mailto:InfinityBay1003@gmail.com" class="flex items-center text-blue-500 hover:text-blue-700">
+          <a href="/cdn-cgi/l/email-protection#c68fa8a0afa8afb2bf84a7bff7f6f6f586a1aba7afaae8a5a9ab" class="flex items-center text-blue-500 hover:text-blue-700">
             <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a7.5 7.5 0 01-15 0V12m15-4v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2z"/>
             </svg>
-            InfinityBay1003@gmail.com
+            <span class="__cf_email__" data-cfemail="40092e26292e2934390221397170707300272d21292c6e232f2d">[email&#160;protected]</span>
           </a>
 
           <a href="https://www.facebook.com/profile.php?id=61580364005347" target="_blank" rel="noopener" class="flex items-center text-blue-500 hover:text-blue-700">
@@ -631,7 +644,7 @@
   </a>
 
   <!-- Swiper JS -->
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <script>
     function toggleLocationDetails() {
@@ -740,15 +753,31 @@
       return '<svg class="' + cls + ' half" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>';
     }
 
+    function formatStayDate(raw) {
+      if (!raw) return '';
+      var str = String(raw).trim();
+      // If it looks like an ISO date or contains 'T', parse it
+      if (/^\d{4}-\d{2}/.test(str) || str.indexOf('T') !== -1) {
+        var d = new Date(str);
+        if (!isNaN(d.getTime())) {
+          return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+        }
+      }
+      // Otherwise return as-is (e.g. "January 2026" typed by user)
+      return str;
+    }
+
+    var reviewsSwiper = null;
+
     function renderReviews() {
       var list = document.getElementById('reviewsList');
       var summary = document.getElementById('reviewsSummary');
-      var showMoreContainer = document.getElementById('showMoreContainer');
+      var swiperContainer = document.getElementById('reviewsSwiperContainer');
 
       if (allReviews.length === 0) {
-        list.innerHTML = '<p class="text-center text-gray-500">No reviews yet. Be the first to share your experience!</p>';
+        list.innerHTML = '<div class="swiper-slide"><p class="text-center text-gray-500 py-8">No reviews yet. Be the first to share your experience!</p></div>';
         summary.style.display = 'none';
-        showMoreContainer.style.display = 'none';
+        swiperContainer.style.display = '';
         return;
       }
 
@@ -767,31 +796,46 @@
       document.getElementById('avgStarsContainer').innerHTML = avgStarsHTML;
       summary.style.display = '';
 
-      var visible = sorted.slice(0, visibleCount);
-      list.innerHTML = visible.map(function(r) {
+      list.innerHTML = sorted.map(function(r) {
         var starsHTML = '';
         for (var j = 1; j <= 5; j++) starsHTML += starSVG(j <= r.rating, 'star-sm');
         var safeText = String(r.text).replace(/</g, '&lt;').replace(/>/g, '&gt;');
         var safeName = String(r.name).replace(/</g, '&lt;').replace(/>/g, '&gt;');
         var safeHome = String(r.homeLocation || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        var safeStay = String(r.stayDate || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        var safeStay = String(formatStayDate(r.stayDate) || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         var posted = new Date(r.timestamp).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
-        return '<div class="review-card" style="animation:fadeInUp 0.3s ease">' +
+        return '<div class="swiper-slide"><div class="review-card">' +
           '<div class="flex items-center justify-between mb-2 flex-wrap gap-2"><div>' +
           '<span class="font-bold text-lg">' + safeName + '</span>' +
           (safeHome ? '<span class="text-gray-400 text-sm ml-2">&middot; ' + safeHome + '</span>' : '') +
           (safeStay ? '<span class="text-gray-400 text-sm ml-2">&middot; Stayed ' + safeStay + '</span>' : '') +
           '</div><div class="stars-display">' + starsHTML + '</div></div>' +
           '<p class="text-gray-700 leading-relaxed">' + safeText + '</p>' +
-          '<p class="text-xs text-gray-400 mt-3">Posted ' + posted + '</p></div>';
+          '<p class="text-xs text-gray-400 mt-3">Posted ' + posted + '</p></div></div>';
       }).join('');
 
-      showMoreContainer.style.display = sorted.length > visibleCount ? '' : 'none';
-    }
+      swiperContainer.style.display = '';
 
-    function showMoreReviews() {
-      visibleCount += 5;
-      renderReviews();
+      // Destroy previous instance if it exists
+      if (reviewsSwiper) {
+        reviewsSwiper.destroy(true, true);
+        reviewsSwiper = null;
+      }
+
+      // Initialize reviews swiper
+      reviewsSwiper = new Swiper('#reviewsSwiperContainer', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: sorted.length > 1,
+        autoplay: { delay: 6000, disableOnInteraction: true },
+        pagination: { el: '.reviews-pagination', clickable: true },
+        navigation: { nextEl: '.reviews-next', prevEl: '.reviews-prev' },
+        breakpoints: {
+          640: { slidesPerView: 1, spaceBetween: 16 },
+          768: { slidesPerView: 2, spaceBetween: 20 },
+          1024: { slidesPerView: 3, spaceBetween: 24 }
+        }
+      });
     }
 
     // Star picker
@@ -828,7 +872,7 @@
 
       if (!name) { errorEl.textContent = 'Please enter your name.'; errorEl.style.display = ''; return; }
       if (rating < 1) { errorEl.textContent = 'Please select a star rating.'; errorEl.style.display = ''; return; }
-      if (!text || text.length < 10) { errorEl.textContent = 'Please write at least 10 characters.'; errorEl.style.display = ''; return; }
+      if (!text) { errorEl.textContent = 'Please write a review.'; errorEl.style.display = ''; return; }
       errorEl.style.display = 'none';
 
       var btn = document.getElementById('submitReviewBtn');
@@ -943,16 +987,4 @@
       // Mobile sticky nav show/hide on scroll
       const mobileStickyNav = document.getElementById('mobileStickyNav');
       window.addEventListener('scroll', function() {
-        if (window.scrollY > 150) {
-          mobileStickyNav.classList.remove('hidden');
-        } else {
-          mobileStickyNav.classList.add('hidden');
-        }
-      });
-
-      // Load reviews from Google Sheets
-      loadReviews();
-    });
-  </script>
-</body>
-</html>
+        if (window.scrollY > 150)
