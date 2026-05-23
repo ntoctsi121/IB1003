@@ -21,12 +21,7 @@
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-  <!-- Google Fonts: Modern, sleek pairing -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
-
-  <!-- Keep ONLY a few high-value preloads -->
+  <!-- High-value preloads -->
   <link rel="preload" as="image" href="images/pano.jpg">
   <link rel="preload" as="image" href="images/Resort01.jpg">
   <link rel="preload" as="image" href="images/Bot01.jpg">
@@ -42,84 +37,292 @@
   </script>
 
   <style>
-
     /* =========================
-   MODERN FONT STYLES
-========================= */
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-  letter-spacing: 0.01em;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', 'Inter', sans-serif;
-  letter-spacing: -0.02em;
-  font-weight: 600;
-}
-h1 { font-weight: 700; }
+       DESIGN TOKENS
+    ========================= */
+    :root {
+      --primary: #0891B2;        /* Caribbean teal */
+      --primary-dark: #0E7490;
+      --primary-soft: #CFFAFE;
+      --sand: #F5E6D3;
+      --sand-soft: #FAF3E7;
+      --ink: #0F172A;
+      --muted: #64748B;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: #FFFFFF; color: #1F2937; }
+
+    /* Utility color classes */
+    .text-primary { color: var(--primary); }
+    a.text-primary:hover { color: var(--primary-dark); }
+    .bg-primary { background-color: var(--primary); }
+    .bg-sand { background-color: var(--sand-soft); }
+
     /* PRELOADER */
     .preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:rgba(255,255,255,0.96);backdrop-filter:blur(2px);transition:opacity 0.35s ease,visibility 0.35s ease}
     .preloader-inner{text-align:center;padding:16px 20px}
-    .spinner{width:44px;height:44px;border-radius:9999px;border:4px solid rgba(0,0,0,0.12);border-top-color:rgba(0,0,0,0.55);animation:spin 0.9s linear infinite;margin:0 auto}
-    .preloader-text{margin-top:12px;font-weight:600;color:rgba(0,0,0,0.65)}
+    .spinner{width:44px;height:44px;border-radius:9999px;border:4px solid rgba(8,145,178,0.18);border-top-color:var(--primary);animation:spin 0.9s linear infinite;margin:0 auto}
+    .preloader-text{margin-top:12px;font-weight:600;color:rgba(15,23,42,0.65)}
     .preloader--hide{opacity:0;visibility:hidden}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* SWIPER */
-    .gallery-top,.fun-top{height:80vh}
-    .gallery-top .swiper-slide img,.fun-top .swiper-slide img{width:100%;height:100%;object-fit:cover}
-    .swiper-slide{display:flex;justify-content:center;align-items:center;background:#fff}
-    .swiper-slide-prev,.swiper-slide-next{opacity:0.4;transform:scale(1.0)}
+    /* =========================
+       HERO — full-screen luxury
+    ========================= */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      background: url('images/pano.jpg') center center / cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.55) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1; text-align: center;
+      padding: 2rem 1rem;
+      animation: heroFade 1.4s ease-out both;
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 7.5vw, 5.25rem);
+      font-weight: 200;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+    }
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 1.75rem;
+      opacity: 0.95;
+    }
+    .hero-divider {
+      width: 64px; height: 1px;
+      background: rgba(255,255,255,0.75);
+      margin: 1.75rem auto;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      z-index: 1; color: #fff; opacity: 0.8;
+      animation: bounce 2.2s ease-in-out infinite;
+    }
+    .hero-scroll svg { width: 28px; height: 28px; }
+    @keyframes heroFade {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
 
-    /* THUMBNAILS */
-    .gallery-thumbs .swiper-slide,.fun-thumbs .swiper-slide{width:80px;height:80px;opacity:0.6;display:flex;justify-content:center;align-items:center}
-    .gallery-thumbs .swiper-slide img,.fun-thumbs .swiper-slide img{width:100%;height:100%;object-fit:cover}
-    .gallery-thumbs .swiper-slide-thumb-active,.fun-thumbs .swiper-slide-thumb-active{opacity:1}
-    .gallery-thumbs,.fun-thumbs{margin:5px auto 0!important}
+    /* =========================
+       SECTION HEADINGS
+    ========================= */
+    .section-title {
+      font-size: clamp(1.875rem, 3.5vw, 2.5rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-align: center;
+      color: var(--ink);
+    }
+    .section-accent {
+      width: 56px; height: 2px; background: var(--primary);
+      margin: 1rem auto 2.5rem;
+    }
+    .section-pad { padding-top: 5rem; padding-bottom: 5rem; }
+    @media (max-width: 768px) {
+      .section-pad { padding-top: 3rem; padding-bottom: 3rem; }
+    }
 
-    /* HERO & FEATURES */
-    .hero-background::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url('images/pano.jpg') center center/cover no-repeat;opacity:0.5;z-index:-1}
-    .hero-content{position:relative;z-index:1}
-    .features-background{position:relative;z-index:0}
-    .features-background::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:url('images/Dolphin.png');background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.2;z-index:-1}
-    .features-content{position:relative;z-index:1}
-    .icon{width:1em;height:1em;vertical-align:middle}
+    /* =========================
+       GLOBAL SWIPER STYLES
+    ========================= */
+    .gallery-top, .fun-top {
+      height: 80vh;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+    }
+    .gallery-top .swiper-slide img,
+    .fun-top .swiper-slide img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .swiper-slide { display: flex; justify-content: center; align-items: center; background: #fff; }
+    .swiper-slide-prev, .swiper-slide-next { opacity: 0.4; transform: scale(1.0); }
 
-    /* NAV */
-    .nav-link{position:relative;color:#333;text-decoration:none;padding:0.5rem 1rem;transition:color 0.3s ease}
-    .nav-link::before{content:'';position:absolute;width:100%;height:2px;bottom:0;left:0;background-color:#3B82F6;visibility:hidden;transform:scaleX(0);transition:all 0.3s ease-in-out}
-    .nav-link:hover{color:#3B82F6}
-    .nav-link:hover::before{visibility:visible;transform:scaleX(1)}
+    /* Thumbnails */
+    .gallery-thumbs .swiper-slide,
+    .fun-thumbs .swiper-slide {
+      width: 80px; height: 80px; opacity: 0.6;
+      display: flex; justify-content: center; align-items: center;
+      border-radius: 8px; overflow: hidden;
+    }
+    .gallery-thumbs .swiper-slide img,
+    .fun-thumbs .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-thumbs .swiper-slide-thumb-active,
+    .fun-thumbs .swiper-slide-thumb-active { opacity: 1; }
+    .gallery-thumbs, .fun-thumbs { margin: 12px auto 0 !important; }
 
-    /* ARROWS */
-    .swiper-button-prev,.swiper-button-next,.swiper-button-prevFun,.swiper-button-nextFun{color:grey!important}
+    /* =========================
+       NAVIGATION
+    ========================= */
+    .hidden { display: none; }
+    .icon { width: 1em; height: 1em; vertical-align: middle; }
 
-    /* FLOATING BOOK NOW */
-    .floating-book-now{position:fixed;right:20px;top:100px;z-index:1000;background:#1F4ACE;color:#fff;font-weight:600;padding:12px 16px;border-radius:9999px;box-shadow:0 10px 20px rgba(0,0,0,0.15);text-decoration:none;transition:transform 0.15s ease,box-shadow 0.15s ease,opacity 0.2s ease}
-    .floating-book-now:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(0,0,0,0.2)}
-    .floating-book-now:active{transform:translateY(0)}
-    @media(max-width:768px){.floating-book-now{top:auto;bottom:20px}}
+    .nav-link {
+      position: relative; color: #1F2937; text-decoration: none;
+      padding: 0.75rem 1rem;
+      transition: color 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .nav-link::before {
+      content: ''; position: absolute; width: calc(100% - 2rem); height: 2px;
+      bottom: 6px; left: 1rem;
+      background-color: var(--primary); visibility: hidden; transform: scaleX(0); transform-origin: left;
+      transition: all 0.3s ease-in-out;
+    }
+    .nav-link:hover { color: var(--primary); }
+    .nav-link:hover::before { visibility: visible; transform: scaleX(1); }
 
-    /* GUEST REVIEWS */
+    /* Swiper arrows */
+    .swiper-button-prev, .swiper-button-next,
+    .swiper-button-prevFun, .swiper-button-nextFun {
+      color: rgba(255,255,255,0.85) !important;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+
+    /* =========================
+       ACCOMMODATION / AMENITY CARDS
+    ========================= */
+    .feature-grid {
+      display: grid; gap: 1.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    .feature-card {
+      background: #fff; border-radius: 16px; padding: 1.75rem 1.25rem;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(15,23,42,0.05), 0 1px 2px rgba(15,23,42,0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid #F1F5F9;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 32px rgba(8,145,178,0.12);
+    }
+    .feature-icon {
+      width: 52px; height: 52px;
+      margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 14px;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+    .feature-icon svg {
+      width: 28px; height: 28px; stroke-width: 1.6;
+      fill: none; stroke: currentColor;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .feature-card .label {
+      color: #1F2937; font-size: 0.95rem; line-height: 1.4; font-weight: 500;
+    }
+
+    /* =========================
+       FEATURES — clean white cards on sand
+    ========================= */
+    #features { background: var(--sand-soft); }
+    .features-grid {
+      display: grid; gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .feature-tile {
+      background: #fff; border-radius: 18px; padding: 2rem;
+      box-shadow: 0 2px 6px rgba(15,23,42,0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid #F1F5F9;
+    }
+    .feature-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(8,145,178,0.14);
+    }
+    .feature-tile-icon {
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 16px;
+      background: var(--primary-soft); color: var(--primary);
+      margin-bottom: 1.1rem;
+    }
+    .feature-tile-icon svg {
+      width: 30px; height: 30px; stroke-width: 1.6;
+      fill: none; stroke: currentColor;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .feature-tile h3 { font-weight: 600; font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--ink); }
+    .feature-tile p { color: #475569; font-size: 0.95rem; line-height: 1.55; }
+
+    /* =========================
+       ACCORDION (Location / Owners)
+    ========================= */
+    .accordion-toggle {
+      display: flex; align-items: center; justify-content: center; gap: 0.85rem;
+      cursor: pointer; padding: 0.5rem; width: 100%;
+      transition: color 0.2s ease;
+      user-select: none;
+    }
+    .accordion-toggle:hover { color: var(--primary); }
+    .accordion-chevron {
+      width: 26px; height: 26px;
+      transition: transform 0.35s ease;
+      color: var(--primary);
+      fill: none; stroke: currentColor; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .accordion-toggle.open .accordion-chevron { transform: rotate(180deg); }
+    .accordion-body {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.55s ease, opacity 0.4s ease, padding 0.3s ease;
+    }
+    .accordion-body.open { max-height: 3000px; opacity: 1; padding-top: 1.75rem; }
+
+    /* =========================
+       RENOVATION BANNER
+    ========================= */
+    .renovation-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #fff; border-radius: 16px; padding: 1.5rem 2rem;
+      box-shadow: 0 10px 30px rgba(8,145,178,0.25);
+      text-align: center;
+    }
+
+    /* =========================
+       GUEST REVIEWS
+    ========================= */
     .review-stars{display:inline-flex;gap:4px;cursor:pointer}
     .review-stars .star{width:28px;height:28px;fill:#d1d5db;transition:fill 0.15s ease,transform 0.15s ease}
     .review-stars .star.active,.review-stars .star.hover{fill:#f59e0b}
     .review-stars .star:hover{transform:scale(1.15)}
-    .review-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:box-shadow 0.2s ease}
-    .review-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+    .review-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:24px;box-shadow:0 1px 4px rgba(15,23,42,0.06);transition:box-shadow 0.2s ease}
+    .review-card:hover{box-shadow:0 6px 18px rgba(15,23,42,0.10)}
     .review-card .stars-display{display:inline-flex;gap:2px}
     .review-card .stars-display .star-sm{width:18px;height:18px;fill:#f59e0b}
     .review-card .stars-display .star-sm.empty{fill:#d1d5db}
     .avg-stars .star-lg{width:24px;height:24px;fill:#f59e0b}
     .avg-stars .star-lg.empty{fill:#d1d5db}
     .avg-stars .star-lg.half{fill:url(#halfGrad)}
-    #reviewForm textarea,#reviewForm input[type="text"]{font-family:inherit;border:1px solid #d1d5db;border-radius:8px;padding:10px 14px;width:100%;transition:border-color 0.2s ease,box-shadow 0.2s ease}
-    #reviewForm textarea:focus,#reviewForm input[type="text"]:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.15)}
-    #reviewForm button[type="submit"]{background:#1F4ACE;color:#fff;font-weight:600;padding:12px 32px;border:none;border-radius:9999px;cursor:pointer;transition:background 0.2s ease,transform 0.1s ease}
-    #reviewForm button[type="submit"]:hover{background:#1a3fb3;transform:translateY(-1px)}
+    #reviewForm textarea,#reviewForm input[type="text"]{font-family:inherit;border:1px solid #d1d5db;border-radius:10px;padding:12px 16px;width:100%;transition:border-color 0.2s ease,box-shadow 0.2s ease}
+    #reviewForm textarea:focus,#reviewForm input[type="text"]:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(8,145,178,0.15)}
+    #reviewForm button[type="submit"]{background:var(--primary);color:#fff;font-weight:600;padding:12px 32px;border:none;border-radius:9999px;cursor:pointer;transition:background 0.2s ease,transform 0.1s ease}
+    #reviewForm button[type="submit"]:hover{background:var(--primary-dark);transform:translateY(-1px)}
     #reviewForm button[type="submit"]:active{transform:translateY(0)}
     #reviewForm button[type="submit"]:disabled{background:#93a3c0;cursor:not-allowed;transform:none}
-    .review-success{background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;border-radius:8px;padding:14px 20px;text-align:center;font-weight:600;animation:fadeInUp 0.3s ease}
-    .review-error-banner{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;border-radius:8px;padding:14px 20px;text-align:center;font-weight:500}
+    .review-success{background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;border-radius:10px;padding:14px 20px;text-align:center;font-weight:600;animation:fadeInUp 0.3s ease}
+    .review-error-banner{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;border-radius:10px;padding:14px 20px;text-align:center;font-weight:500}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
     .reviews-loading{text-align:center;color:#6b7280;padding:24px}
 
@@ -130,27 +333,130 @@ h1 { font-weight: 700; }
     .reviews-swiper .review-card p.text-gray-700{flex:1}
     .reviews-swiper .swiper-pagination{bottom:0!important}
     .reviews-swiper .swiper-pagination-bullet{background:#94a3b8;opacity:0.5;width:10px;height:10px}
-    .reviews-swiper .swiper-pagination-bullet-active{background:#1F4ACE;opacity:1}
+    .reviews-swiper .swiper-pagination-bullet-active{background:var(--primary);opacity:1}
     .reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{color:#94a3b8!important;top:45%}
-    .reviews-swiper .swiper-button-prev:hover,.reviews-swiper .swiper-button-next:hover{color:#1F4ACE!important}
+    .reviews-swiper .swiper-button-prev:hover,.reviews-swiper .swiper-button-next:hover{color:var(--primary)!important}
     .reviews-swiper .swiper-slide-prev,
     .reviews-swiper .swiper-slide-next { opacity: 1; }
     @media(max-width:768px){.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{display:none}}
-  </style>
 
-  <!-- Mobile adjustments -->
-  <style>
-    @media(max-width:768px){.gallery-top,.fun-top{height:60vh}.swiper-button-prev,.swiper-button-next,.swiper-button-prevFun,.swiper-button-nextFun{display:none}}
-  </style>
-  <style>
-    @media screen and (orientation:landscape) and (max-width:900px){#roatan-fun .fun-top .swiper-slide img{object-fit:contain}}
+    /* Mobile tweaks */
+    @media (max-width: 768px) {
+      .gallery-top, .fun-top { height: 60vh; }
+      .swiper-button-prev, .swiper-button-next,
+      .swiper-button-prevFun, .swiper-button-nextFun { display: none; }
+    }
+    @media screen and (orientation: landscape) and (max-width: 900px) {
+      #roatan-fun .fun-top .swiper-slide img { object-fit: contain; }
+    }
+
+    /* Embed map */
+    .map-embed { border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.10); max-width: 100%; }
+
+    /* =========================
+       FLOATING BOOK NOW
+    ========================= */
+    .floating-book-now {
+      position: fixed;
+      right: 24px;
+      top: 110px;
+      z-index: 1000;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 22px;
+      border-radius: 9999px;
+      box-shadow: 0 10px 24px rgba(8,145,178,0.35);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: bookPulse 2.6s ease-in-out infinite;
+    }
+    .floating-book-now:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 18px 36px rgba(8,145,178,0.45);
+      animation-play-state: paused;
+      color: #fff;
+    }
+    .floating-book-now svg { width: 18px; height: 18px; stroke-width: 2; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+    @keyframes bookPulse {
+      0%, 100% { box-shadow: 0 10px 24px rgba(8,145,178,0.35); }
+      50% { box-shadow: 0 10px 24px rgba(8,145,178,0.50), 0 0 0 8px rgba(8,145,178,0.10); }
+    }
+    @media (max-width: 768px) {
+      .floating-book-now { top: auto; bottom: 20px; right: 16px; padding: 12px 18px; font-size: 0.88rem; }
+    }
+
+    /* =========================
+       SCROLL FADE-IN REVEAL
+    ========================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-content, .floating-book-now, .hero-scroll { animation: none; }
+    }
+
+    /* =========================
+       DARK FOOTER
+    ========================= */
+    footer.site-footer {
+      background: var(--ink);
+      color: #CBD5E1;
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+    footer.site-footer a { color: #67E8F9; text-decoration: none; transition: color 0.2s ease; }
+    footer.site-footer a:hover { color: #A5F3FC; text-decoration: underline; }
   </style>
 </head>
 
-<body class="font-sans">
+<body class="font-serif">
 
-  <!-- SVG defs for half-star gradient -->
-  <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="halfGrad"><stop offset="50%" stop-color="#f59e0b"/><stop offset="50%" stop-color="#d1d5db"/></linearGradient></defs></svg>
+  <!-- SVG defs: half-star gradient + icon symbols -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="halfGrad"><stop offset="50%" stop-color="#f59e0b"/><stop offset="50%" stop-color="#d1d5db"/></linearGradient>
+
+      <!-- Icons (Lucide-style strokes) -->
+      <symbol id="i-bed" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></symbol>
+      <symbol id="i-sofa" viewBox="0 0 24 24"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v3h12v-3a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/><path d="M4 18v2"/><path d="M20 18v2"/></symbol>
+      <symbol id="i-door" viewBox="0 0 24 24"><path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"/><path d="M2 20h20"/><path d="M14 12v.01"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-kitchen" viewBox="0 0 24 24"><path d="M3 11h18"/><path d="M5 11V6a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v5"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/><path d="M8 15h.01"/><path d="M12 15h.01"/></symbol>
+      <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></symbol>
+      <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></symbol>
+      <symbol id="i-shower" viewBox="0 0 24 24"><path d="M4 4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/><path d="M2 8h18"/><path d="M20 8v6a6 6 0 0 1-12 0V8"/><path d="M11 14v.01"/><path d="M14 17v.01"/><path d="M9 18v.01"/><path d="M12 21v.01"/></symbol>
+      <symbol id="i-snowflake" viewBox="0 0 24 24"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9l-2.7-.6-1.6-3.2A1.6 1.6 0 0 0 14.8 6H9.2c-.7 0-1.3.4-1.6 1L6 10.2l-2.7.6c-.8.2-1.3 1-1.3 1.9V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></symbol>
+      <symbol id="i-tv" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="13" rx="2"/><polyline points="17 2 12 7 7 2"/></symbol>
+      <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.5a16 16 0 0 1 20 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+      <symbol id="i-towel" viewBox="0 0 24 24"><path d="M12 2v4"/><circle cx="12" cy="9" r="3"/><path d="M5 22V16a7 7 0 0 1 14 0v6"/></symbol>
+      <symbol id="i-pool" viewBox="0 0 24 24"><path d="M2 20c1.5 0 2.5-1 4-1s2.5 1 4 1 2.5-1 4-1 2.5 1 4 1 2.5-1 4-1"/><path d="M2 16c1.5 0 2.5-1 4-1s2.5 1 4 1 2.5-1 4-1 2.5 1 4 1 2.5-1 4-1"/><path d="M6 12V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2"/><path d="M14 12V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2"/></symbol>
+      <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="10" rx="2"/><line x1="22" x2="22" y1="11" y2="13"/><path d="m11 9-2 4h4l-2 4"/></symbol>
+      <symbol id="i-hammock" viewBox="0 0 24 24"><path d="M2 8h20"/><path d="M3 8s2 8 9 8 9-8 9-8"/><path d="M5 4v4"/><path d="M19 4v4"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+      <symbol id="i-waves" viewBox="0 0 24 24"><path d="M2 6c1.5 0 2.5 1 4 1s2.5-1 4-1 2.5 1 4 1 2.5-1 4-1 2.5 1 4 1"/><path d="M2 12c1.5 0 2.5 1 4 1s2.5-1 4-1 2.5 1 4 1 2.5-1 4-1 2.5 1 4 1"/><path d="M2 18c1.5 0 2.5 1 4 1s2.5-1 4-1 2.5 1 4 1 2.5-1 4-1 2.5 1 4 1"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2a10 10 0 1 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.9-.5-1.4 0-1.1.9-2 2-2h2.4c2.5 0 4.6-2 4.6-4.6C22 5.7 17.5 2 12 2z"/></symbol>
+      <symbol id="i-no-smoke" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="5" x2="19" y1="5" y2="19"/></symbol>
+      <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+      <symbol id="i-accessible" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M19 13v-2a2 2 0 0 0-2-2h-3l-2-3"/><path d="M9 9v6"/><path d="M9 15h6l3 5"/><circle cx="9" cy="19" r="3"/></symbol>
+      <symbol id="i-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></symbol>
+    </defs>
+  </svg>
 
   <!-- PRELOADER -->
   <div id="pagePreloader" class="preloader" role="status" aria-live="polite" aria-label="Loading photos">
@@ -161,15 +467,19 @@ h1 { font-weight: 700; }
   </div>
 
   <!-- HERO SECTION -->
-  <section id="hero" class="hero-background text-black bg-cover bg-center relative">
-    <div class="hero-content container mx-auto p-4 text-center">
-      <h1 class="text-4xl font-bold">A Modern Oceanfront Condo at Infinity Bay</h1>
-      <p class="mt-2 font-bold">Infinity Bay Condo #1003 on West Bay Beach</p>
+  <section id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">A Modern Oceanfront Condo</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subtitle">Infinity Bay #1003 &middot; West Bay Beach, Roatan</p>
     </div>
+    <a href="#gallery" class="hero-scroll" aria-label="Scroll to gallery">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
   </section>
 
   <!-- MAIN NAVIGATION -->
-  <nav class="bg-white shadow-lg lg:sticky lg:top-0 lg:z-50">
+  <nav class="bg-white shadow-md lg:sticky lg:top-0 lg:z-50">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-center">
         <div class="flex flex-wrap lg:flex-nowrap justify-center gap-1">
@@ -197,8 +507,9 @@ h1 { font-weight: 700; }
   </nav>
 
   <!-- GALLERY -->
-  <section id="gallery" class="container mx-auto p-4">
-    <h2 class="text-2xl font-bold text-center mb-8">Unit #1003 at Infinity Bay Spa and Beach Resort</h2>
+  <section id="gallery" class="container mx-auto px-4 section-pad reveal">
+    <h2 class="section-title">Unit #1003 at Infinity Bay Spa &amp; Beach Resort</h2>
+    <div class="section-accent"></div>
 
     <div class="swiper gallery-top">
       <div class="swiper-wrapper">
@@ -329,98 +640,118 @@ h1 { font-weight: 700; }
     </div>
   </section>
 
-  <div class="container mx-auto p-4 bg-white text-black my-8">
-    <p class="text-center text-lg">
-      <strong>This unit has been completely renovated and updated as of December 2025, and is open and available for all rentals going forward!!</strong><br>
-    </p>
+  <!-- RENOVATION BANNER -->
+  <div class="container mx-auto px-4 mt-2 mb-12 reveal">
+    <div class="renovation-banner max-w-3xl mx-auto">
+      <p class="text-lg font-medium">
+        Completely renovated and updated as of December 2025 &mdash; open and available for all rentals going forward.
+      </p>
+    </div>
   </div>
 
   <!-- ACCOMMODATIONS -->
-  <section id="accommodations" class="container mx-auto p-4">
-    <h2 class="text-2xl font-bold text-center mb-8">Accommodations</h2>
-    <div class="grid grid-cols-1 md:grid-cols-1 gap-6 text-center">
-      <div class="accommodations">
-        <ul class="accommodations-list">
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Large 1 Bedroom Unit with Full Kitchen</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Comfortably Accommodates 2-4 People</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> King-sized Bed and Single-sized Pullout Sleeper Chair in Bedroom</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Queen-sized Premium Sleeper Sofa in Living Room</li>
-        </ul>
+  <section id="accommodations" class="container mx-auto px-4 section-pad reveal">
+    <h2 class="section-title">Accommodations</h2>
+    <div class="section-accent"></div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-door"/></svg></div>
+        <div class="label">Large 1-bedroom unit with full kitchen</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-users"/></svg></div>
+        <div class="label">Comfortably sleeps 2&ndash;4 guests</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-bed"/></svg></div>
+        <div class="label">King bed &amp; single pullout sleeper chair in bedroom</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-sofa"/></svg></div>
+        <div class="label">Queen premium sleeper sofa in living room</div>
       </div>
     </div>
   </section>
 
   <!-- AMENITIES -->
-  <section id="amenities" class="container mx-auto p-4">
-    <h2 class="text-2xl font-bold text-center mb-8">Amenities</h2>
-    <div class="grid grid-cols-1 md:grid-cols-1 gap-6 text-center">
-      <div class="Amenities">
-        <ul class="Amenties-list">
-
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Fully Equipped Kitchen with Dishwasher</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Coffee Maker, Blender, Microwave, Pots and Pans, Cooking Utensils, and More</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Filtered Water within Condo and throughout Resort which is Safe for Drinking</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Air conditioning</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Hot water</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Personal Porch Hammock</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Multiple sitting areas on porch overlooking Ocean and Pool</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Cable TV/ Smart TV</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Backup generator</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Free Wifi</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> 24 hour security</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Bars, Restaurants, &amp; Spas on-site</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Free Resort Parking</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> Beach towels included</li>
-          <li><img src="images/icon.JPG" alt="" class="icon inline-block" decoding="async"> 2 Large Resort Pools</li>
-        </ul>
+  <section id="amenities" class="bg-sand">
+    <div class="container mx-auto px-4 section-pad reveal">
+      <h2 class="section-title">Amenities</h2>
+      <div class="section-accent"></div>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-kitchen"/></svg></div><div class="label">Fully equipped kitchen with dishwasher</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-coffee"/></svg></div><div class="label">Coffee maker, blender, microwave &amp; full cookware</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-droplet"/></svg></div><div class="label">Filtered drinking water in-unit &amp; throughout resort</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-snowflake"/></svg></div><div class="label">Air conditioning</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-shower"/></svg></div><div class="label">Hot water</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-hammock"/></svg></div><div class="label">Personal porch hammock</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-home"/></svg></div><div class="label">Multiple seating areas on ocean-view porch</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-tv"/></svg></div><div class="label">Cable &amp; Smart TV</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-battery"/></svg></div><div class="label">Backup generator</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-wifi"/></svg></div><div class="label">Free WiFi</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-shield"/></svg></div><div class="label">24-hour on-site security</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-bell"/></svg></div><div class="label">Bars, restaurants &amp; spas on-site</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-car"/></svg></div><div class="label">Free resort parking</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-towel"/></svg></div><div class="label">Beach towels provided</div></div>
+        <div class="feature-card"><div class="feature-icon"><svg><use href="#i-pool"/></svg></div><div class="label">2 large resort pools</div></div>
       </div>
     </div>
   </section>
 
   <!-- FEATURES -->
-  <section id="features" class="container mx-auto p-4 features-background mt-8">
-    <h2 class="text-2xl font-bold text-center mb-8">Features</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 features-content">
-      <div class="feature-item">
-        <h3 class="text-xl font-semibold mb-2">Beachfront Access</h3>
-        <p>Oceanfront Condo with Full Views of the Ocean and the Main Pool</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="text-xl font-semibold mb-2">Infinity Bay</h3>
-        <p>Daily Breakfast Buffet Available at Extra Cost</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="text-xl font-semibold mb-2">Modern Unit</h3>
-        <p>Newly Renovated Condo as of December 2025</p>
-      </div>
-      <div class="feature-item">
-        <h3 class="text-xl font-semibold mb-2">Non-Smoking Unit</h3>
-        <p></p>
-      </div>
-      <div class="feature-item">
-        <h3 class="text-xl font-semibold mb-2">Seamless Airport Transfer</h3>
-        <p>Roundtrip Airport Pickup and Dropoff may be arranged through Resort</p>
-      </div>
-       <div class="feature-item">
-        <h3 class="text-xl font-semibold mb-2">Accessability</h3>
-        <p>Infinity Bay is committed to full accessibility with walking paths, ramps, and elevators throughout the resort.</p>
+  <section id="features" class="section-pad reveal">
+    <div class="container mx-auto px-4">
+      <h2 class="section-title">Features</h2>
+      <div class="section-accent"></div>
+      <div class="features-grid">
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg><use href="#i-waves"/></svg></div>
+          <h3>Beachfront Access</h3>
+          <p>Oceanfront condo with full views of the ocean and the main resort pool.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg><use href="#i-coffee"/></svg></div>
+          <h3>Daily Breakfast Available</h3>
+          <p>Daily breakfast buffet available at the resort restaurant for an additional cost.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg><use href="#i-palette"/></svg></div>
+          <h3>Modern Unit</h3>
+          <p>Newly renovated condo as of December 2025 with fresh, modern finishes throughout.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg><use href="#i-no-smoke"/></svg></div>
+          <h3>Non-Smoking Unit</h3>
+          <p>A clean, smoke-free environment throughout the entire condo.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg><use href="#i-plane"/></svg></div>
+          <h3>Seamless Airport Transfer</h3>
+          <p>Round-trip airport pickup and drop-off can be arranged through the resort.</p>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-tile-icon"><svg><use href="#i-accessible"/></svg></div>
+          <h3>Accessibility</h3>
+          <p>Infinity Bay is committed to full accessibility with walking paths, ramps, and elevators throughout the resort.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- LOCATION -->
-  <section id="location" class="py-8">
+  <section id="location" class="section-pad reveal">
     <div class="container mx-auto px-4">
-      <div class="toggle-container flex justify-center items-center cursor-pointer w-full" onclick="toggleLocationDetails()">
-        <div id="toggleIconLocation" class="font-bold text-2xl mr-2">+</div>
-        <h2 class="text-2xl font-bold">Location</h2>
+      <div class="accordion-toggle" id="locationToggle" onclick="toggleAccordion('locationToggle','locationDetails')">
+        <h2 class="section-title" style="margin:0;">Location</h2>
+        <svg class="accordion-chevron"><use href="#i-chevron-down"/></svg>
       </div>
-      <div id="locationDetails" class="hidden text-center">
-        <p class="text-lg mb-4">
+      <div id="locationDetails" class="accordion-body text-center">
+        <p class="text-lg mb-6 max-w-2xl mx-auto">
           Discover the stunning location of our beachfront condo at Infinity Bay Spa &amp; Beach Resort, in the heart of West Bay Beach in Roatan, Honduras.
         </p>
         <div class="flex justify-center">
           <iframe
+            class="map-embed"
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d605.7830505543136!2d-86.60001303422062!3d16.27313402168344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sus!4v1758683881904!5m2!1sen!2sus"
             width="600" height="450" style="border:0;" allowfullscreen=""
             loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -431,8 +762,9 @@ h1 { font-weight: 700; }
   </section>
 
   <!-- ROATAN FUN -->
-  <section id="roatan-fun" class="container mx-auto px-4 lg:px-60 py-4">
-    <h2 class="text-2xl font-bold text-center mb-8">Roatan Fun</h2>
+  <section id="roatan-fun" class="container mx-auto px-4 lg:px-60 section-pad reveal">
+    <h2 class="section-title">Roatan Fun</h2>
+    <div class="section-accent"></div>
 
     <div class="swiper fun-top mt-8">
       <div class="swiper-wrapper">
@@ -492,9 +824,10 @@ h1 { font-weight: 700; }
   </section>
 
   <!-- GUEST REVIEWS -->
-  <section id="reviews" class="bg-gray-50 py-12">
+  <section id="reviews" class="bg-sand section-pad reveal">
     <div class="container mx-auto px-4 max-w-4xl">
-      <h2 class="text-2xl font-bold text-center mb-2">Guest Reviews</h2>
+      <h2 class="section-title">Guest Reviews</h2>
+      <div class="section-accent"></div>
 
       <div id="reviewsSummary" class="text-center mb-8" style="display:none;">
         <div class="flex items-center justify-center gap-2 mb-1">
@@ -559,15 +892,15 @@ h1 { font-weight: 700; }
   </section>
 
   <!-- OWNERS -->
-  <section id="Owners" class="py-8">
+  <section id="Owners" class="section-pad reveal">
     <div class="container mx-auto px-4">
-      <div class="toggle-container flex justify-center items-center cursor-pointer w-full" onclick="toggleOwnerDetails()">
-        <div id="toggleIconOwners" class="font-bold text-2xl mr-2">+</div>
-        <h2 class="text-2xl font-bold">About the Owners</h2>
+      <div class="accordion-toggle" id="ownersToggle" onclick="toggleAccordion('ownersToggle','OwnerDetails')">
+        <h2 class="section-title" style="margin:0;">About the Owners</h2>
+        <svg class="accordion-chevron"><use href="#i-chevron-down"/></svg>
       </div>
-      <div id="OwnerDetails" class="hidden text-center">
-        <img src="images/fam1.jpg" alt="The Family" class="mx-auto my-4" style="max-width: 43%; height: auto;" loading="lazy" decoding="async">
-        <p class="text-lg mb-4">
+      <div id="OwnerDetails" class="accordion-body text-center">
+        <img src="images/fam1.jpg" alt="The Family" class="mx-auto my-4 rounded-xl shadow-lg" style="max-width: 43%; height: auto;" loading="lazy" decoding="async">
+        <p class="text-lg mb-4 max-w-3xl mx-auto leading-relaxed">
           Hi! We are Nick and Becky. We live in Charlotte, NC with our 2 kids, Jayden (7) and Juliette (4), and our 2 rescue dogs.
           Becky first discovered Roatan in 2007, when she spent a year there before starting medical school, volunteering in a clinic during the week and working as a dive master on weekends. She continued to visit the island frequently, returning for multiple rotations during medical school and residency. When she met Nick, he began to travel with her, volunteering his finance services wherever they could be used.
           Years later, in 2015, we got married on Roatan, and brought 80 of our closest friends and family to the island to celebrate. It's one of our favorite memories of all time.
@@ -578,119 +911,98 @@ h1 { font-weight: 700; }
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="bg-gray-100 py-8">
+  <!-- CONTACT -->
+  <section id="contact" class="bg-sand section-pad reveal">
     <div class="container mx-auto px-4">
-      <h2 class="text-2xl font-bold text-center mb-6">How to Book</h2>
-      <div class="text-center mb-6">
-        <p class="text-xl font-bold text-center mb-6">
-          <a href="https://bnbforms.com/103241/accommodation/infinitybay1003beachfront/"
-             target="_blank" rel="noopener"
-             class="flex items-center justify-center text-blue-500 hover:text-blue-700">
-            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z"/>
-            </svg>
-            Book Directly with Us
-          </a>
+      <h2 class="section-title">How to Book</h2>
+      <div class="section-accent"></div>
+
+      <div class="text-center mb-10">
+        <a href="https://bnbforms.com/103241/accommodation/infinitybay1003beachfront/"
+           target="_blank" rel="noopener"
+           class="inline-flex items-center text-primary font-medium text-lg">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z"/>
+          </svg>
+          Book Directly with Us
+        </a>
+      </div>
+
+      <p class="text-2xl text-center mb-3" style="font-weight:300;letter-spacing:0.05em;">Contact Us</p>
+      <p class="text-lg text-center mb-8">Please contact us with any questions you may have!</p>
+
+      <div class="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
+        <a href="mailto:InfinityBay1003@gmail.com" class="flex items-center text-primary">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a7.5 7.5 0 01-15 0V12m15-4v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+          InfinityBay1003@gmail.com
+        </a>
+
+        <a href="https://www.facebook.com/profile.php?id=61580364005347" target="_blank" rel="noopener"
+           class="flex items-center text-primary">
+          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 5.936 4.325 10.861 10 11.85V15.386h-3v-3.313h3V9.5c0-3 1.792-4.668 4.533-4.668 1.312 0 2.686.237 2.686.237v2.961h-1.513c-1.494 0-1.954.93-1.954 1.886v2.28h3.286l-.525 3.313h-2.761v8.537c5.675-.989 10-5.914 10-11.85z"/>
+          </svg>
+          Message us on Facebook
+        </a>
+
+        <a href="https://www.instagram.com/InfinityBay1003/" target="_blank" rel="noopener"
+           class="flex items-center text-primary">
+          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true">
+            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-10-67.7-24.1-94.6-16.5-31.8-40.9-56.2-72.7-72.7-27-14.1-58.7-22.4-94.6-24.1C273.5 0 271 0 268.4 0h-88.8c-2.6 0-5.1.1-7.6.2-35.9 1.7-67.7 10-94.6 24.1-31.8 16.5-56.2 40.9-72.7 72.7-14.1 27-22.4 58.7-24.1 94.6-.1 2.5-.2 5-.2 7.6v88.8c0 2.6.1 5.1.2 7.6 1.7 35.9 10 67.7 24.1 94.6 16.5 31.8 40.9 56.2 72.7 72.7 27 14.1 58.7 22.4 94.6 24.1 2.5.1 5 .2 7.6.2h88.8c2.6 0 5.1-.1 7.6-.2 35.9-1.7 67.7-10 94.6-24.1 31.8-16.5 56.2-40.9 72.7-72.7 14.1-27 22.4-58.7 24.1-94.6.1-2.5.2-5 .2-7.6v-88.8c0-2.6-.1-5.1-.2-7.6zM224.1 338c-45.4 0-82.1-36.7-82.1-82.1s36.7-82.1 82.1-82.1 82.1 36.7 82.1 82.1-36.7 82.1-82.1 82.1zm124.6-82.1c0-16.6 13.5-30.1 30.1-30.1s30.1 13.5 30.1 30.1-13.5 30.1-30.1 30.1-30.1-13.5-30.1-30.1zm47.6 124.6c0 25.9-21 46.9-46.9 46.9H99.6c-25.9 0-46.9-21-46.9-46.9V192.3c0-25.9 21-46.9 46.9-46.9h249.2c25.9 0 46.9 21 46.9 46.9v187.2z"/>
+          </svg>
+          Follow us on Instagram
+        </a>
+      </div>
+
+      <!-- VILLA CROSS-PROMO -->
+      <div class="mt-12 text-center max-w-3xl mx-auto">
+        <p class="text-lg leading-relaxed">
+          <strong>Need more space? Want a private rooftop jacuzzi?
+          Check out our other West Bay Beach property,</strong>
+          <a href="https://DolphinVillaRoatan.com"
+             class="text-primary underline font-bold"
+             target="_blank" rel="noopener">
+            Dolphin Villa Roatan</a><strong>, a luxury 3-bedroom villa at Ocean One Roatan, just 5 minutes away!</strong>
         </p>
-
-        <p class="text-2xl font-bold text-center mb-6">Contact Us</p>
-        <p class="text-lg text-center mb-6">Please contact us with any questions you may have!</p>
-
-        <div class="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-8">
-        <a href="mailto:InfinityBay1003@gmail.com" class="flex items-center text-blue-500 hover:text-blue-700">
-            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a7.5 7.5 0 01-15 0V12m15-4v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h14a2 2 0 012 2z"/>
-            </svg>
-            InfinityBay1003@gmail.com
-          </a>
-
-
-          <a href="https://www.facebook.com/profile.php?id=61580364005347" target="_blank" rel="noopener" class="flex items-center text-blue-500 hover:text-blue-700">
-            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 5.936 4.325 10.861 10 11.85V15.386h-3v-3.313h3V9.5c0-3 1.792-4.668 4.533-4.668 1.312 0 2.686.237 2.686.237v2.961h-1.513c-1.494 0-1.954.93-1.954 1.886v2.28h3.286l-.525 3.313h-2.761v8.537c5.675-.989 10-5.914 10-11.85z"/>
-            </svg>
-            Message us on Facebook
-          </a>
-
-          <a href="https://www.instagram.com/InfinityBay1003/" target="_blank" rel="noopener" class="flex items-center text-blue-500 hover:text-blue-700">
-            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 448 512"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-10-67.7-24.1-94.6-16.5-31.8-40.9-56.2-72.7-72.7-27-14.1-58.7-22.4-94.6-24.1C273.5 0 271 0 268.4 0h-88.8c-2.6 0-5.1.1-7.6.2-35.9 1.7-67.7 10-94.6 24.1-31.8 16.5-56.2 40.9-72.7 72.7-14.1 27-22.4 58.7-24.1 94.6-.1 2.5-.2 5-.2 7.6v88.8c0 2.6.1 5.1.2 7.6 1.7 35.9 10 67.7 24.1 94.6 16.5 31.8 40.9 56.2 72.7 72.7 27 14.1 58.7 22.4 94.6 24.1 2.5.1 5 .2 7.6.2h88.8c2.6 0 5.1-.1 7.6-.2 35.9-1.7 67.7-10 94.6-24.1 31.8-16.5 56.2-40.9 72.7-72.7 14.1-27 22.4-58.7 24.1-94.6.1-2.5.2-5 .2-7.6v-88.8c0-2.6-.1-5.1-.2-7.6zM224.1 338c-45.4 0-82.1-36.7-82.1-82.1s36.7-82.1 82.1-82.1 82.1 36.7 82.1 82.1-36.7 82.1-82.1 82.1zm124.6-82.1c0-16.6 13.5-30.1 30.1-30.1s30.1 13.5 30.1 30.1-13.5 30.1-30.1 30.1-30.1-13.5-30.1-30.1zm47.6 124.6c0 25.9-21 46.9-46.9 46.9H99.6c-25.9 0-46.9-21-46.9-46.9V192.3c0-25.9 21-46.9 46.9-46.9h249.2c25.9 0 46.9 21 46.9 46.9v187.2z"/>
-            </svg>
-            Follow us on Instagram
-          </a>
-        </div>
-
-        <!-- NEW VILLA PROMO -->
-        <div class="mt-6">
-          <p class="text-lg">
-            <strong>Need more space? Want a private rooftop jacuzzi?
-            Check out our other West Bay Beach property,</strong>
-            <a href="https://DolphinVillaRoatan.com"
-               class="text-blue-600 underline hover:text-blue-800 font-bold"
-               target="_blank" rel="noopener">
-              Dolphin Villa Roatan</a><strong>, a luxury 3-bedroom villa at Ocean One Roatan, just 5 minutes away!</strong>
-          </p>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <footer class="footer bg-gray-100 py-4">
-    <div class="container mx-auto text-center">
-      <p class="text-gray-600 text-sm">
+  <footer class="site-footer">
+    <div class="container mx-auto">
+      <p class="text-sm">
         &copy; 2026
-        <a href="https://IslandInTheSunRentals.com" class="text-blue-600 hover:text-blue-800 underline">
-          J&amp;J's Island in the Sun, S.A.</a> All Rights Reserved.<br><br>
+        <a href="https://IslandInTheSunRentals.com">J&amp;J's Island in the Sun, S.A.</a> &middot; All Rights Reserved.
       </p>
     </div>
   </footer>
 
-  <!-- FLOATING "BOOK NOW" BUTTON -->
+  <!-- FLOATING BOOK NOW -->
   <a
     href="https://bnbforms.com/103241/accommodation/infinitybay1003beachfront/"
     target="_blank" rel="noopener"
     class="floating-book-now"
-    aria-label="Book Now"
+    aria-label="See availability calendar and book now"
   >
-    See Availabilty Calendar / Book Now
+    <svg><use href="#i-calendar"/></svg>
+    <span>See Availability / Book Now</span>
   </a>
 
   <!-- Swiper JS -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <script>
-    function toggleLocationDetails() {
-      var locationDetails = document.getElementById("locationDetails");
-      var toggleIconLocation = document.getElementById("toggleIconLocation");
-      if (locationDetails.classList.contains("hidden")) {
-        locationDetails.classList.remove("hidden");
-        toggleIconLocation.textContent = "-";
-      } else {
-        locationDetails.classList.add("hidden");
-        toggleIconLocation.textContent = "+";
-      }
-    }
-
-    function toggleOwnerDetails() {
-      var ownerDetails = document.getElementById("OwnerDetails");
-      var toggleIconOwners = document.getElementById("toggleIconOwners");
-      if (ownerDetails.classList.contains("hidden")) {
-        ownerDetails.classList.remove("hidden");
-        toggleIconOwners.textContent = "-";
-      } else {
-        ownerDetails.classList.add("hidden");
-        toggleIconOwners.textContent = "+";
-      }
+    /* Accordion helpers */
+    function toggleAccordion(toggleId, bodyId) {
+      var toggle = document.getElementById(toggleId);
+      var body = document.getElementById(bodyId);
+      toggle.classList.toggle('open');
+      body.classList.toggle('open');
     }
 
     function animateNavLinks() {
@@ -704,6 +1016,24 @@ h1 { font-weight: 700; }
           link.style.transform = 'translateY(0)';
         }, 100 * index);
       });
+    }
+
+    /* Scroll reveal */
+    function initScrollReveal() {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function(el){ el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function(el) { io.observe(el); });
     }
 
     // Preloader
@@ -774,7 +1104,6 @@ h1 { font-weight: 700; }
       return '<svg class="' + cls + ' half" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>';
     }
 
-    /* EDIT: Format stayDate - converts ISO strings like "2026-01-01T05:00:00.000Z" to "January 2026" */
     function formatStayDate(raw) {
       if (!raw) return '';
       var str = String(raw).trim();
@@ -787,7 +1116,6 @@ h1 { font-weight: 700; }
       return str;
     }
 
-    /* EDIT: Reviews Swiper instance */
     var reviewsSwiper = null;
 
     function renderReviews() {
@@ -896,7 +1224,7 @@ h1 { font-weight: 700; }
 
       var btn = document.getElementById('submitReviewBtn');
       btn.disabled = true;
-      btn.textContent = 'Submitting\u2026';
+      btn.textContent = 'Submitting…';
 
       try {
         var resp = await fetch(REVIEWS_API_URL, {
@@ -937,71 +1265,51 @@ h1 { font-weight: 700; }
     document.addEventListener('DOMContentLoaded', function() {
       // Gallery thumbs
       var galleryThumbs = new Swiper('.gallery-thumbs', {
-        slidesPerView: 'auto',
-        freeMode: true,
-        spaceBetween: 2,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true
+        slidesPerView: 'auto', freeMode: true, spaceBetween: 2,
+        watchSlidesVisibility: true, watchSlidesProgress: true
       });
-
       // Main gallery
       var galleryTop = new Swiper('.gallery-top', {
-        spaceBetween: 1,
-        loop: true,
-        centeredSlides: true,
-        slidesPerView: 1.4,
+        spaceBetween: 1, loop: true, centeredSlides: true, slidesPerView: 1.4,
         slideToClickedSlide: true,
         navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         thumbs: { swiper: galleryThumbs },
         autoplay: { delay: 5000, disableOnInteraction: true }
       });
-
       // Fun thumbs
       var funThumbs = new Swiper('.fun-thumbs', {
-        slidesPerView: 'auto',
-        freeMode: true,
-        spaceBetween: 2,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true
+        slidesPerView: 'auto', freeMode: true, spaceBetween: 2,
+        watchSlidesVisibility: true, watchSlidesProgress: true
       });
-
       // Main fun slider
       var funTop = new Swiper('.fun-top', {
-        spaceBetween: 2,
-        loop: true,
-        centeredSlides: true,
-        slidesPerView: 1.6,
+        spaceBetween: 2, loop: true, centeredSlides: true, slidesPerView: 1.6,
         slideToClickedSlide: true,
         navigation: { nextEl: '.swiper-button-nextFun', prevEl: '.swiper-button-prevFun' },
         thumbs: { swiper: funThumbs },
         autoplay: { delay: 5000, disableOnInteraction: true }
       });
 
-      // Nav link behaviors
+      // Nav menu — open accordion when navigating to those sections
       document.getElementById('menuLocation').addEventListener('click', function(e) {
         e.preventDefault();
-        const locationDetails = document.getElementById('locationDetails');
-        if (locationDetails.classList.contains('hidden')) {
-          toggleLocationDetails();
-        }
+        var body = document.getElementById('locationDetails');
+        if (!body.classList.contains('open')) toggleAccordion('locationToggle','locationDetails');
         document.location.href = '#location';
       });
-
       document.getElementById('menuOwners').addEventListener('click', function(e) {
         e.preventDefault();
-        const ownerDetails = document.getElementById('OwnerDetails');
-        if (ownerDetails.classList.contains('hidden')) {
-          toggleOwnerDetails();
-        }
+        var body = document.getElementById('OwnerDetails');
+        if (!body.classList.contains('open')) toggleAccordion('ownersToggle','OwnerDetails');
         document.location.href = '#Owners';
       });
-
       document.getElementById('menuRoatanFun').addEventListener('click', function(e) {
         e.preventDefault();
         document.location.href = '#roatan-fun';
       });
 
       animateNavLinks();
+      initScrollReveal();
 
       // Mobile sticky nav show/hide on scroll
       const mobileStickyNav = document.getElementById('mobileStickyNav');
@@ -1013,11 +1321,8 @@ h1 { font-weight: 700; }
         }
       });
 
-      // Load reviews from Google Sheets
       loadReviews();
     });
   </script>
 </body>
 </html>
-
-
