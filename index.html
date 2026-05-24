@@ -240,6 +240,25 @@
     .feature-card .label {
       color: #1F2937; font-size: 0.95rem; line-height: 1.4; font-weight: 500;
     }
+    @media (max-width: 640px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.875rem;
+      }
+      .feature-grid-centered {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.875rem;
+      }
+      .feature-grid-centered .feature-card {
+        flex: initial;
+        max-width: none;
+        width: auto;
+      }
+      .feature-card {
+        padding: 1.25rem 0.75rem;
+      }
+    }
 
     /* =========================
        FEATURES — clean white cards on sand
