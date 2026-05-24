@@ -388,6 +388,11 @@
     .reviews-swiper .swiper-slide-prev,
     .reviews-swiper .swiper-slide-next { opacity: 1; }
     @media(max-width:768px){.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{display:none}}
+    .review-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;flex-shrink:0;margin-right:12px;user-select:none}
+    .review-body{flex:1}
+    .review-text-truncated{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .review-read-more{background:none;border:none;color:var(--primary);font-size:0.875rem;font-weight:600;cursor:pointer;padding:4px 0 0;display:inline-block;font-family:inherit}
+    .review-read-more:hover{text-decoration:underline}
 
     /* Mobile tweaks */
     @media (max-width: 768px) {
@@ -1187,6 +1192,44 @@
         }
       }
       return str;
+    }
+
+    var AVATAR_COLORS = ['#0891B2','#0E7490','#0369A1','#7C3AED','#DB2777','#D97706','#059669','#DC2626'];
+    function avatarColor(name) {
+      var hash = 0;
+      for (var i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
+    }
+    function getInitials(name) {
+      var parts = String(name).trim().split(/\s+/);
+      return parts.length === 1 ? parts[0].charAt(0).toUpperCase() : (parts[0].charAt(0) + parts[parts.length-1].charAt(0)).toUpperCase();
+    }
+    function toggleReadMore(btn) {
+      var p = btn.previousElementSibling;
+      if (p.classList.contains('review-text-truncated')) {
+        p.classList.remove('review-text-truncated');
+        btn.textContent = 'Show less';
+      } else {
+        p.classList.add('review-text-truncated');
+        btn.textContent = 'Read more';
+      }
+    }
+    function updateReviewSchema(reviews) {
+      var schemaEl = document.querySelector('script[type="application/ld+json"]');
+      if (!schemaEl) return;
+      try {
+        var schema = JSON.parse(schemaEl.textContent);
+        schema.review = reviews.slice(0, 20).map(function(r) {
+          return {
+            '@type': 'Review',
+            'author': {'@type': 'Person', 'name': r.name},
+            'reviewRating': {'@type': 'Rating', 'ratingValue': String(r.rating), 'bestRating': '5'},
+            'reviewBody': r.text,
+            'datePublished': new Date(r.timestamp).toISOString().split('T')[0]
+          };
+        });
+        schemaEl.textContent = JSON.stringify(schema);
+      } catch(e) {}
     }
 
     var reviewsSwiper = null;
