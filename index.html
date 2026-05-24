@@ -199,8 +199,20 @@
     /* Swiper arrows */
     .swiper-button-prev, .swiper-button-next,
     .swiper-button-prevFun, .swiper-button-nextFun {
-      color: rgba(255,255,255,0.85) !important;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+      color: #fff !important;
+      background: rgba(0,0,0,0.45);
+      border-radius: 50%;
+      width: 44px !important;
+      height: 44px !important;
+      transition: background 0.2s ease;
+    }
+    .swiper-button-prev::after, .swiper-button-next::after,
+    .swiper-button-prevFun::after, .swiper-button-nextFun::after {
+      font-size: 18px !important;
+    }
+    .swiper-button-prev:hover, .swiper-button-next:hover,
+    .swiper-button-prevFun:hover, .swiper-button-nextFun:hover {
+      background: rgba(0,0,0,0.7);
     }
 
     /* =========================
