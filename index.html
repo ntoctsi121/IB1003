@@ -199,7 +199,7 @@
     /* Swiper arrows */
     .swiper-button-prev, .swiper-button-next,
     .swiper-button-prevFun, .swiper-button-nextFun {
-      color: #fff !important;
+      color: #94a3b8 !important;
       background: rgba(255,255,255,0.15);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
@@ -207,7 +207,7 @@
       border-radius: 50%;
       width: 44px !important;
       height: 44px !important;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
     .swiper-button-prev::after, .swiper-button-next::after,
     .swiper-button-prevFun::after, .swiper-button-nextFun::after {
@@ -215,6 +215,7 @@
     }
     .swiper-button-prev:hover, .swiper-button-next:hover,
     .swiper-button-prevFun:hover, .swiper-button-nextFun:hover {
+      color: var(--primary) !important;
       background: rgba(255,255,255,0.3);
       border-color: rgba(255,255,255,0.7);
     }
