@@ -200,11 +200,14 @@
     .swiper-button-prev, .swiper-button-next,
     .swiper-button-prevFun, .swiper-button-nextFun {
       color: #fff !important;
-      background: rgba(0,0,0,0.45);
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.4);
       border-radius: 50%;
       width: 44px !important;
       height: 44px !important;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
     .swiper-button-prev::after, .swiper-button-next::after,
     .swiper-button-prevFun::after, .swiper-button-nextFun::after {
@@ -212,7 +215,8 @@
     }
     .swiper-button-prev:hover, .swiper-button-next:hover,
     .swiper-button-prevFun:hover, .swiper-button-nextFun:hover {
-      background: rgba(0,0,0,0.7);
+      background: rgba(255,255,255,0.3);
+      border-color: rgba(255,255,255,0.7);
     }
 
     /* =========================
