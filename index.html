@@ -383,11 +383,12 @@
     .reviews-swiper .swiper-pagination{bottom:0!important}
     .reviews-swiper .swiper-pagination-bullet{background:#94a3b8;opacity:0.5;width:10px;height:10px}
     .reviews-swiper .swiper-pagination-bullet-active{background:var(--primary);opacity:1}
-    .reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{color:#94a3b8!important;top:45%}
-    .reviews-swiper .swiper-button-prev:hover,.reviews-swiper .swiper-button-next:hover{color:var(--primary)!important}
     .reviews-swiper .swiper-slide-prev,
     .reviews-swiper .swiper-slide-next { opacity: 1; }
-    @media(max-width:768px){.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{display:none}}
+    .reviews-outer{position:relative;padding:0 48px}
+    .reviews-prev,.reviews-next{color:#94a3b8!important;top:45%}
+    .reviews-prev:hover,.reviews-next:hover{color:var(--primary)!important}
+    @media(max-width:768px){.reviews-outer{padding:0}.reviews-prev,.reviews-next{display:none}}
     .review-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;flex-shrink:0;margin-right:12px;user-select:none}
     .review-body{flex:1}
     .review-text-truncated{display:-webkit-box;-webkit-line-clamp:9;-webkit-box-orient:vertical;overflow:hidden}
@@ -927,9 +928,11 @@
 
       <div id="reviewsLoading" class="reviews-loading">Loading reviews&hellip;</div>
       <div id="reviewsError" class="review-error-banner" style="display:none;"></div>
-      <div class="reviews-swiper swiper mb-10" id="reviewsSwiperContainer" style="display:none;">
-        <div class="swiper-wrapper" id="reviewsList"></div>
-        <div class="swiper-pagination reviews-pagination"></div>
+      <div class="reviews-outer mb-10" id="reviewsSwiperContainer" style="display:none;">
+        <div class="reviews-swiper swiper" id="reviewsSwiperEl">
+          <div class="swiper-wrapper" id="reviewsList"></div>
+          <div class="swiper-pagination reviews-pagination"></div>
+        </div>
         <div class="swiper-button-prev reviews-prev"></div>
         <div class="swiper-button-next reviews-next"></div>
       </div>
@@ -1323,7 +1326,7 @@
         reviewsSwiper = null;
       }
 
-      reviewsSwiper = new Swiper('#reviewsSwiperContainer', {
+      reviewsSwiper = new Swiper('#reviewsSwiperEl', {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: sorted.length > 1,
