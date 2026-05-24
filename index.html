@@ -390,9 +390,19 @@
     @media(max-width:768px){.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{display:none}}
     .review-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;flex-shrink:0;margin-right:12px;user-select:none}
     .review-body{flex:1}
-    .review-text-truncated{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .review-text-truncated{display:-webkit-box;-webkit-line-clamp:9;-webkit-box-orient:vertical;overflow:hidden}
     .review-read-more{background:none;border:none;color:var(--primary);font-size:0.875rem;font-weight:600;cursor:pointer;padding:4px 0 0;display:inline-block;font-family:inherit}
     .review-read-more:hover{text-decoration:underline}
+    .property-tile-wrap{margin-top:48px;max-width:520px;margin-left:auto;margin-right:auto}
+    .property-tile-link{display:block;text-decoration:none;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(15,23,42,0.15);transition:transform 0.25s ease,box-shadow 0.25s ease}
+    .property-tile-link:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(15,23,42,0.22)}
+    .property-tile{position:relative;aspect-ratio:16/9}
+    .property-tile img{width:100%;height:100%;object-fit:cover;display:block}
+    .property-tile-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0) 100%);padding:32px 24px 22px;color:#fff;text-align:left}
+    .property-tile-eyebrow{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.09em;opacity:0.8;margin-bottom:4px}
+    .property-tile-title{font-size:1.35rem;font-weight:800;line-height:1.2;margin-bottom:4px}
+    .property-tile-subtitle{font-size:0.85rem;opacity:0.85;margin-bottom:14px}
+    .property-tile-cta{display:inline-block;background:var(--primary);color:#fff;font-size:0.78rem;font-weight:700;padding:6px 16px;border-radius:9999px;letter-spacing:0.03em;transition:background 0.2s}
 
     /* Mobile tweaks */
     @media (max-width: 768px) {
@@ -1037,15 +1047,19 @@
       </div>
 
       <!-- VILLA CROSS-PROMO -->
-      <div class="mt-12 text-center max-w-3xl mx-auto">
-        <p class="text-lg leading-relaxed">
-          <strong>Need more space? Want a private rooftop jacuzzi?
-          Check out our other West Bay Beach property,</strong>
-          <a href="https://DolphinVillaRoatan.com"
-             class="text-primary underline font-bold"
-             target="_blank" rel="noopener">
-            Dolphin Villa Roatan</a><strong>, a luxury 3-bedroom villa at Ocean One Roatan, just 5 minutes away!</strong>
-        </p>
+      <div class="property-tile-wrap">
+        <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4">Also by the same owners</p>
+        <a href="https://dolphinvillaroatan.com" target="_blank" rel="noopener" class="property-tile-link" aria-label="View Dolphin Villa Roatan – our 3-bedroom luxury villa">
+          <div class="property-tile">
+            <img src="https://dolphinvillaroatan.com/images/Top01.jpg" alt="Aerial view of Dolphin Villa complex with pool, rooftop terraces, and tropical landscaping at sunset" loading="lazy" decoding="async">
+            <div class="property-tile-overlay">
+              <p class="property-tile-eyebrow">West Bay Beach · Roatan</p>
+              <h3 class="property-tile-title">Dolphin Villa Roatan</h3>
+              <p class="property-tile-subtitle">3-bedroom luxury villa &middot; Private rooftop Jacuzzi &middot; 5-star reviews</p>
+              <span class="property-tile-cta">View Property &rarr;</span>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -1271,7 +1285,7 @@
         var posted = new Date(r.timestamp).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
         var initials = getInitials(r.name);
         var avatarBg = avatarColor(r.name);
-        var needsTruncate = safeText.length > 200;
+        var needsTruncate = safeText.length > 600;
         var textHTML = needsTruncate
           ? '<p class="text-gray-700 leading-relaxed review-text-truncated">' + safeText + '</p><button class="review-read-more" onclick="toggleReadMore(this)">Read more</button>'
           : '<p class="text-gray-700 leading-relaxed">' + safeText + '</p>';
