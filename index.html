@@ -377,7 +377,7 @@
 
     /* REVIEWS SWIPER */
     .reviews-swiper{overflow:hidden;padding-bottom:40px;position:relative}
-    .reviews-swiper .swiper-slide{height:auto}
+    .reviews-swiper .swiper-slide{height:auto;background:transparent}
     .reviews-swiper .review-card{height:100%;display:flex;flex-direction:column}
     .reviews-swiper .review-card p.text-gray-700{flex:1}
     .reviews-swiper .swiper-pagination{bottom:0!important}
@@ -1235,7 +1235,7 @@
         p.innerHTML = safeText;
         btn.textContent = 'Show less';
       } else {
-        p.innerHTML = safeText.substring(0, 600).trim() + '&hellip;';
+        p.innerHTML = safeText.substring(0, 500).trim() + '&hellip;';
         btn.textContent = 'Read more';
       }
     }
@@ -1298,9 +1298,9 @@
         var posted = new Date(r.timestamp).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
         var initials = getInitials(r.name);
         var avatarBg = avatarColor(r.name);
-        var needsTruncate = String(r.text).length > 600;
+        var needsTruncate = String(r.text).length > 500;
         var textHTML = needsTruncate
-          ? '<p class="text-gray-700 leading-relaxed">' + safeText.substring(0, 600).trim() + '&hellip;</p><button class="review-read-more" data-review-idx="' + i + '" onclick="toggleReadMore(this)">Read more</button>'
+          ? '<p class="text-gray-700 leading-relaxed">' + safeText.substring(0, 500).trim() + '&hellip;</p><button class="review-read-more" data-review-idx="' + i + '" onclick="toggleReadMore(this)">Read more</button>'
           : '<p class="text-gray-700 leading-relaxed">' + safeText + '</p>';
         return '<div class="swiper-slide"><div class="review-card">' +
           '<div class="flex items-start mb-3">' +
