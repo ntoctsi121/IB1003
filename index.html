@@ -1229,18 +1229,21 @@
       return parts.length === 1 ? parts[0].charAt(0).toUpperCase() : (parts[0].charAt(0) + parts[parts.length-1].charAt(0)).toUpperCase();
     }
     function toggleReadMore(btn) {
-      var p = btn.previousElementSibling;
-      var idx = parseInt(btn.getAttribute('data-review-idx') || '0');
-      var r = _reviewSorted[idx];
-      if (!r) return;
-      var safeText = String(r.text).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      if (btn.textContent.trim() === 'Read more') {
-        p.innerHTML = safeText;
-        btn.textContent = 'Show less';
-      } else {
-        p.innerHTML = safeText.substring(0, 500).trim() + '&hellip;';
-        btn.textContent = 'Read more';
-      }
+      var expanding = btn.textContent.trim() === 'Read more';
+      document.querySelectorAll('.review-read-more').forEach(function(b) {
+        var p = b.previousElementSibling;
+        var idx = parseInt(b.getAttribute('data-review-idx') || '0');
+        var r = _reviewSorted[idx];
+        if (!r) return;
+        var safeText = String(r.text).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        if (expanding) {
+          p.innerHTML = safeText;
+          b.textContent = 'Show less';
+        } else {
+          p.innerHTML = safeText.substring(0, 500).trim() + '&hellip;';
+          b.textContent = 'Read more';
+        }
+      });
     }
     function updateReviewSchema(reviews) {
       var schemaEl = document.querySelector('script[type="application/ld+json"]');
