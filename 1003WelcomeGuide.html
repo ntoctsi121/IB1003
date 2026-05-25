@@ -50,6 +50,7 @@
   }
 
   html, body { background: var(--paper); color: var(--ink); }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     margin: 0;
     font-family: "DM Sans", system-ui, sans-serif;
@@ -925,7 +926,24 @@
   }
   @media (max-width: 560px) {
     .act-grid { grid-template-columns: 1fr; }
-    .act-feature h3 { font-size: 44px; }
+    .act-feature {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .act-feature .creatures {
+      position: relative;
+      top: auto; right: auto;
+      text-align: left;
+      padding: 24px 24px 0;
+    }
+    .act-feature .creatures .list { font-size: 22px; }
+    .act-feature .content {
+      position: relative;
+      inset: auto;
+      padding: 16px 24px 28px;
+    }
+    .act-feature h3 { font-size: 40px; }
   }
 
   /* ============================================================
