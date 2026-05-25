@@ -1079,6 +1079,98 @@
 <body>
 
 <!-- ============================================================
+     LOAD SCREEN
+     ============================================================ -->
+<div id="load-screen" style="
+  position: fixed; inset: 0; z-index: 9999;
+  background: radial-gradient(ellipse 80% 60% at 80% 10%, rgba(255,181,71,0.35), transparent 60%),
+              radial-gradient(ellipse 70% 50% at 10% 90%, rgba(76,193,201,0.45), transparent 60%),
+              linear-gradient(170deg, #06384a 0%, #0e6e7d 55%, #0a5566 100%);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  opacity: 1; transition: opacity 0.7s ease;
+  cursor: pointer;
+">
+  <div style="text-align: center; padding: 40px 56px; max-width: 640px;">
+
+    <div style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: #ffb547; margin-bottom: 36px;">
+      Infinity Bay 1003 &nbsp;·&nbsp; Visitor's Guide
+    </div>
+
+    <div id="load-num" style="font-family: 'Yeseva One', serif; font-size: 110px; line-height: 1; color: #ff7a59; margin-bottom: 28px; transition: transform 0.15s ease, opacity 0.15s ease;">
+      5
+    </div>
+
+    <div style="font-family: 'Yeseva One', serif; font-size: 30px; color: #fbf6ea; line-height: 1.2; margin-bottom: 22px;">
+      A quick note before you dive in
+    </div>
+
+    <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.88); margin: 0 0 14px;">
+      This guide is best experienced on a <strong style="color:#4cc1c9;">computer</strong> or in
+      <strong style="color:#4cc1c9;">landscape orientation</strong> on your phone.
+    </p>
+
+    <p style="font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.88); margin: 0 0 36px;">
+      A simplified <strong style="color:#ffb547;">PDF version</strong> is also available —
+      tap the <strong style="color:#ffb547;">Download PDF Guide</strong> button in the top‑right corner.
+    </p>
+
+    <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.38);">
+      Tap anywhere to skip
+    </div>
+
+  </div>
+
+  <!-- Progress bar -->
+  <div style="position:absolute; bottom:0; left:0; right:0; height:4px; background:rgba(255,255,255,0.12);">
+    <div id="load-bar" style="height:100%; width:100%; background:#ff7a59; transition: width 5s linear;"></div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var overlay  = document.getElementById('load-screen');
+    var numEl    = document.getElementById('load-num');
+    var barEl    = document.getElementById('load-bar');
+    var count    = 5;
+    var done     = false;
+
+    function dismiss() {
+      if (done) return;
+      done = true;
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+      setTimeout(function () { overlay.style.display = 'none'; }, 700);
+    }
+
+    // Kick off the progress-bar drain on next paint
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { barEl.style.width = '0%'; });
+    });
+
+    // Countdown tick every second
+    var timer = setInterval(function () {
+      count--;
+      if (count <= 0) { clearInterval(timer); dismiss(); return; }
+      // Pulse the number
+      numEl.style.transform = 'scale(1.2)';
+      numEl.style.opacity   = '0.6';
+      setTimeout(function () {
+        numEl.textContent     = count;
+        numEl.style.transform = 'scale(1)';
+        numEl.style.opacity   = '1';
+      }, 120);
+    }, 1000);
+
+    // Tap / click anywhere to skip
+    overlay.addEventListener('click', function () {
+      clearInterval(timer);
+      dismiss();
+    });
+  })();
+</script>
+
+<!-- ============================================================
      HERO
      ============================================================ -->
 <section class="hero" data-screen-label="00 Cover">
