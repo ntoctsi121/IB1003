@@ -1,0 +1,1760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Infinity Bay 1003 — Visitor's Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<template id="__bundler_thumbnail" data-bg-color="#06384a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0e6e7d"/>
+        <stop offset="1" stop-color="#06384a"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="800" fill="url(#g)"/>
+    <circle cx="940" cy="180" r="80" fill="#ffb547"/>
+    <path d="M 0 620 Q 300 560 600 600 T 1200 580 L 1200 800 L 0 800 Z" fill="#4cc1c9" opacity="0.6"/>
+    <path d="M 0 680 Q 300 620 600 660 T 1200 640 L 1200 800 L 0 800 Z" fill="#06384a"/>
+    <text x="600" y="430" text-anchor="middle"
+          font-family="Georgia, serif" font-size="160" font-style="italic"
+          fill="#fbf6ea">Roatán</text>
+    <text x="600" y="490" text-anchor="middle"
+          font-family="ui-monospace, monospace" font-size="24" letter-spacing="8"
+          fill="#ff7a59">WELCOME GUIDE</text>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Caveat:wght@500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     PALETTE — Caribbean (default)
+     ============================================================ */
+  :root {
+    --ocean-deep:   #06384a;
+    --ocean:        #0e6e7d;
+    --turquoise:    #4cc1c9;
+    --coral:        #ff7a59;
+    --sunset:       #ffb547;
+    --palm:         #2b6a4a;
+    --sand:         #f6ead0;
+    --paper:        #fbf6ea;
+    --paper-warm:   #f3e7cb;
+    --ink:          #1a2b30;
+    --ink-soft:     #4a5a5e;
+    --rule:         rgba(26, 43, 48, 0.14);
+  }
+
+  html, body { background: var(--paper); color: var(--ink); }
+  body {
+    margin: 0;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .display { font-family: "Yeseva One", "Times New Roman", serif; font-weight: 400; letter-spacing: -0.005em; }
+  .mono    { font-family: "DM Mono", ui-monospace, monospace; }
+  .hand    { font-family: "Caveat", cursive; }
+
+  /* ============================================================
+     PAGE SHELL
+     ============================================================ */
+  .page  { max-width: 1240px; margin: 0 auto; padding: 0 56px; }
+  .page-narrow { max-width: 940px; margin: 0 auto; padding: 0 56px; }
+
+  @media (max-width: 760px) {
+    .page, .page-narrow { padding: 0 22px; }
+    body { font-size: 16px; }
+  }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(ellipse 80% 60% at 80% 10%, rgba(255,181,71,0.35), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 10% 90%, rgba(76,193,201,0.45), transparent 60%),
+      linear-gradient(170deg, var(--ocean-deep) 0%, var(--ocean) 55%, #0a5566 100%);
+    color: var(--paper);
+    overflow: hidden;
+    padding: 36px 0 0;
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+    padding-bottom: 22px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+  }
+  .hero-top .vol { display: flex; gap: 28px; }
+
+  .hero-mark {
+    display: flex; align-items: baseline; gap: 10px;
+    font-family: "Yeseva One", serif;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 20px;
+    color: var(--paper);
+  }
+  .hero-mark .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--coral);
+    display: inline-block;
+    transform: translateY(-2px);
+  }
+
+  .hero-title {
+    padding: 80px 0 90px;
+    position: relative;
+    min-width: 0;
+  }
+  .hero-eyebrow {
+    font-family: "DM Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-size: 12px;
+    color: var(--sunset);
+    margin-bottom: 28px;
+  }
+  .hero-title h1 {
+    font-family: "Yeseva One", serif;
+    font-size: clamp(60px, 10vw, 168px);
+    line-height: 0.92;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .hero-title h1 .amp {
+    color: var(--coral);
+    font-style: italic;
+  }
+  .hero-title h1 .line2 {
+    display: block;
+    color: var(--turquoise);
+  }
+  .hero-title h1 .line3 {
+    display: block;
+    padding-left: 1.5em;
+    font-size: 0.55em;
+    color: var(--paper);
+    opacity: 0.92;
+  }
+
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 60px;
+    align-items: end;
+    padding-bottom: 56px;
+  }
+  .hero-sub .col-left {
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.9;
+  }
+  .hero-sub .col-left span {
+    color: var(--sunset);
+    margin-right: 8px;
+  }
+  .hero-sub .col-mid {
+    text-align: center;
+    font-family: "Caveat", cursive;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--sunset);
+    white-space: nowrap;
+  }
+  .hero-sub .col-right {
+    max-width: 360px;
+    margin-left: auto;
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.92);
+  }
+
+  /* Hero image strip */
+  .hero-strip {
+    height: 380px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr;
+    gap: 14px;
+    padding: 0 56px 56px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .hero-strip image-slot {
+    --slot-bg: rgba(255,255,255,0.06);
+    --slot-color: rgba(255,255,255,0.85);
+    --slot-border: 1px dashed rgba(255,255,255,0.4);
+    border-radius: 4px;
+  }
+  .hero-strip .tall { transform: translateY(-40px); }
+
+  @media (max-width: 760px) {
+    .hero-strip { grid-template-columns: 1fr; height: auto; padding: 0 22px 40px; }
+    .hero-strip image-slot { height: 240px; }
+    .hero-strip .tall { transform: none; }
+    .hero-sub { grid-template-columns: 1fr; gap: 28px; }
+    .hero-sub .col-right { margin-left: 0; }
+    .hero-title { padding: 50px 0 60px; }
+  }
+
+  /* ============================================================
+     SECTION OPENER
+     ============================================================ */
+  .opener {
+    padding: 110px 0 36px;
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr) auto;
+    gap: 32px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+  }
+  .opener > * { min-width: 0; }
+  .opener .num {
+    font-family: "Yeseva One", serif;
+    font-size: 64px;
+    color: var(--coral);
+    line-height: 1;
+  }
+  .opener .num .slash { color: var(--ink); opacity: 0.25; }
+  .opener .title {
+    font-family: "Yeseva One", serif;
+    font-size: clamp(40px, 5.5vw, 84px);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .opener .title em { color: var(--ocean); font-style: italic; }
+  .opener .meta {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+  }
+
+  @media (max-width: 760px) {
+    .opener { grid-template-columns: 1fr; gap: 8px; padding: 70px 0 24px; }
+    .opener .meta { text-align: left; }
+  }
+
+  /* ============================================================
+     LETTER (personal welcome)
+     ============================================================ */
+  .letter-section { padding: 90px 0 30px; }
+  .letter {
+    display: block;
+  }
+  .letter > * { min-width: 0; }
+  .letter .left {
+    margin-bottom: 30px;
+  }
+  .letter .left .drop {
+    font-family: "Yeseva One", serif;
+    font-size: clamp(140px, 22vw, 280px);
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--coral);
+    letter-spacing: -0.04em;
+    margin-left: -6px;
+  }
+  .letter .right {
+    max-width: 64ch;
+  }
+  .letter .left .from {
+    margin-top: 16px;
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .letter .right p {
+    font-size: 19px;
+    line-height: 1.65;
+    margin: 0 0 22px;
+    color: var(--ink);
+  }
+  .letter .right p:first-of-type::first-line { font-weight: 500; }
+
+  .signoff {
+    margin-top: 36px;
+    display: flex;
+    align-items: end;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .signoff .sig {
+    font-family: "Caveat", cursive;
+    font-size: 52px;
+    line-height: 0.9;
+    color: var(--ocean);
+  }
+  .signoff .sig small {
+    display: block;
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+
+  @media (max-width: 1000px) {
+    .letter .left .drop { font-size: clamp(96px, 18vw, 200px); }
+  }
+
+  /* ============================================================
+     TRANSPORTATION
+     ============================================================ */
+  .intro-row {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 60px;
+    padding: 50px 0 60px;
+    align-items: start;
+  }
+  .intro-row .label {
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .intro-row p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .intro-row p + p { margin-top: 16px; }
+
+  .driver-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding-bottom: 80px;
+  }
+  .driver-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    padding: 28px 26px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+  }
+  .driver-card.featured {
+    background: var(--ocean-deep);
+    color: var(--paper);
+    border-color: var(--ocean-deep);
+  }
+  .driver-card.featured .role,
+  .driver-card.featured .quote { color: rgba(255,255,255,0.78); }
+  .driver-card .role {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .driver-card .name {
+    font-family: "Yeseva One", serif;
+    font-size: 28px;
+    line-height: 1.1;
+  }
+  .driver-card.featured .name { color: var(--sunset); }
+  .driver-card .quote {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    flex-grow: 1;
+  }
+  .driver-card .contact {
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: "DM Mono", monospace;
+    font-size: 13px;
+  }
+  .driver-card.featured .contact { border-top-color: rgba(255,255,255,0.2); }
+  .driver-card .contact .ws { color: var(--coral); }
+  .driver-card.featured .contact .ws { color: var(--turquoise); }
+  .driver-card .pin {
+    position: absolute;
+    top: -10px; right: 16px;
+    background: var(--coral);
+    color: white;
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 99px;
+  }
+
+  .trans-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    padding-bottom: 30px;
+  }
+  .trans-card {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px;
+    background: var(--paper);
+  }
+  .trans-card .num {
+    font-family: "Yeseva One", serif;
+    font-size: 40px;
+    color: var(--coral);
+    line-height: 1;
+  }
+  .trans-card .num small {
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-left: 4px;
+  }
+  .trans-card h4 {
+    font-family: "Yeseva One", serif;
+    font-size: 20px;
+    margin: 14px 0 6px;
+    font-weight: 400;
+  }
+  .trans-card p {
+    margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-soft);
+  }
+
+  @media (max-width: 900px) {
+    .driver-grid, .trans-options { grid-template-columns: 1fr 1fr; }
+    .intro-row { grid-template-columns: 1fr; gap: 18px; }
+  }
+  @media (max-width: 560px) {
+    .driver-grid, .trans-options { grid-template-columns: 1fr; }
+  }
+
+  /* ============================================================
+     FOOD / DRINKS — magazine spreads
+     ============================================================ */
+  .food-section { padding-bottom: 80px; }
+
+  .restaurant {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    padding: 60px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: center;
+  }
+  .restaurant.flip { grid-template-columns: 1fr 1.1fr; }
+  .restaurant.flip .photo { order: 2; }
+  .restaurant.flip .copy { order: 1; }
+
+  .restaurant .photo {
+    position: relative;
+  }
+  .restaurant .photo image-slot {
+    width: 100%;
+    height: 460px;
+    border-radius: 4px;
+    --slot-bg: var(--paper-warm);
+    --slot-color: var(--ink-soft);
+    --slot-border: 1px dashed var(--rule);
+  }
+  .restaurant .photo .badge {
+    position: absolute;
+    top: 20px; left: 20px;
+    background: var(--coral);
+    color: white;
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 7px 12px;
+    border-radius: 99px;
+    z-index: 2;
+  }
+  .restaurant .photo .badge.ocean { background: var(--ocean); }
+  .restaurant .photo .badge.palm  { background: var(--palm); }
+  .restaurant .photo .badge.sunset{ background: var(--sunset); color: var(--ocean-deep); }
+
+  .restaurant .copy .kicker {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .restaurant .copy .kicker .dot { width: 6px; height: 6px; background: var(--coral); border-radius: 50%; display: inline-block; }
+  .restaurant .copy h3 {
+    font-family: "Yeseva One", serif;
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+  .restaurant .copy h3 em { color: var(--coral); font-style: italic; }
+  .restaurant .copy p {
+    font-size: 16px; line-height: 1.6; margin: 0 0 14px;
+  }
+  .restaurant .copy .order {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ocean-deep);
+    color: var(--paper);
+    padding: 12px 18px;
+    border-radius: 99px;
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .restaurant .copy .order .arrow { color: var(--sunset); }
+  .restaurant .copy .tip {
+    margin-top: 18px;
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 3px solid var(--sunset);
+    padding: 8px 0 8px 14px;
+    font-family: "Caveat", cursive;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--ocean);
+  }
+  .restaurant .copy .tip::before {
+    content: "becky says —";
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-right: 6px;
+    align-self: center;
+    white-space: nowrap;
+  }
+
+  /* Compact restaurants row */
+  .more-eats {
+    background: var(--ocean-deep);
+    color: var(--paper);
+    margin-top: 40px;
+    border-radius: 6px;
+    padding: 50px;
+  }
+  .more-eats h4 {
+    font-family: "Yeseva One", serif;
+    font-size: 40px;
+    margin: 0 0 30px;
+    font-weight: 400;
+  }
+  .more-eats h4 em { color: var(--sunset); font-style: italic; }
+  .more-eats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .eat-mini {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .eat-mini .num {
+    font-family: "Yeseva One", serif;
+    font-size: 24px;
+    color: var(--turquoise);
+  }
+  .eat-mini h5 {
+    font-family: "Yeseva One", serif;
+    font-size: 22px;
+    margin: 0 0 6px;
+    font-weight: 400;
+  }
+  .eat-mini p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.78);
+  }
+  .eat-mini .loc {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sunset);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .restaurant, .restaurant.flip {
+      grid-template-columns: 1fr; gap: 28px;
+    }
+    .restaurant.flip .photo { order: 1; }
+    .restaurant.flip .copy { order: 2; }
+    .restaurant .photo image-slot { height: 320px; }
+    .more-eats { padding: 36px 28px; }
+    .more-eats-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============================================================
+     FAQ — Money matters
+     ============================================================ */
+  .money-section {
+    background: var(--paper-warm);
+    margin-top: 80px;
+    padding: 20px 0 100px;
+    position: relative;
+  }
+  .money-section .opener { border-bottom-color: rgba(26,43,48,0.18); }
+
+  .money-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 18px;
+    margin-top: 50px;
+  }
+  .money-card {
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 30px 28px;
+    border: 1px solid var(--rule);
+    position: relative;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .money-card .tag {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--coral);
+  }
+  .money-card h4 {
+    font-family: "Yeseva One", serif;
+    font-size: 26px;
+    margin: 0;
+    line-height: 1.05;
+    font-weight: 400;
+  }
+  .money-card p {
+    margin: 0; font-size: 15px; line-height: 1.55;
+  }
+  .money-card.big {
+    grid-column: span 7;
+    background: var(--ocean-deep);
+    color: var(--paper);
+    padding: 40px;
+  }
+  .money-card.big .tag { color: var(--sunset); }
+  .money-card.big h4 { color: var(--paper); font-size: 36px; }
+  .money-card.big p { color: rgba(255,255,255,0.88); font-size: 16px; }
+  .money-card.med { grid-column: span 5; }
+  .money-card.third { grid-column: span 4; }
+  .money-card.half  { grid-column: span 6; }
+
+  .money-card.rate {
+    background: var(--coral);
+    color: var(--paper);
+  }
+  .money-card.rate .tag { color: rgba(255,255,255,0.85); }
+  .money-card.rate .big-num {
+    font-family: "Yeseva One", serif;
+    font-size: 88px;
+    line-height: 0.9;
+    margin: 4px 0;
+  }
+  .money-card.rate .big-num small {
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    letter-spacing: 0;
+    color: rgba(255,255,255,0.85);
+  }
+  .money-card.rate p { color: rgba(255,255,255,0.92); }
+
+  .money-card.warn {
+    border-left: 4px solid var(--sunset);
+  }
+
+  @media (max-width: 900px) {
+    .money-card.big,
+    .money-card.med,
+    .money-card.third,
+    .money-card.half { grid-column: span 12; }
+  }
+
+  /* ============================================================
+     CONVENIENCES — strip
+     ============================================================ */
+  .conv-section { padding-bottom: 80px; }
+  .conv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .conv-row {
+    display: contents;
+  }
+  .conv-cell {
+    padding: 32px 26px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .conv-cell:nth-child(3n) { border-right: none; }
+  .conv-cell:nth-last-child(-n+3) { border-bottom: none; }
+  .conv-cell .lbl {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--coral);
+  }
+  .conv-cell h4 {
+    font-family: "Yeseva One", serif;
+    font-size: 26px;
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+  .conv-cell p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+
+  @media (max-width: 760px) {
+    .conv-grid { grid-template-columns: 1fr; }
+    .conv-cell { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
+    .conv-cell:last-child { border-bottom: none !important; }
+  }
+
+  /* ============================================================
+     ACTIVITIES — bento + magazine
+     ============================================================ */
+  .act-hero {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 32px;
+    margin-top: 50px;
+  }
+  .act-feature {
+    position: relative;
+    background: var(--ocean-deep);
+    border-radius: 6px;
+    overflow: hidden;
+    color: var(--paper);
+    min-height: 540px;
+  }
+  .act-feature image-slot {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border-radius: 0;
+    --slot-bg: var(--ocean-deep);
+    --slot-color: rgba(255,255,255,0.6);
+  }
+  .act-feature .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(6,56,74,0.2) 0%, rgba(6,56,74,0.9) 75%);
+    pointer-events: none;
+  }
+  .act-feature .content {
+    position: absolute; inset: auto 0 0 0;
+    padding: 40px;
+    z-index: 2;
+  }
+  .act-feature .tag {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sunset);
+    margin-bottom: 12px;
+  }
+  .act-feature h3 {
+    font-family: "Yeseva One", serif;
+    font-size: 60px;
+    margin: 0 0 16px;
+    line-height: 0.95;
+    font-weight: 400;
+  }
+  .act-feature h3 em { color: var(--turquoise); font-style: italic; }
+  .act-feature p {
+    font-size: 16px; max-width: 480px; line-height: 1.55;
+    color: rgba(255,255,255,0.92); margin: 0;
+  }
+  .act-feature .creatures {
+    position: absolute; top: 30px; right: 30px;
+    text-align: right;
+    z-index: 2;
+  }
+  .act-feature .creatures .lbl {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sunset);
+    margin-bottom: 8px;
+  }
+  .act-feature .creatures .list {
+    font-family: "Caveat", cursive;
+    font-size: 28px;
+    line-height: 1.1;
+    color: var(--paper);
+  }
+
+  .act-side { display: flex; flex-direction: column; gap: 16px; }
+  .act-side-card {
+    background: var(--coral);
+    color: white;
+    border-radius: 6px;
+    padding: 28px;
+    position: relative;
+    flex: 1;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .act-side-card:nth-child(2) { background: var(--palm); }
+  .act-side-card .tag {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+  }
+  .act-side-card h4 {
+    font-family: "Yeseva One", serif;
+    font-size: 34px;
+    margin: 0;
+    line-height: 1;
+    font-weight: 400;
+  }
+  .act-side-card p {
+    margin: 0; font-size: 14px; line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+  }
+
+  /* Activity grid */
+  .act-grid {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+  }
+  .act-card {
+    grid-column: span 2;
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 26px;
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative;
+    min-height: 280px;
+  }
+  .act-card.wide { grid-column: span 3; }
+  .act-card.dark { background: var(--ocean); color: var(--paper); border-color: var(--ocean); }
+  .act-card.dark .tag, .act-card.dark .meta { color: rgba(255,255,255,0.7); }
+  .act-card.coral { background: var(--coral); color: var(--paper); border-color: var(--coral); }
+  .act-card.coral .tag, .act-card.coral .meta { color: rgba(255,255,255,0.85); }
+  .act-card .num {
+    font-family: "Yeseva One", serif;
+    font-size: 22px;
+    color: var(--coral);
+  }
+  .act-card.dark .num { color: var(--sunset); }
+  .act-card.coral .num { color: var(--ocean-deep); }
+  .act-card h4 {
+    font-family: "Yeseva One", serif;
+    font-size: 28px;
+    margin: 0;
+    line-height: 1.05;
+    font-weight: 400;
+  }
+  .act-card p {
+    margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-soft); flex-grow: 1;
+  }
+  .act-card.dark p, .act-card.coral p { color: rgba(255,255,255,0.92); }
+  .act-card .meta {
+    margin-top: 6px;
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .act-card .tag {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 1000px) {
+    .act-hero { grid-template-columns: 1fr; }
+    .act-feature { min-height: 420px; }
+    .act-grid { grid-template-columns: 1fr 1fr; }
+    .act-card, .act-card.wide { grid-column: span 1; }
+  }
+  @media (max-width: 560px) {
+    .act-grid { grid-template-columns: 1fr; }
+    .act-feature h3 { font-size: 44px; }
+  }
+
+  /* ============================================================
+     ENDING — postcard
+     ============================================================ */
+  .ending {
+    margin-top: 100px;
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 10%, rgba(255,181,71,0.4), transparent 60%),
+      radial-gradient(ellipse 80% 60% at 90% 90%, rgba(255,122,89,0.4), transparent 60%),
+      linear-gradient(170deg, var(--ocean-deep) 0%, var(--ocean) 100%);
+    color: var(--paper);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ending h2 {
+    font-family: "Yeseva One", serif;
+    font-size: clamp(48px, 7vw, 110px);
+    line-height: 0.95;
+    margin: 0 0 30px;
+    font-weight: 400;
+    max-width: 14ch;
+  }
+  .ending h2 em { color: var(--sunset); font-style: italic; }
+  .ending .grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .ending p {
+    font-size: 17px; line-height: 1.6; max-width: 52ch;
+    color: rgba(255,255,255,0.92);
+  }
+  .ending .contact {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 6px;
+    padding: 30px;
+  }
+  .ending .contact .tag {
+    font-family: "DM Mono", monospace;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--sunset); margin-bottom: 14px;
+  }
+  .ending .contact a {
+    color: var(--paper); text-decoration: none;
+    font-family: "DM Mono", monospace; font-size: 14px;
+    display: block; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .ending .contact a:last-child { border-bottom: none; }
+  .ending .contact a span { color: var(--turquoise); margin-right: 10px; }
+
+  .ending .signoff-final {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    display: flex; justify-content: space-between; align-items: end;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .ending .signoff-final .names {
+    font-family: "Caveat", cursive;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--sunset);
+  }
+  .ending .signoff-final .footer-meta {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    text-align: right;
+  }
+
+  @media (max-width: 760px) {
+    .ending .grid { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  /* ============================================================
+     Marquee divider
+     ============================================================ */
+  .marquee {
+    background: var(--coral);
+    color: var(--paper);
+    overflow: hidden;
+    padding: 18px 0;
+    font-family: "Yeseva One", serif;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .marquee span {
+    display: inline-block;
+    padding-right: 40px;
+    animation: scroll 38s linear infinite;
+  }
+  .marquee em {
+    font-style: italic;
+    color: var(--ocean-deep);
+  }
+  .marquee .star {
+    color: var(--sunset);
+    margin: 0 24px;
+    display: inline-block;
+    transform: translateY(-4px);
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* density mode */
+  body.density-airy .restaurant { padding: 90px 0; }
+  body.density-airy .opener { padding-top: 150px; }
+  body.density-compact .restaurant { padding: 36px 0; }
+  body.density-compact .opener { padding-top: 70px; }
+
+  /* Print hint */
+  @media print {
+    .hero-strip, .marquee { break-inside: avoid; }
+    .opener { break-before: page; }
+    body { font-size: 12pt; }
+  }
+
+  /* Tweaks panel custom skin override (let starter handle most) */
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" data-screen-label="00 Cover">
+  <div class="page">
+    <div class="hero-top">
+      <div class="hero-mark"><span class="dot"></span> Infinity Bay 1003</div>
+      <div class="vol">
+        <span>Vol. 26 · West Bay</span>
+        <span>Roatán, Honduras</span>
+        <span>16°16′N · 86°34′W</span>
+      </div>
+    </div>
+
+    <div class="hero-title">
+      <div class="hero-eyebrow">A visitor's guide, hand-written with love by your hosts</div>
+      <h1>
+        Welcome <span class="amp">&amp;</span>
+        <span class="line2">bienvenidos</span>
+        <span class="line3">to our slice of the Caribbean.</span>
+      </h1>
+    </div>
+
+    <div class="hero-sub">
+      <div class="col-left">
+        <div><span>01</span> Where to eat &amp; drink</div>
+        <div><span>02</span> Getting around the island</div>
+        <div><span>03</span> Money &amp; everyday answers</div>
+        <div><span>04</span> Adventures above &amp; below the water</div>
+      </div>
+      <div class="col-mid">
+        — twelve pages of <br/>our very favorite things —
+      </div>
+      <div class="col-right">
+        We have put a lot of love into our condo, and we hope you find it as special as we do.
+        Below are tips, secret spots, and our honest-to-goodness favorites. If you need anything
+        at all while you're here, please don't hesitate to reach out.
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-strip">
+    <image-slot id="hero-1" shape="rounded" radius="4" placeholder="West Bay Beach — water shot"></image-slot>
+    <image-slot id="hero-2" class="tall" shape="rounded" radius="4" placeholder="Sunset / reef"></image-slot>
+    <image-slot id="hero-3" shape="rounded" radius="4" placeholder="Condo terrace view"></image-slot>
+  </div>
+</section>
+
+<!-- ============================================================
+     LETTER
+     ============================================================ -->
+<section class="letter-section" data-screen-label="01 Welcome letter">
+  <div class="page-narrow">
+    <div class="letter">
+      <div class="left">
+        <div class="display drop" style="opacity: 0.45; width: 4000px">¡Hola!</div>
+        <div class="from">— A note from your hosts</div>
+      </div>
+      <div class="right">
+        <p>Thank you so much for booking with us! We are so excited for you to discover our favorite island. We have put a lot of love into our condo, and we hope you find it as special as we do.</p>
+        <p>Here are a few tips and suggestions of some of our favorite things to <em>see</em>, <em>do</em>, and <em>eat</em>. If you have any other specific questions, please do not hesitate to ask &mdash; we will do our best to help!</p>
+
+        <div class="signoff">
+          <div class="sig">Becky, Nick,<br/>Jayden &amp; Juliette
+            <small>Your Infinity Bay hosts</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <span>
+    Snorkeling <span class="star">✦</span> <em>Bananaramas at sunset</em> <span class="star">✦</span>
+    Crab races on Sundays <span class="star">✦</span> <em>Fire dancers Fridays</em> <span class="star">✦</span>
+    Cayos Cochinos day trip <span class="star">✦</span> <em>Sandy Buns cinnamon rolls</em> <span class="star">✦</span>
+    Snorkeling <span class="star">✦</span> <em>Bananaramas at sunset</em> <span class="star">✦</span>
+    Crab races on Sundays <span class="star">✦</span> <em>Fire dancers Fridays</em> <span class="star">✦</span>
+    Cayos Cochinos day trip <span class="star">✦</span> <em>Sandy Buns cinnamon rolls</em> <span class="star">✦</span>
+  </span>
+</div>
+
+<!-- ============================================================
+     TRANSPORTATION
+     ============================================================ -->
+<section data-screen-label="02 Transportation">
+  <div class="page">
+    <div class="opener">
+      <div class="num">01<span class="slash">/</span><span style="font-size:32px; color: var(--ink-soft);">04</span></div>
+      <div class="title">Getting <em>around.</em></div>
+      <div class="meta">Taxis · Drivers · Rentals<br/>West Bay → Coxen Hole</div>
+    </div>
+
+    <div class="intro-row">
+      <div class="label">The short version</div>
+      <div>
+        <p>If you plan on staying on West Bay Beach to relax, swim, snorkel and dive, you definitely don't need a car. But if you're the type that likes to explore, there's plenty to see around the rest of the island.</p>
+        <p>Taxis and private drivers can take you all around — though with a big group that adds up. You can rent a car from the airport, from West Bay Mall down the road, or from the rental desk right inside the entrance to Infinity Bay. The resort also offers transportation to and from for <strong>$15 roundtrip per person.</strong></p>
+      </div>
+    </div>
+
+    <!-- Driver cards -->
+    <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-soft); margin-bottom: 18px;">
+      ★ Our trusted drivers — tell them you're staying with Becky
+    </div>
+
+    <div class="driver-grid">
+      <div class="driver-card featured">
+        <div class="pin">Top pick</div>
+        <div class="role">Private Driver · English</div>
+        <div class="name">Jesi Alvarez<br/><span style="color: rgba(255,255,255,0.6); font-size:14px; font-family:'DM Mono', monospace; letter-spacing:0; text-transform:none;">Roatan Driver</span></div>
+        <div class="quote">Reliable, communicative, speaks great English. Will stop at the grocery on the way to the condo so you can stock up.</div>
+        <div class="contact">
+          <div><span class="ws">WhatsApp</span> +504 9542-6832</div>
+          <div><span class="ws">Find on</span> Facebook</div>
+        </div>
+      </div>
+
+      <div class="driver-card">
+        <div class="role">Island Cars + Driver</div>
+        <div class="name">Leonardo</div>
+        <div class="quote">Cheaper than mainstream rentals and very reliable — handled airport + excursions for our group of 50. "Island style" cars: run down but perfect with sandy kids. Usually cash only.</div>
+        <div class="contact">
+          <div><span class="ws">WhatsApp</span> +504 3246-1274</div>
+          <div><span class="ws">Note</span> Ask ahead for grocery stop</div>
+        </div>
+      </div>
+
+      <div class="driver-card">
+        <div class="role">Newer SUVs + insurance</div>
+        <div class="name">Werner Leon Sun</div>
+        <div class="quote">Recommended if you want newer cars/SUVs, insurance, and the ability to pay by credit card. English is also very good.</div>
+        <div class="contact">
+          <div><span class="ws">WhatsApp</span> +504 9435-9696</div>
+          <div><span class="ws">Payment</span> Credit card OK</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-soft); margin-bottom: 14px;">
+      ✦ Other ways to get around
+    </div>
+    <div class="trans-options">
+      <div class="trans-card">
+        <div class="num">$15<small>/pp</small></div>
+        <h4>Resort shuttle</h4>
+        <p>Roundtrip to/from the airport, booked through Infinity Bay.</p>
+      </div>
+      <div class="trans-card">
+        <div class="num">$$<small>·short</small></div>
+        <h4>Rent for a day</h4>
+        <p>West Bay Mall and the Infinity Bay entrance both have car-rental kiosks for short rentals.</p>
+      </div>
+      <div class="trans-card">
+        <div class="num">FB<small>· locals</small></div>
+        <h4>Private FB rentals</h4>
+        <p>Join the Roatan travel Facebook groups for cheaper private car rentals.</p>
+      </div>
+      <div class="trans-card">
+        <div class="num">$<small>·water</small></div>
+        <h4>Water taxi to West End</h4>
+        <p>The most fun way to get to the restaurants &amp; nightlife in West End.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOD & DRINKS
+     ============================================================ -->
+<section class="food-section" data-screen-label="03 Food & drinks">
+  <div class="page">
+    <div class="opener">
+      <div class="num">02<span class="slash">/</span><span style="font-size:32px; color: var(--ink-soft);">04</span></div>
+      <div class="title">Where to <em>eat &amp; drink.</em></div>
+      <div class="meta">11 spots, hand-picked<br/>West Bay · West End</div>
+    </div>
+
+    <div class="intro-row">
+      <div class="label">An island truth</div>
+      <div>
+        <p>There are more restaurants than you'll ever need within walking distance. We also recommend a water taxi to <strong>West End</strong> to check out all the restaurants there. You really can't go wrong — and food &amp; drinks here are cheaper than most other islands we've traveled to.</p>
+      </div>
+    </div>
+
+    <!-- Bananarama -->
+    <article class="restaurant">
+      <div class="photo">
+        <div class="badge">House favorite</div>
+        <image-slot id="rest-banana" shape="rounded" radius="4" placeholder="Bananarama / beach toes / cocktail"></image-slot>
+      </div>
+      <div class="copy">
+        <div class="kicker"><span class="dot"></span> 01 · Right next door · West Bay</div>
+        <h3>Bananarama<em>.</em></h3>
+        <p>Right next door, on the beach, super casual and very reasonably priced. They post 2-for-1 food &amp; drink specials every day on a whiteboard out front. Delicious pizza for picky family members; live music, karaoke and trivia at night.</p>
+        <p>Show up in swimsuits, let the kids play in the sand while your food cooks. The vibe is unbeatable.</p>
+        <div class="order">Order <span class="arrow">→</span> a Bananarama (virgin works too)</div>
+        <div class="tip">our kids beg to go back to Roatan just for these drinks</div>
+      </div>
+    </article>
+
+    <!-- Beachers -->
+    <article class="restaurant flip">
+      <div class="photo">
+        <div class="badge ocean">Monday lobster</div>
+        <image-slot id="rest-beachers" shape="rounded" radius="4" placeholder="Beachers — coconut shrimp"></image-slot>
+      </div>
+      <div class="copy">
+        <div class="kicker"><span class="dot"></span> 02 · Short walk toward West End</div>
+        <h3>Beachers<em>.</em></h3>
+        <p>A close second on West Bay. Coconut shrimp is delicious, and the <strong>Monday-night lobster special</strong> gets you a couple of lobster tails with sides for about $20. Get there early on Mondays — they fill up fast.</p>
+        <div class="tip">monday lobster night — arrive before 7</div>
+      </div>
+    </article>
+
+    <!-- Kismet -->
+    <article class="restaurant">
+      <div class="photo">
+        <div class="badge palm">Where we got married</div>
+        <image-slot id="rest-kismet" shape="rounded" radius="4" placeholder="Kismet / Lighthouse Point views"></image-slot>
+      </div>
+      <div class="copy">
+        <div class="kicker"><span class="dot"></span> 03 · Lighthouse Point · 15-min uphill walk</div>
+        <h3>Kismet<em>.</em></h3>
+        <p>At the Meridian at Lighthouse Point — a condo development up the hill past Infinity Bay with a restaurant at the westernmost point of the island. Open for lunch and dinner. The walk is hot; drive or taxi if you'd rather.</p>
+        <p>Very secluded, especially nice on cruise-ship days when West Bay gets crowded. Walk along the iron-shore trail for gorgeous views and photo ops.</p>
+        <div class="tip">we actually got married here. it's that pretty.</div>
+      </div>
+    </article>
+
+    <!-- Luna Muna -->
+    <article class="restaurant flip">
+      <div class="photo">
+        <div class="badge sunset">Brunch goals</div>
+        <image-slot id="rest-luna" shape="rounded" radius="4" placeholder="Ibigari / Luna Muna brunch"></image-slot>
+      </div>
+      <div class="copy">
+        <div class="kicker"><span class="dot"></span> 04 · Ibigari Boutique Resort · West Bay</div>
+        <h3>Luna Muna<em>.</em></h3>
+        <p>Still in West Bay but off the main beach — a cute boutique resort with an amazing restaurant. It's pricey, but worth it. Especially good for brunch. The setting is gorgeous and the food is delicious.</p>
+      </div>
+    </article>
+
+    <!-- Drunken Sailor -->
+    <article class="restaurant">
+      <div class="photo">
+        <div class="badge">Hidden gem</div>
+        <image-slot id="rest-sailor" shape="rounded" radius="4" placeholder="The Drunken Sailor · Italian"></image-slot>
+      </div>
+      <div class="copy">
+        <div class="kicker"><span class="dot"></span> 05 · West End</div>
+        <h3>The Drunken <em>Sailor.</em></h3>
+        <p>Looks like one of West End's many little dive bars, but it's actually an authentic Italian restaurant owned by an Italian expat and his family. Super reasonably priced for what it is. The owner is often in the back cooking and will come out to explain the menu.</p>
+        <div class="tip">tiny place — reserve, or arrive at an off time</div>
+      </div>
+    </article>
+
+    <!-- More eats grid -->
+    <div class="more-eats">
+      <h4>And six more we <em>love</em>.</h4>
+      <div class="more-eats-grid">
+        <div class="eat-mini">
+          <div class="num">06</div>
+          <div>
+            <h5>Kristi's Island Restaurant</h5>
+            <p>Right across from Ocean One Complex, just outside West Bay Lodge. Run by a couple of expats; the food is delicious. Small — reserve for dinner if you're not going off-peak.</p>
+            <div class="loc">West Bay · expat-owned</div>
+          </div>
+        </div>
+        <div class="eat-mini">
+          <div class="num">07</div>
+          <div>
+            <h5>Las Rocas</h5>
+            <p>At the very end of West Bay toward West End — cross the boardwalk. Reasonably priced breakfast, lunch and dinner. Try the lobster burrito and fish empanadas. Heads up: it gets buggy in the early evening.</p>
+            <div class="loc">West Bay End · breakfast</div>
+          </div>
+        </div>
+        <div class="eat-mini">
+          <div class="num">08</div>
+          <div>
+            <h5>Ginger's</h5>
+            <p>In Half Moon Bay, West End. Some of the best fresh fish on the island, and another perfect spot to let the kids splash in calm, shallow water while you wait for the food.</p>
+            <div class="loc">Half Moon Bay · fresh fish</div>
+          </div>
+        </div>
+        <div class="eat-mini">
+          <div class="num">09</div>
+          <div>
+            <h5>Sundowners</h5>
+            <p>A West End icon — two-story bar right on the water with frequent live music. Where the divers and expats hang out at sunset. The views from here are <em>insane</em>.</p>
+            <div class="loc">West End · sunset bar</div>
+          </div>
+        </div>
+        <div class="eat-mini">
+          <div class="num">10</div>
+          <div>
+            <h5>Sandy Buns</h5>
+            <p>The best cinnamon bun you'll ever have in your life. Trust us.</p>
+            <div class="loc">West End · bakery</div>
+          </div>
+        </div>
+        <div class="eat-mini">
+          <div class="num">11</div>
+          <div>
+            <h5>Lily Pond Garden</h5>
+            <p>A true hidden gem in West End run by Zack and his partner. Reservation-only B&amp;B + restaurant. The fish melts in your mouth. More of an adult, upscale ambiance — but Zack was lovely with our two little ones.</p>
+            <div class="loc">West End · reservations only</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MONEY / FAQ
+     ============================================================ -->
+<section class="money-section" data-screen-label="04 Money & FAQ">
+  <div class="page">
+    <div class="opener">
+      <div class="num">03<span class="slash">/</span><span style="font-size:32px; color: var(--ink-soft);">04</span></div>
+      <div class="title">Money &amp; <em>everyday answers.</em></div>
+      <div class="meta">FAQ · Currency · Tipping<br/>Tax · Cards</div>
+    </div>
+
+    <div class="money-grid">
+      <div class="money-card big">
+        <div class="tag">Currency · Conversion</div>
+        <h4>The US Dollar works everywhere.</h4>
+        <p>No need to stress about exchanging money before you arrive. Occasionally prices are listed in Honduran Lempiras, but vendors still take USD. <strong>Heads-up:</strong> if your dollar bill has even a small tear, it may be rejected — bring crisp bills if you can.</p>
+      </div>
+
+      <div class="money-card rate med">
+        <div class="tag">The rate, roughly</div>
+        <div class="big-num">26L <small>≈ $1 USD</small></div>
+        <p>So something priced at 100L is about $4. Or just open the iPhone Calculator → tap the icon → toggle Convert.</p>
+      </div>
+
+      <div class="money-card half">
+        <div class="tag">Credit cards</div>
+        <h4>Bring Visa or Mastercard.</h4>
+        <p>Accepted most places, but not all. <strong>Amex is hit-or-miss</strong> — bring a backup. Vendors rarely charge a card fee, and paying in Lempiras usually gives you a better rate than the vendor would offer. Use a card with no foreign transaction fees, even paying in USD — fees can sneak in.</p>
+      </div>
+
+      <div class="money-card half warn">
+        <div class="tag">Tipping tip</div>
+        <h4>Tell the server before they swipe.</h4>
+        <p>Paying by card at restaurants, you usually need to <strong>tell your server the tip amount before</strong> they run the card — there's often no line to write it in. Forget? Cash tips are always welcome. A good rule of thumb: ~15%.</p>
+      </div>
+
+      <div class="money-card half">
+        <div class="tag">Small bills</div>
+        <h4>Your best friend in Roatan.</h4>
+        <p>We always bring a stash of $1s and $5s — a few hundred dollars' worth — and it makes life so much easier. Local vendors and service staff really appreciate small bills for tips, snacks, taxis, and quick purchases.</p>
+      </div>
+
+      <div class="money-card half warn">
+        <div class="tag">Sales tax surprise</div>
+        <h4>15% – 19%, depending.</h4>
+        <p>Sales tax in Roatan is steep. If a price doesn't include tax it can be a surprise at checkout — most vendors will tell you whether tax is baked in, but when in doubt, just ask.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONVENIENCES
+     ============================================================ -->
+<section class="conv-section" data-screen-label="05 Conveniences">
+  <div class="page">
+    <div class="opener">
+      <div class="num" style="color: var(--ocean);">+</div>
+      <div class="title" style="font-size: clamp(32px, 4vw, 56px);">Groceries &amp; <em>conveniences.</em></div>
+      <div class="meta">Eldon's · Fresco · Octopus</div>
+    </div>
+
+    <div class="intro-row">
+      <div class="label">Pro tip</div>
+      <div>
+        <p>Bring all toiletries and staples you need from home — but in a pinch, the island has everything. We recommend stocking up at <strong>Eldon's</strong>, the big grocery store, on your way from the airport to the condo.</p>
+      </div>
+    </div>
+
+    <div class="conv-grid">
+      <div class="conv-cell">
+        <div class="lbl">★ Best stop</div>
+        <h4>Eldon's</h4>
+        <p>The big supermarket in Coxen Hole, right by the airport. Cheapest and best stocked. Most private drivers will stop here on the way from the airport to West Bay for a few extra dollars.</p>
+      </div>
+      <div class="conv-cell">
+        <div class="lbl">Produce</div>
+        <h4>Fresco</h4>
+        <p>Fresh fruit and vegetable market across the street from the entrance to Ocean One, just down from Infinity Bay. Perfect for breakfast staples — and avocados for guacamole on the porch.</p>
+      </div>
+      <div class="conv-cell">
+        <div class="lbl">In a pinch</div>
+        <h4>Octopus</h4>
+        <p>Small (and very expensive) convenience store in West Bay Mall — the outdoor complex of shops just to the left as you exit Infinity Bay.</p>
+      </div>
+      <div class="conv-cell">
+        <div class="lbl">On the beach</div>
+        <h4>Beacher's Mini-Mart</h4>
+        <p>Small grocery right next to Beacher's restaurant on West Bay Beach. Staples and alcohol. Not cheap, but very convenient if you don't feel like moving.</p>
+      </div>
+      <div class="conv-cell">
+        <div class="lbl">Get help</div>
+        <h4>Ask your driver</h4>
+        <p>Don't have a car? Most private drivers or taxis will stop at the grocery store on the way from the airport for only a few extra dollars — if you ask ahead of time.</p>
+      </div>
+      <div class="conv-cell">
+        <div class="lbl">Sundries</div>
+        <h4>What to pack</h4>
+        <p>Reef-safe sunscreen, your own snorkel gear if you have it, a soft cooler bag, bug spray (especially for evenings), and a stash of crisp $1s and $5s.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ACTIVITIES
+     ============================================================ -->
+<section data-screen-label="06 Activities">
+  <div class="page">
+    <div class="opener">
+      <div class="num">04<span class="slash">/</span><span style="font-size:32px; color: var(--ink-soft);">04</span></div>
+      <div class="title">Above &amp; <em>below</em> the water.</div>
+      <div class="meta">Snorkel · Dive · Day trips<br/>Animal encounters · Nights out</div>
+    </div>
+
+    <div class="act-hero">
+      <div class="act-feature">
+        <image-slot id="act-snorkel" placeholder="Underwater shot — reef / fish"></image-slot>
+        <div class="scrim"></div>
+        <div class="creatures">
+          <div class="lbl">We've seen</div>
+          <div class="list">
+            fish · coral · squid<br/>
+            octopus · turtles<br/>
+            eels &amp; stingrays
+          </div>
+        </div>
+        <div class="content">
+          <div class="tag">★ The main event</div>
+          <h3>Some of the best <em>snorkeling</em> in the world — just down the beach.</h3>
+          <p>Walk out to the beach, turn left, and head all the way to the end where the rocks are. Enter the water and swim straight out to the reef, then go right. There's a huge reef that surrounds the island, and a big shelf with a drop-off. You can snorkel here for hours.</p>
+        </div>
+      </div>
+
+      <div class="act-side">
+        <div class="act-side-card">
+          <div class="tag">For little kids</div>
+          <h4>Swimming with the fishies.</h4>
+          <p>In the same area by the rocks, you can stand in shallow water and be surrounded by colorful fish. For families with little ones, this is always the highlight — now anywhere we travel, our kids are disappointed when they're not surrounded by fish in shallow water.</p>
+        </div>
+        <div class="act-side-card">
+          <div class="tag">Can't-miss</div>
+          <h4>Scuba diving.</h4>
+          <p>If you dive, you can't come to Roatan without diving. Extremely affordable; the reef is close so boat rides are short. Night dives, shipwrecks, drift dives — you name it. Favorite shop: <strong>West Bay Divers.</strong> Good reviews on Naboo &amp; Infinity Divers too.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activities grid -->
+    <div class="act-grid">
+      <div class="act-card dark wide">
+        <div class="tag">Day trip · weather permitting</div>
+        <div class="num">↗</div>
+        <h4>Cayos Cochinos.</h4>
+        <p>Tiny remote islands about two hours away with some of the most pristine, untouched snorkeling we have ever seen. Most tours include a fresh fish lunch cooked for you by the locals. Not cheap — definitely worth it.</p>
+        <div class="meta"><span>★ Highly recommended</span><span>Full day · weather-dependent</span></div>
+      </div>
+
+      <div class="act-card coral wide">
+        <div class="tag">Boats · booze · snorkel</div>
+        <div class="num">⚓</div>
+        <h4>Mono Loco.</h4>
+        <p>Snorkel tours, sunset tours, dinner cruises. The food and drinks are fantastic and the trips are super fun — filled with music, dancing, and partying. Kids loved it too.</p>
+        <div class="meta"><span>Leaves from West Bay</span><span>Family-friendly</span></div>
+      </div>
+
+      <div class="act-card">
+        <div class="tag">Friday + Sunday nights</div>
+        <div class="num">🔥</div>
+        <h4>Fire dancers.</h4>
+        <p>Free shows on the beach a few times a night. Sundays in front of Bananarama, Fridays in front of Infinity Bay — you can watch the show right from our porch.</p>
+        <div class="meta"><span>Free</span><span>~8pm</span></div>
+      </div>
+
+      <div class="act-card">
+        <div class="tag">Sundays · Bananarama</div>
+        <div class="num">🦀</div>
+        <h4>Crab races.</h4>
+        <p>Drink specials, live music, and people betting on hermit crabs. Proceeds go to a nonprofit helping infants of mothers with HIV.</p>
+        <div class="meta"><span>Sunday evenings</span><span>For a good cause</span></div>
+      </div>
+
+      <div class="act-card">
+        <div class="tag">Anthony's Key Resort · Sandy Bay</div>
+        <div class="num">🐬</div>
+        <h4>Dolphin encounters.</h4>
+        <p>A dolphin research center where the dolphins are regularly let into the ocean and come back freely. Encounters for all ages: waist-deep meet, snorkel, even a dive encounter. Book ahead online.</p>
+        <div class="meta"><span>25 min from West Bay</span><span>Book online</span></div>
+      </div>
+
+      <div class="act-card">
+        <div class="tag">Jungle · canopy · animals</div>
+        <div class="num">↟</div>
+        <h4>Mayan Jungle Canopy.</h4>
+        <p>Ziplining; both of our kids (2 and 5 at the time) were able to double-zip with us. Go early — it gets hot, and you walk up a lot of steps to the platforms. They also have animal encounters (monkeys, sloths, feeding birds) and offer roundtrip transport.</p>
+        <div class="meta"><span>Transport from condo</span><span>Best in morning</span></div>
+      </div>
+
+      <div class="act-card">
+        <div class="tag">Animal sanctuary · West Bay</div>
+        <div class="num">🦜</div>
+        <h4>Gumbalimba Park.</h4>
+        <p>Right at the entrance to West Bay. Hold macaws, have monkeys jump on your head, see iguanas. A true sanctuary — the monkeys and macaws aren't caged. You sometimes see their macaws flying over West Bay.</p>
+        <div class="meta"><span>Walking distance</span><span>Family-friendly</span></div>
+      </div>
+
+      <div class="act-card">
+        <div class="tag">East End Tour</div>
+        <div class="num">🦈</div>
+        <h4>Mangroves + sharks.</h4>
+        <p>Boat ride through the mangroves, then snorkeling — some include a swim with sharks. We haven't done this ourselves, but guests have called it the highlight of their trip. Recommended operator: <strong>Tyler Hynds, Eastroatan Tours.</strong></p>
+        <div class="meta"><span>Highly recommended by guests</span></div>
+      </div>
+
+      <div class="act-card">
+        <div class="tag">Private island day trip</div>
+        <div class="num">⛱</div>
+        <h4>Brady's Cay.</h4>
+        <p>About a 40-min drive past French Harbour. Park, take their pontoon shuttle to the island, and spend the day on the beach with a restaurant on-site. Go on a non-cruise-ship day — Google cruise schedules — and you'll have it nearly to yourself.</p>
+        <div class="meta"><span>Skip on cruise days</span></div>
+      </div>
+
+      <div class="act-card dark">
+        <div class="tag">TKM Photography</div>
+        <div class="num">📸</div>
+        <h4>Family photos with Katrina.</h4>
+        <p>Canadian photographer who takes amazing family photos at a fraction of US pricing. Patient and flexible with little kids, and she'll even let you change outfits for water photos. tkmphotography.com</p>
+        <div class="meta"><span>Find on Facebook</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ENDING
+     ============================================================ -->
+<section class="ending" data-screen-label="07 Goodbye">
+  <div class="page-narrow">
+    <h2>We hope you fall <em>head-over-heels</em> for Roatán.</h2>
+    <div class="grid">
+      <div>
+        <p>There are so many things we love about this island, we couldn't possibly fit it all in here — but we hope this is a good start, and helps you create the most amazing vacation ever.</p>
+        <p>Thank you for choosing Infinity Bay 1003 for your Roatan getaway. We want to make sure our condo provides you with the best vacation experience possible, and we would love any suggestions you have to make it better.</p>
+      </div>
+
+      <div class="contact">
+        <div class="tag">Reach us anytime</div>
+        <a href="/cdn-cgi/l/email-protection#553c3b333c3b3c212c37342c64656566153238343c397b363a38"><span>✉</span> <span class="__cf_email__" data-cfemail="462f28202f282f323f24273f7776767506212b272f2a6825292b">[email&#160;protected]</span></a>
+        <a href="https://infinitybay1003.com"><span>↗</span> InfinityBay1003.com</a>
+        <a href="#"><span>★</span> Leave us feedback — we read it all</a>
+      </div>
+    </div>
+
+    <div class="signoff-final">
+      <div class="names">xo, Becky, Nick,<br/>Jayden &amp; Juliette</div>
+      <div class="footer-meta">
+        Infinity Bay 1003<br/>
+        West Bay · Roatán<br/>
+        — see you soon —
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Image slot component -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="image-slot.js"></script>
+
+<!-- Tweaks (React + Babel) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<script type="text/babel">
+  const PALETTES = {
+    caribbean: {
+      "--ocean-deep":   "#06384a",
+      "--ocean":        "#0e6e7d",
+      "--turquoise":    "#4cc1c9",
+      "--coral":        "#ff7a59",
+      "--sunset":       "#ffb547",
+      "--palm":         "#2b6a4a",
+      "--sand":         "#f6ead0",
+      "--paper":        "#fbf6ea",
+      "--paper-warm":   "#f3e7cb",
+      "--ink":          "#1a2b30",
+      "--ink-soft":     "#4a5a5e",
+    },
+    sunset: {
+      "--ocean-deep":   "#4a1a2e",
+      "--ocean":        "#a8324a",
+      "--turquoise":    "#ffb38a",
+      "--coral":        "#ff5b6c",
+      "--sunset":       "#ffcf5c",
+      "--palm":         "#7a3a4b",
+      "--sand":         "#fde8d0",
+      "--paper":        "#fff5e6",
+      "--paper-warm":   "#fde2c4",
+      "--ink":          "#2c1620",
+      "--ink-soft":     "#6a3c48",
+    },
+    jungle: {
+      "--ocean-deep":   "#1c3220",
+      "--ocean":        "#3c6147",
+      "--turquoise":    "#a3c878",
+      "--coral":        "#e4734a",
+      "--sunset":       "#f1c45c",
+      "--palm":         "#2b6a4a",
+      "--sand":         "#ece2c7",
+      "--paper":        "#f4ecd4",
+      "--paper-warm":   "#e6dab9",
+      "--ink":          "#1c2418",
+      "--ink-soft":     "#4f5a44",
+    },
+  };
+
+  const DEFAULTS = /*EDITMODE-BEGIN*/{
+    "palette": "caribbean",
+    "density": "default",
+    "hostFirstName": "Becky",
+    "condoTitle": "Infinity Bay 1003"
+  }/*EDITMODE-END*/;
+
+  function applyPalette(name) {
+    const p = PALETTES[name] || PALETTES.caribbean;
+    const root = document.documentElement;
+    Object.entries(p).forEach(([k, v]) => root.style.setProperty(k, v));
+  }
+
+  function applyDensity(name) {
+    document.body.classList.remove("density-airy", "density-compact");
+    if (name === "airy") document.body.classList.add("density-airy");
+    if (name === "compact") document.body.classList.add("density-compact");
+  }
+
+  function App() {
+    const [t, setTweak] = window.useTweaks(DEFAULTS);
+
+    React.useEffect(() => { applyPalette(t.palette); }, [t.palette]);
+    React.useEffect(() => { applyDensity(t.density); }, [t.density]);
+
+    return (
+      <window.TweaksPanel title="Tweaks">
+        <window.TweakSection label="Palette mood">
+          <window.TweakRadio
+            label="Vibe"
+            value={t.palette}
+            options={[
+              { value: "caribbean", label: "Caribbean" },
+              { value: "sunset",    label: "Sunset" },
+              { value: "jungle",    label: "Jungle" },
+            ]}
+            onChange={v => setTweak("palette", v)}
+          />
+        </window.TweakSection>
+        <window.TweakSection label="Layout density">
+          <window.TweakRadio
+            label="Spacing"
+            value={t.density}
+            options={[
+              { value: "compact", label: "Compact" },
+              { value: "default", label: "Default" },
+              { value: "airy",    label: "Airy" },
+            ]}
+            onChange={v => setTweak("density", v)}
+          />
+        </window.TweakSection>
+        <window.TweakSection label="Print">
+          <div style={{fontFamily: "DM Sans, sans-serif", fontSize: 12, color: "var(--twk-muted, #888)", lineHeight: 1.5, padding: "4px 0"}}>
+            Press <b>⌘P</b> / <b>Ctrl+P</b> to save this guide as a beautiful PDF for your guests.
+          </div>
+        </window.TweakSection>
+      </window.TweaksPanel>
+    );
+  }
+
+  const root = document.createElement("div");
+  document.body.appendChild(root);
+  ReactDOM.createRoot(root).render(<App />);
+</script>
+
+</body>
+</html>
