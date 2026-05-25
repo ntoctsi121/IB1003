@@ -1208,16 +1208,26 @@
     var palmBottom = document.getElementById('load-palm-bottom');
     var palmTop    = document.getElementById('load-palm-top');
     var barEl      = document.getElementById('load-bar');
+    var redirectEl = document.getElementById('load-redirect');
     var done       = false;
+    var count      = 8;
 
     function dismiss() {
       if (done) return;
       done = true;
       clearTimeout(autoTimer);
+      clearInterval(countInterval);
       overlay.style.opacity = '0';
       overlay.style.pointerEvents = 'none';
       setTimeout(function () { overlay.style.display = 'none'; }, 700);
     }
+
+    // Live countdown text
+    var countInterval = setInterval(function () {
+      count--;
+      if (count <= 0) { clearInterval(countInterval); return; }
+      redirectEl.textContent = 'You will be redirected in ' + count + ' second' + (count === 1 ? '' : 's');
+    }, 1000);
 
     // Kick off both fills (meeting in the middle) + progress bar on next paint
     requestAnimationFrame(function () {
@@ -1231,7 +1241,7 @@
     });
 
     // Auto-dismiss when the palm finishes filling
-    var autoTimer = setTimeout(dismiss, 6000);
+    var autoTimer = setTimeout(dismiss, 8000);
 
     // Tap / click anywhere to skip
     overlay.addEventListener('click', dismiss);
