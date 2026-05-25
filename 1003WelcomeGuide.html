@@ -1111,8 +1111,43 @@
       tap the <strong style="color:#ffb547;">Download PDF Guide</strong> button in the top‑right corner.
     </p>
 
-    <div id="load-num" style="font-family: 'Yeseva One', serif; font-size: 110px; line-height: 1; color: #ff7a59; margin-bottom: 24px; transition: transform 0.15s ease, opacity 0.15s ease;">
-      5
+    <!-- Tropical palm-tree progress indicator -->
+    <div style="position: relative; width: 150px; height: 210px; margin: 0 auto 18px;">
+      <!-- Dim base palm -->
+      <svg viewBox="0 0 200 280" aria-hidden="true"
+           style="position:absolute; inset:0; width:100%; height:100%; display:block;">
+        <g fill="rgba(255,255,255,0.18)">
+          <ellipse cx="100" cy="273" rx="55" ry="4"/>
+          <path d="M 92 273 Q 88 220 96 160 Q 105 95 96 60 L 104 60 Q 105 95 104 160 Q 112 220 108 273 Z"/>
+          <path d="M 100 60 Q 65 60 18 78 Q 35 70 70 65 Q 88 64 100 62 Z"/>
+          <path d="M 100 60 Q 135 60 182 78 Q 165 70 130 65 Q 112 64 100 62 Z"/>
+          <path d="M 100 60 Q 70 35 30 18 Q 50 38 75 50 Q 88 56 100 62 Z"/>
+          <path d="M 100 60 Q 130 35 170 18 Q 150 38 125 50 Q 112 56 100 62 Z"/>
+          <path d="M 100 60 Q 95 25 100 8 Q 105 25 100 62 Z"/>
+          <circle cx="90" cy="70" r="4.5"/>
+          <circle cx="100" cy="68" r="4.5"/>
+          <circle cx="110" cy="72" r="4.5"/>
+        </g>
+      </svg>
+      <!-- Coral fill palm (clipped from bottom up) -->
+      <svg id="load-palm" viewBox="0 0 200 280" aria-hidden="true"
+           style="position:absolute; inset:0; width:100%; height:100%; display:block;
+                  clip-path: inset(100% 0 0 0); -webkit-clip-path: inset(100% 0 0 0);
+                  transition: clip-path 5s linear, -webkit-clip-path 5s linear;
+                  filter: drop-shadow(0 4px 18px rgba(255,122,89,0.45));">
+        <g fill="#ff7a59">
+          <ellipse cx="100" cy="273" rx="55" ry="4"/>
+          <path d="M 92 273 Q 88 220 96 160 Q 105 95 96 60 L 104 60 Q 105 95 104 160 Q 112 220 108 273 Z"/>
+          <path d="M 100 60 Q 65 60 18 78 Q 35 70 70 65 Q 88 64 100 62 Z"/>
+          <path d="M 100 60 Q 135 60 182 78 Q 165 70 130 65 Q 112 64 100 62 Z"/>
+          <path d="M 100 60 Q 70 35 30 18 Q 50 38 75 50 Q 88 56 100 62 Z"/>
+          <path d="M 100 60 Q 130 35 170 18 Q 150 38 125 50 Q 112 56 100 62 Z"/>
+          <path d="M 100 60 Q 95 25 100 8 Q 105 25 100 62 Z"/>
+          <circle cx="90" cy="70" r="4.5"/>
+          <circle cx="100" cy="68" r="4.5"/>
+          <circle cx="110" cy="72" r="4.5"/>
+        </g>
+      </svg>
     </div>
 
     <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.38);">
@@ -1129,44 +1164,34 @@
 
 <script>
   (function () {
-    var overlay  = document.getElementById('load-screen');
-    var numEl    = document.getElementById('load-num');
-    var barEl    = document.getElementById('load-bar');
-    var count    = 5;
-    var done     = false;
+    var overlay = document.getElementById('load-screen');
+    var palm    = document.getElementById('load-palm');
+    var barEl   = document.getElementById('load-bar');
+    var done    = false;
 
     function dismiss() {
       if (done) return;
       done = true;
+      clearTimeout(autoTimer);
       overlay.style.opacity = '0';
       overlay.style.pointerEvents = 'none';
       setTimeout(function () { overlay.style.display = 'none'; }, 700);
     }
 
-    // Kick off the progress-bar drain on next paint
+    // Kick off the palm-tree fill and progress-bar drain on next paint
     requestAnimationFrame(function () {
-      requestAnimationFrame(function () { barEl.style.width = '0%'; });
+      requestAnimationFrame(function () {
+        palm.style.clipPath = 'inset(0 0 0 0)';
+        palm.style.webkitClipPath = 'inset(0 0 0 0)';
+        barEl.style.width = '0%';
+      });
     });
 
-    // Countdown tick every second
-    var timer = setInterval(function () {
-      count--;
-      if (count <= 0) { clearInterval(timer); dismiss(); return; }
-      // Pulse the number
-      numEl.style.transform = 'scale(1.2)';
-      numEl.style.opacity   = '0.6';
-      setTimeout(function () {
-        numEl.textContent     = count;
-        numEl.style.transform = 'scale(1)';
-        numEl.style.opacity   = '1';
-      }, 120);
-    }, 1000);
+    // Auto-dismiss when the palm finishes filling
+    var autoTimer = setTimeout(dismiss, 5000);
 
     // Tap / click anywhere to skip
-    overlay.addEventListener('click', function () {
-      clearInterval(timer);
-      dismiss();
-    });
+    overlay.addEventListener('click', dismiss);
   })();
 </script>
 
