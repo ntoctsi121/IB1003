@@ -1144,7 +1144,7 @@
       <svg id="load-palm-bottom" viewBox="0 0 300 280" aria-hidden="true"
            style="position:absolute; inset:0; width:100%; height:100%; display:block;
                   clip-path: inset(100% 0 0 0); -webkit-clip-path: inset(100% 0 0 0);
-                  transition: clip-path 8s linear, -webkit-clip-path 8s linear;
+                  transition: clip-path 6.5s linear, -webkit-clip-path 6.5s linear;
                   filter: drop-shadow(0 6px 20px rgba(255,122,89,0.5));">
         <g fill="#ff7a59">
           <ellipse cx="150" cy="273" rx="80" ry="5"/>
@@ -1166,7 +1166,7 @@
       <svg id="load-palm-top" viewBox="0 0 300 280" aria-hidden="true"
            style="position:absolute; inset:0; width:100%; height:100%; display:block;
                   clip-path: inset(0 0 100% 0); -webkit-clip-path: inset(0 0 100% 0);
-                  transition: clip-path 8s linear, -webkit-clip-path 8s linear;
+                  transition: clip-path 6.5s linear, -webkit-clip-path 6.5s linear;
                   filter: drop-shadow(0 -6px 20px rgba(255,122,89,0.5));">
         <g fill="#ff7a59">
           <ellipse cx="150" cy="273" rx="80" ry="5"/>
@@ -1187,7 +1187,7 @@
     </div>
 
     <div id="load-redirect" style="font-family: 'DM Mono', monospace; font-size: 26px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 12px;">
-      You will be redirected in 8 seconds
+      You will be redirected in 7 seconds
     </div>
 
     <div style="font-family: 'DM Mono', monospace; font-size: 20px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.28);">
@@ -1198,7 +1198,7 @@
 
   <!-- Progress bar -->
   <div style="position:absolute; bottom:0; left:0; right:0; height:4px; background:rgba(255,255,255,0.12);">
-    <div id="load-bar" style="height:100%; width:100%; background:#ff7a59; transition: width 8s linear;"></div>
+    <div id="load-bar" style="height:100%; width:100%; background:#ff7a59; transition: width 6.5s linear;"></div>
   </div>
 </div>
 
@@ -1210,7 +1210,7 @@
     var barEl      = document.getElementById('load-bar');
     var redirectEl = document.getElementById('load-redirect');
     var done       = false;
-    var count      = 8;
+    var count      = 7;
 
     function dismiss() {
       if (done) return;
@@ -1241,7 +1241,7 @@
     });
 
     // Auto-dismiss when the palm finishes filling
-    var autoTimer = setTimeout(dismiss, 8000);
+    var autoTimer = setTimeout(dismiss, 6500);
 
     // Tap / click anywhere to skip
     overlay.addEventListener('click', dismiss);
