@@ -74,6 +74,13 @@
   }
   .page.last { page-break-after: auto; break-after: auto; }
 
+  /* On-screen safety: let the closing page grow to its content so the
+     sign-off is never clipped when fonts render taller (e.g. on mobile).
+     Print keeps the fixed letter-page sizing via @media print + @page. */
+  @media screen {
+    .page.last { height: auto; max-height: none; overflow: visible; }
+  }
+
   /* binder holes — visible on screen only as a subtle marker */
   .page::before {
     content: "";
