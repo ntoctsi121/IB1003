@@ -340,12 +340,9 @@
   .cover .strip > img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
-    border-radius: 4px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
   }
-  .cover .strip > img.tall { height: calc(100% + 52px); transform: translateY(-26px); }
   .cover .footer {
     background: rgba(0,0,0,0.18);
     border-top: 1px solid rgba(255,255,255,0.2);
@@ -1012,15 +1009,23 @@
     </h1>
   </div>
 
-  <div class="sub">
-    <p style="margin: 0;">We've put a lot of love into our condo, and we hope you find it as special as we do.
+  <div class="sub" style="max-width: none; display: flex; gap: 30px; align-items: center; justify-content: space-between; padding-right: 0.55in;">
+    <p style="margin: 0; max-width: 4.3in;">We've put a lot of love into our condo, and we hope you find it as special as we do.
     Inside: our favorite restaurants, the best snorkel spot on the island, trusted drivers, and everything in between.</p>
+
+    <div style="flex-shrink: 0; display: flex; align-items: center; gap: 14px;">
+      <div style="text-align: right; max-width: 1.5in;">
+        <div class="mono" style="font-size: 8pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sunset); margin-bottom: 7px;">Prefer it on your phone?</div>
+        <div class="hand" style="font-size: 15pt; line-height: 1.15; color: var(--paper);">Scan for an online copy of this guide</div>
+      </div>
+      <img src="images/Welcome Guide/qr-online-guide.png" alt="Scan for an online copy of the guide" style="width: 1.15in; height: 1.15in; display: block; background: white; padding: 6px; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.35);" />
+    </div>
   </div>
 
   <div class="strip">
     <img src="images/Welcome Guide/Top01.jpg" alt="View from the top of Infinity Bay" />
-    <img class="tall" src="images/Welcome Guide/Grounds01.jpg" alt="Infinity Bay grounds" />
-    <img src="images/Balcony01.jpg" alt="Condo balcony over West Bay Beach" />
+    <img src="images/Top03.JPG" alt="Aerial view over Infinity Bay" />
+    <img src="images/Top08.jpg" alt="Aerial view over West Bay Beach" />
   </div>
 
   <div class="footer">
