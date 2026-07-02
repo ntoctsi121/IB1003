@@ -31,7 +31,13 @@
 
   *, *::before, *::after { box-sizing: border-box; }
 
-  html { background: #2a3a3f; }
+  html {
+    background: #2a3a3f;
+    /* fixed-format pages: stop mobile browsers from inflating text,
+       which pushes content past the 11in page edge */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
   body {
     margin: 0;
     padding: 24px 0 80px;
@@ -1669,11 +1675,11 @@
     </div>
   </div>
 
-  <div class="info-card mt-14">
+  <div class="info-card mt-10" style="padding: 9px 14px;">
     <div class="kicker">Full-day excursion · East End Tour</div>
     <h4 style="color: var(--coral); font-size: 16pt;">Treasure Island Tiki Boat.</h4>
-    <p style="font-size: 9.5pt;">A full day exploring the wild east end of the island — from a tiki boat. Swim with <strong>sharks and stingrays</strong>, wade ashore at gorgeous <strong>Jade Beach</strong>, wind through the <strong>mangrove canals</strong>, and snorkel over a <strong>sunken shipwreck</strong>. One of those days you'll be talking about long after the tan fades.</p>
-    <div style="margin-top: 5px; font-family: 'DM Mono', monospace; font-size: 7pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);">+504 3168-6873 · www.roatantikiboat.com · Instagram @treasureislandtiki</div>
+    <p style="font-size: 9.5pt; line-height: 1.45;">A full day exploring the wild east end of the island — from a tiki boat. Swim with <strong>sharks and stingrays</strong>, wade ashore at gorgeous <strong>Jade Beach</strong>, wind through the <strong>mangrove canals</strong>, and snorkel over a <strong>sunken shipwreck</strong>. One of those days you'll be talking about long after the tan fades.</p>
+    <div style="margin-top: 4px; font-family: 'DM Mono', monospace; font-size: 7pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);">+504 3168-6873 · www.roatantikiboat.com · Instagram @treasureislandtiki</div>
   </div>
 
   <div class="runfoot">
